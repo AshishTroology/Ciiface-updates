@@ -1,0 +1,187 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12 mb-3">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Applicant List</h4><br />
+        </div>
+        <div class="col-md-12">
+
+          <kendo-grid [kendoGridBinding]="gridView" kendoGridSelectBy="id" [selectedKeys]="mySelection"  [sortable]="true" [reorderable]="true" [resizable]="true"
+            [columnMenu]="{ filter: false }">
+            <ng-template kendoGridToolbarTemplate>
+              <button type="button" kendoGridExcelCommand icon="file-excel">
+                Export to Excel
+              </button>
+              <button kendoGridPDFCommand>
+                <span class="k-icon k-i-file-pdf"></span>Export to PDF
+              </button>
+              <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event)" />
+            </ng-template>
+
+            <kendo-grid-column title="ID" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+
+                <div><span class="">{{ dataItem.applicantId}}</span></div>
+                <div>
+                  <p class="icon"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
+                      dataItem.created_at|date:'dd-MM-yyyy hh:mm:ss a'}}</span></p>
+                  <p class="icon"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
+                      dataItem.updated_at|date:'dd-MM-yyyy hh:mm:ss a'}}</span></p>
+                </div>
+
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column title="Unit" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+
+                <div><span class="app-id">{{ dataItem.organizationName}}</span></div>
+                <div>
+                  <p class="icon"><i class="fa fa-expand" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
+                      dataItem.criteria}}</span></p>
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="Contact" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+
+                <div><span class="app-id">{{ dataItem.contactPerson}}</span></div>
+                <div>
+                  <p class="icon"><i class="fa fa-briefcase"></i>&nbsp;<span class="abc-cls">{{
+                      dataItem.designation}}</span></p>
+                  <p class="icon"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
+                      dataItem.mobileNo}}</span></p>
+                  <p class="abc">@&nbsp;<span class="abc-cls">{{ dataItem.email}}</span></p>
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="Address" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div>
+                  <p class="abc">{{ dataItem.applicantState}} , {{ dataItem.applicantCity}} </p>
+                </div>
+                <div>
+                  <p class="abc-cls">{{ dataItem.applicantAddress1}}
+                  </p>
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+
+
+            <kendo-grid-column title="Sector" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div>
+                  <p class="abc">{{ dataItem.sector}}</p>
+                </div>
+                <div>
+                  <p class="abc-cls">{{dataItem.product}}
+                  </p>
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+
+
+            <kendo-grid-column title="Status" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div>
+                  <p style="cursor:pointer" (click)="sendActivationEmail(dataItem._id)" class="label label-{{dataItem.UserData[0].status?'success':'danger'}}" title="Click here to activate account and credentials will be share to registered email-Id">
+                    {{dataItem.UserData[0].status?'Activated':'Pending'}}</p>
+                    <label class="label label-{{ dataItem.userStatus?'success':'danger' }}" >LOI</label>
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="Action" [width]="100" [class]="{ 'text-center': true }" [resizable]="false"
+              [filterable]="false">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-menu>
+                  <kendo-menu-item text="" icon="cog">
+                    <kendo-menu-item text="Access Details" icon="edit" url="/edit-applicant/{{dataItem._id}}"> </kendo-menu-item>
+                    <kendo-menu-item text="Co-Applicant" icon="k-i-attachment-45
+                    k-i-clip-45" url="/list-co-applicant/{{dataItem._id}}"> </kendo-menu-item>
+
+
+                  </kendo-menu-item>
+
+                </kendo-menu>
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-pdf fileName="Products.pdf" [delay]="1000" [allPages]="true" paperSize="A4" [repeatHeaders]="true"
+              [landscape]="true">
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="Applicant.xlsx" >
+              <kendo-excelexport-column field="applicantId" title="Applicant Id"></kendo-excelexport-column>
+              <kendo-excelexport-column field="firstName" title="Name"></kendo-excelexport-column>
+              <kendo-excelexport-column field="mobileNo" title="Mobile"></kendo-excelexport-column>
+              <kendo-excelexport-column field="email" title="Email"></kendo-excelexport-column>
+              <kendo-excelexport-column field="created_at" title="created"></kendo-excelexport-column>
+              <kendo-excelexport-column field="FoodCategoryNameNumber" title="Food Category Number"></kendo-excelexport-column>
+              <kendo-excelexport-column field="amount" title="Amount"></kendo-excelexport-column>
+              <kendo-excelexport-column field="annualApplicant" title="Annual Applicant"></kendo-excelexport-column>
+              <kendo-excelexport-column field="annualApplicantRupee" title="Annual Applicant Rupee"></kendo-excelexport-column>
+              <kendo-excelexport-column field="annualOrganization" title="Annual Organization"></kendo-excelexport-column>
+              <kendo-excelexport-column field="annualOrganizationRupee" title="Annual Organization Rupee"></kendo-excelexport-column>
+              <kendo-excelexport-column field="annualYear" title="GST"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantAddress1" title="Applicant Address1"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantCity" title="Applicant City"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantCountry" title="Applicant Country"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantDesignation" title="Applicant Designation"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantEquipment" title="Applicant Equipment"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantPlant" title="Applicant Plant"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantProduct" title="Unit"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantState" title="Applicant State"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantYear" title="Invoice Type"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicantZipCode" title="Applicant ZipCode"></kendo-excelexport-column>
+              <kendo-excelexport-column field="applicanthightestRanking" title="Applicant hightest Ranking">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="classification" title="Classification"></kendo-excelexport-column>
+              <kendo-excelexport-column field="code1" title="Country Code"></kendo-excelexport-column>
+              <kendo-excelexport-column field="code2" title="Country Code"></kendo-excelexport-column>
+              <kendo-excelexport-column field="code3" title="Country Code"></kendo-excelexport-column>
+              <kendo-excelexport-column field="code4" title="Country Code"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactAddress2" title="Contact Address"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactCity2" title="Contact City"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactCountry2" title="Contact Country"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactDesignation" title="Contact Designation"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactDesignation2" title="Contact Designation2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactEmail" title="Contact Email"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactEmail2" title="Contact Email2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactMobile" title="Contact Mobile"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactMobile2" title="Contact Mobile2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactPerson" title="Contact Person"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactPerson2" title="Contact Person2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactState2" title="Contact State2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="contactZipCode2" title="Contact ZipCode2"></kendo-excelexport-column>
+              <kendo-excelexport-column field="criteria" title="Criteria"></kendo-excelexport-column>
+              <kendo-excelexport-column field="designation" title="Designation"></kendo-excelexport-column>
+              <kendo-excelexport-column field="hightestRanking" title="Hightest Ranking"></kendo-excelexport-column>
+              <kendo-excelexport-column field="operationForm" title="Operation Form"></kendo-excelexport-column>
+              <kendo-excelexport-column field="organizationEmail" title="Organization Email"></kendo-excelexport-column>
+              <kendo-excelexport-column field="organizationMobile" title="Organization Mobile"></kendo-excelexport-column>
+              <kendo-excelexport-column field="organizationName" title="Organization Name"></kendo-excelexport-column>
+              <kendo-excelexport-column field="product" title="Product"></kendo-excelexport-column>
+              <kendo-excelexport-column field="sector" title="Sector"></kendo-excelexport-column>
+              <kendo-excelexport-column field="totalEmployee" title="Total Employee"></kendo-excelexport-column>
+              <kendo-excelexport-column field="userStatus" title="Final Submit"></kendo-excelexport-column>
+            </kendo-grid-excel>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>

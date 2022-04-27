@@ -1,0 +1,136 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Create Assessment Team</h4>
+        </div>
+        <div class="clearfix"></div>
+          <div class="col-sm-12 col-xs-12">
+            <div class="card"  style="margin-top: 1.5%;padding-top: 1%;min-height: 500px;padding-bottom:1rem">
+              <form [formGroup]="allocationForm" (ngSubmit)="submitAllocation()" >
+              <div class="col-md-6 form-group">
+                <label>Applicant </label>
+                <p class="labelInfo">Select Applicant</p>
+                <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)">
+                  <option value="">Select Applicant</option>
+                  <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{ item.organizationName }} ({{ item.sector }})</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-6 form-group">
+                <label>Assessment Schedule </label>
+                <p class="labelInfo">From</p>
+                <input type="date" formControlName="period_from" class="form-control" [min]="this.minDate| date:'yyyy-MM-dd'" (change)="getToDate($event)" />
+              </div>
+              <div class="col-md-6 form-group">
+                <label> </label>
+                <p class="labelInfo">To</p>
+                <input type="date" formControlName="period_to" class="form-control" [min]="this.maxDate | date:'yyyy-MM-dd'" [value]="this.todata" (change)="dateDiff($event,null)" />
+              </div>
+              <div class="col-md-12" *ngIf="this.days>0?true:false">
+                <label class="text-success">No. of Days:{{ this.days }}</label>
+              </div>
+              <div class="col-md-12 form-group">
+                <label>Remark </label>
+                <p class="labelInfo"></p>
+                <textarea formControlName="remark" class="form-control"></textarea>
+              </div>
+              <div class="col-md-12" *ngIf="this.days>0?true:false">
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Assessment Team</th>
+                      <th>Section</th>
+                      <th>Team Leader</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr>
+                      <td>
+                        <ng-select #select [items]="arraydata[0]" [searchable]="false" [(ngModel)]="selected" bindLabel="firstName" bindValue="_id">
+                          <ng-template ng-header-tmp>
+                            <input style="width: 100%; line-height: 24px" type="text"  />
+                          </ng-template>
+                        </ng-select>
+                        <select (change)="onChange($event,i,'assessor_id')" class="form-control" formControlName="assessor" >
+                          <option value="">Select Assessor</option>
+                          <option *ngFor="let title of arraydata[0]" value="{{ title._id }}">{{title.firstName}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <ng-select [items]="arraydatasec[0]" [multiple]="true" [(ngModel)]="selected" class="form-control" (add)="getValue($event)">
+                        </ng-select>
+                      </td>
+                      <td>
+                        <input type="radio" name="chk"  [checked]="this.arrTeamleader[0]" /> <span class="text-danger"> Team Leader</span>
+                      </td>
+                      <td>
+                        <label class="label label-success">{{ this.arrTeamleader[0] }}</label>
+                      </td>
+                      <td>
+                        <button class="btn btn-default" type="button" (click)="deleteFieldValue('0')">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let field of fieldArray; let i = index">
+                      <td>
+                        <select (change)="onChange($event,i,'assessor_id')" class="form-control" formControlName="assessor">
+                          <option  value="">Select Assessor</option>
+                          <option *ngFor="let title of arraydata[i+1]" [value]="title._id">{{title.firstName}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <ng-select [items]="arraydatasec[i+1]" [multiple]="true" [(ngModel)]="selected" class="form-control">
+                        </ng-select>
+                      </td>
+                      <td>
+                        <input type="radio" name="chk" [checked]="this.arrTeamleader[i+1]" /> <span class="text-danger"> Team Leader</span>
+                      </td>
+                      <td>
+                        <label class="label label-success">{{ this.arrTeamleader[i+1] }}</label>
+                      </td>
+                      <td>
+                        <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="5">
+                        <button class="btn btn-default" type="button" (click)="addFieldValue()">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-success">Save Allocation</button>
+              </div>
+              <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

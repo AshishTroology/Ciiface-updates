@@ -1,0 +1,47 @@
+.dropdown-xs button{
+    background-color: #a1cf4f;
+    height: 34px;
+    color: White !important;
+ }
+ .applicant-view{
+     line-height: 5.5;
+ }
+ .email-cls{
+     margin-top: 7.9%;
+ }
+ .applicant-xss tr td{
+     padding: 4px;
+ }
+ .create-applicant{
+     padding-left: 15px;
+     color: white !important;
+ }
+ /* .Search-icon{
+     background-color: white;
+
+ } */
+ .icon-xss{
+     text-align: center;
+     color: red;
+ }
+ #text{
+     border-right: none;
+     height: 29px;
+ }
+ .Assign-box{
+     border: 2px solid #a1cf4f;
+     height: 22px;
+     border-radius: 6px;
+     background: #ebf5d7;
+     width: 49px;
+     text-align: center;
+     color: black;
+ }
+ .form-control{
+     /* font-size: 9px; */
+    font-weight: 100;
+ }
+ .assessors-view{
+    line-height: 5.5;
+}
+

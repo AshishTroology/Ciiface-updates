@@ -1,0 +1,9 @@
+.card {
+  text-align: center;
+  background: transparent;
+  box-shadow: none;
+}
+.card p {
+  font-size: 2rem;
+  padding: 0 0 2rem 0;
+}

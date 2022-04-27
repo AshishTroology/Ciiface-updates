@@ -1,0 +1,18 @@
+<app-header></app-header>
+<app-sidenav-applicant></app-sidenav-applicant>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <h2>Assessment Information</h2>
+    <div class="card">
+      <h3>Instruction</h3>
+      <p [innerHtml]="instruction"></p>
+      <span *ngIf="!this.hidee">
+        <input type="checkbox" value="yes" name="instruction" (change)="checkBoxvalue($event)"> <b> We hereby declare that we have read the above instructions and we duly comply to the given instructions for the submission of the checklist.</b><br/>
+        <p *ngIf="!this.inst" class="text-danger">{{ this.instructionError }}</p>
+        <button class="btn btn-success btn-xs mt2" (click)="checkAssessment()">Get Started!</button>
+      </span>
+    </div>
+
+
+  </div>
+</div>

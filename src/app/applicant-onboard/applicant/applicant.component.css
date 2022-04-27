@@ -1,0 +1,25 @@
+
+.assessment-cls{
+    padding: 0px;
+    margin: 0px;
+}
+label .assessment{
+    visibility: hidden;
+}
+
+.app{
+  height:130px;
+}
+
+.con1,.con2{
+  height:50px;
+}
+.disabled{
+  display: none;
+}
+
+
+
+.form-control.ng-touched.ng-invalid {
+  border-color: red;
+}

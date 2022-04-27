@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+::selection {
+    background-color: #768F31;
+    color: #fff;
+}
+.main-bg {
+    background: url(../../assets/img/CII-Bg.png) left top no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+.main-bg-con {
+    background: url(../../assets/img/Food-Images.png);
+    background-position: center bottom -70px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1.5px solid #838181;
+}
+.main-bg-con img {
+    width: 100%;
+}
+.cii-logo {
+    width: 13%;
+    margin: 0 0 0.5rem 0;
+}
+.cii-face {
+    width: 9%;
+    margin: 0 0 0 1.5rem;
+    /* margin-left: 1.5rem; */
+}
+.left-content h3 {
+    font-weight: 800;
+    font-size: 3rem;
+    color: #000000;
+    line-height: 40px;
+    margin-bottom: 5px;
+}
+.left-content {
+    margin: 2.5rem;
+}
+.left-content span {
+    color: #fff;
+    background: #768F31;
+    padding: 3px 15px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.left-content p {
+    margin: 0.8rem 0 0 0;
+    font-size: 1.4rem;
+    color: #000;
+    line-height: 2rem;
+    font-weight: 500;
+}
+.left-content h6 {
+    font-size: 1.9rem;
+    color: #768F31;
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem;
+    font-family: 'Roboto', sans-serif;
+}
+.left-content h5 {
+    font-size: 1.3rem;
+    color: #000;
+    line-height: 1.7rem;
+}
+
+.troo-logo img {
+    width: 15%;
+    margin-top: 12px;
+}
+.login-sec {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #cfcece;
+    height: 615px;
+    margin: -60px 15px -60px 0;
+    position: relative;
+    /* z-index: 9999999; */
+    padding: 2.5rem;
+}
+.login-sec p {
+    font-size: 1.4rem;
+    color: #5a5a5a;
+    margin-bottom: 5%;
+}
+.login-sec-con .form-control {
+    font-size: 1.5rem;
+    margin-bottom: 3%;
+    padding: 15px 0 15px 40px;
+    height: 42px;
+    border-radius: 8px;
+}
+.login-sec-con .form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+.login-sec-con .form-control::placeholder {
+    padding-left: 1px;
+}
+.login-sec .user-bg {
+    background: url(../../assets/img/user.png)no-repeat 3% ;
+    background-size: 2.2rem;
+}
+.login-sec .user-password {
+    background: url(../../assets/img/key.png)no-repeat 3% ;
+    background-size: 2.2rem;
+}
+.login-sec .email-bg {
+    background: url(../../assets/img/email.png)no-repeat 3% ;
+    background-size: 2.2rem;
+}
+.login-sec .mobile-bg {
+    background: url(../../assets/img/cell-phone.png)no-repeat 3% ;
+    background-size: 2.2rem;
+}
+.login-sec .confirm-password {
+    background: url(../../assets/img/padlock.png)no-repeat 3% ;
+    background-size: 2.2rem;
+}
+.login-sec-con .login_btn {
+    background: #768F31;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0 11px;
+    font-size: 1.9rem;
+}
+.login-sec .forget_password {
+    color: #768F31;
+    float: right;
+    margin: 0.75rem 0 .5rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+.login-sec .Create_Account {
+    /* color: #768F31; */
+    /* float: right; */
+    /* margin: 0.75rem 0 .5rem; */
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 8px;
+    margin-top: 4%;
+}
+.login-sec .Create_Account a {
+    color: #ff3636;
+    text-decoration: none;
+}
+.login-sec h2 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: #000000;
+    margin-bottom: 3%;
+}
+/* .captcha-text {
+    margin-top: 0;
+    float: right;
+    position: relative;
+    top: 3rem;
+    font-size: 11px;
+    text-align: center;
+    right: 4rem;
+} */
+.captcha-text  {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin: 0 auto;
+}
+.captcha-text p {
+    font-size: 11px;
+}
+a {
+    text-decoration: underline;
+    color: #2196f3;
+}
+
+.colorBlue {
+    color: #2196f3 !important;
+}
+#recaptcha {
+    margin: 1rem 0px;
+}
+
+.login-sec-con .text-danger {
+    margin-top: -10px !important;
+    margin-bottom: 10px!important;
+    font-size: 1.4rem !important;
+}
+.moreDetail {
+    font-weight: 600;
+}
+/* .userRadio {
+  margin-bottom: 1rem;
+}
+.userRadio input {
+  vertical-align: sub;
+}
+.userRadio input:last-child {
+  margin-left: 1rem;
+} */
+/* ------------Applicant Assessor radio css Start-------- */
+.ApplicantAssessorBtn {
+    margin-bottom: 1rem;
+}
+.ApplicantAssessorBtn .Applicant {
+    border: 1px solid #cfcece;
+    background: #f5f9e9;
+    border-radius: 5px;
+    margin-right: 1rem;
+    padding-left: 5px;
+    display: inline-block;
+    min-height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+.ApplicantAssessorBtn .Applicant img {
+    /* width: 20px; */
+    /* height: 24px; */
+    margin-right: 10px;
+}
+.ApplicantAssessorBtn .Applicant p {
+    margin: 3px 0 0 0;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+}
+.ApplicantAssessorBtn .Applicant .form-check-input[type=radio] {
+    margin: 3px -18px;
+}
+.ApplicantAssessorBtn .Applicant .form-check-input:focus {
+    border-color: #cfcece;
+    outline: 0;
+    box-shadow: none;
+}
+.ApplicantAssessorBtn .Applicant .form-check-input:checked {
+    background-color: #768F31;
+    border-color: #768F31;
+}
+.ApplicantAssessorBtn .Applicant label {
+    margin-left: 5px;
+}
+.appAss {
+    display: flex;
+    padding: 10px 15px 10px 5px;
+}
+
+/* ------------Applicant Assessor radio css end-------- */
+/* -------------------Media Query Start--------------- */
+@media only screen and (max-width: 1024px) {
+
+    .login-sec {
+        height: 650px;
+        margin-top: 10rem;
+    }
+    .top-logo {
+        display: none;
+    }
+    .main-bg-con {
+        background-color: #fff;
+    }
+    .captcha-text p {
+        margin-bottom: 5px;
+    }
+    /* .captcha-text p {
+        font-size: 10px;
+    } */
+    .left-content {
+        display: none;
+    }
+    .main-bg-con {
+        background: none;
+        border-radius: 0;
+        border: none;
+    }
+    .troo-logo {
+        display: none;
+    }
+    .captcha-text {
+        bottom: 7px;
+        width: 97%;
+    }
+    .login-sec p {
+        margin-bottom: 3%;
+    }
+    .login-sec .user-bg {
+        background: url(../../assets/img/user.png)no-repeat 1%;
+        background-size: 2.2rem;
+    }
+    .login-sec .user-password {
+        background: url(../../assets/img/key.png)no-repeat 1% ;
+        background-size: 16px;
+    }
+    .login-sec .email-bg {
+        background: url(../../assets/img/email.png)no-repeat 1% ;
+        background-size: 16px;
+    }
+    .login-sec .mobile-bg {
+        background: url(../../assets/img/cell-phone.png)no-repeat 1% ;
+        background-size: 16px;
+    }
+    .login-sec .confirm-password {
+        background: url(../../assets/img/padlock.png)no-repeat 1% ;
+        background-size: 16px;
+    }
+    .captcha-text {
+        bottom: -12px;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    body {
+        height: 100%;
+        /* width: 100vw; */
+    }
+    .login-sec {
+        height: 600px;
+        margin-top: 5rem;
+    }
+    .troo-logo img {
+        width: 30%;
+        margin-bottom: 1.5rem;
+    }
+    .captcha-text {
+        bottom: 7px;
+        width: 94%;
+    }
+    .captcha-text p {
+        line-height: 1.7rem;
+    }
+
+
+}
+@media only screen and (max-width: 425px) {
+    .cii-logo {
+        width: 39%;
+    }
+    .cii-face {
+        width: 25%;
+    }
+    .troo-logo img {
+        width: 50%;
+        margin: 0 0 1rem;
+    }
+    .top-logo {
+        margin-top: 1rem;
+    }
+    .login-sec {
+        height: 550px;
+        margin: 6.5rem 1rem 0;
+    }
+    .login-sec .user-bg {
+        background: url(../../assets/img/user.png)no-repeat 4%;
+        background-size: 1.7rem;
+    }
+    .login-sec .user-password {
+        background: url(../../assets/img/key.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .email-bg {
+        background: url(../../assets/img/email.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .mobile-bg {
+        background: url(../../assets/img/cell-phone.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .confirm-password {
+        background: url(../../assets/img/padlock.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+
+}
+@media only screen and (max-width: 375px) {
+    .login-sec {
+        margin: 7.5rem 1rem 0;
+        height: 550px;
+    }
+    .login-sec .user-bg {
+        background: url(../../assets/img/user.png)no-repeat 4%;
+        background-size: 1.7rem;
+    }
+    .login-sec .user-password {
+        background: url(../../assets/img/key.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .email-bg {
+        background: url(../../assets/img/email.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .mobile-bg {
+        background: url(../../assets/img/cell-phone.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+    .login-sec .confirm-password {
+        background: url(../../assets/img/padlock.png)no-repeat 4% ;
+        background-size: 1.7rem;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .cii-logo {
+        width: 35%;
+    }
+    .cii-face {
+        width: 25%;
+    }
+    .troo-logo img {
+        width: 50%;
+    }
+}
+/* -------------------Media Query End--------------- */
+

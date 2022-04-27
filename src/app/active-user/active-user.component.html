@@ -1,0 +1,29 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Hold on while your CII FACE Account is getting activated. </p>
+</ngx-spinner>
+<div class="main-con" *ngIf="!divStatus">
+  <div class="padding">
+    <div>
+      <i class="fa {{ this.icon }}"></i>
+      <br>
+      <h2>{{ this.mainHeading }}</h2> <br>
+      <p class="text-center">{{ this.para }}</p> <br>
+      <button type="button" class="btn btn-success btn-lg" (click)="gologin()" >&emsp;&emsp;Login&emsp;&emsp;</button><br/>
+        <small>Please click this button if the form does not automatically takes you to login in few seconds.</small>
+    </div>
+  </div>
+</div>
+<div class="main-con" *ngIf="divStatus">
+  <div class="padding">
+    <div>
+      <i class="fa {{ this.icon }}"></i>
+      <br>
+      <h2>{{ this.mainHeading }}</h2> <br>
+      <p class="text-center"><b (click)="goforgot()">Click here</b> to reset your password if you have forgotten your password or <b (click)="gologin()">Login</b> to your existing CII FACE Account.</p> <br>
+      <button type="button" class="btn btn-success btn-lg"
+        (click)="gologin()">&emsp;&emsp;Login&emsp;&emsp;</button><br />
+      <small>Please click this button if the form does not automatically takes you to login in few seconds.</small>
+    </div>
+  </div>
+</div>
+

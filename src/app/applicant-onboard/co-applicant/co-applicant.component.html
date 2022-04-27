@@ -1,0 +1,638 @@
+<app-header></app-header>
+<app-sidenav-applicant></app-sidenav-applicant>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Please wait while CII FACE Co-Applicant LoI Form is getting loaded.... </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <form [formGroup]="coApplicantForm" (ngSubmit)="clickFunction()">
+      <div class="b-b-none wrapper-md main">
+        <div class="row alignMid">
+
+          <div class="col-sm-4 col-xs-12">
+            <h4 class="m-n font-bold ">Co-Applicant</h4>
+          </div>
+          <div class="col-sm-8 text-right poppins hidden-xs pull-right">
+            <a href="/list-co-applicant"><i class="fa fa-plus"></i> List of Co-Applicant</a><br />
+            <p style="font-size: 9px;color: #646362;font-style:italic">View the list of co-applicants</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="wrapper-md" ng-controller="FormDemoCtrl">
+        <div class="alert alert-info info-circle-alert">
+          <i class="fa fa-info-circle"></i>
+          This application form (Joint Co-Applicant Form) is a letter of intent for the Joint Application. If you wish to add a co-applicant along with your organization, you can use the below form to fill up the details of the co-applicant.
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="pull-right" style="margin:15px 15px"><i class="btn btn-info btn-sm fa fa-refresh" onclick="window.location.reload()"></i></div>
+              <div class="panel-heading"><b>Co-Applicant Information</b>
+                <p class="labelInfo">Information about the Co-Applicant Unit for the assessment</p>
+              </div>
+
+              <div class="panel-body">
+
+
+
+                <div class="col-md-6">
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Organization Name (Co-Applicant)</label>
+                      <p class="labelInfo">Name of Supplier/Co-Packers/Franchise/3rd Party Co-Applicant Organisation</p>
+                      <input type="text" class="form-control " placeholder="" formControlName="co_organizationName" (input)="Setvalue($event,'co_organizationName','with')" [value]="this.organizationNameVal">
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Highest Ranking Official </label>
+                      <p class="labelInfo">Name of the Highest Ranking Official of the Supplier/Co-Packers/Franchise/3rd Party Co-Applicant
+                        Unit</p>
+                      <input type="text" class="form-control " placeholder="" formControlName="co_hightestRanking" (input)="Setvalue($event,'co_hightestRanking','with')" [value]="this.hightestRankingVal">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Designation </label>
+                      <p class="labelInfo">Enter the designation of the highest ranking official of the proposed Co-Applicant Unit for assessment</p>
+                      <input type="text" class="form-control" placeholder="" id=""
+                        formControlName="co_Designation"  (input)="Setvalue($event,'co_Designation','with')" [value]="this.designationVal" />
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Co-Applicant Unit is in operation from (DD/MM/YYYY)</label>
+                      <p class="labelInfo">Supplier/Co-Packers/Franchise/3rd Party Applicant Unit is in operation from
+                      </p>
+
+                      <div class="">
+                        <input type="date" class="form-control" placeholder="DD/MM/YY" formControlName="co_operationForm" (input)="Setvalue($event,'co_operationForm','with')" [value]="this.co_operationFormVal">
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Email </label>
+                      <p class="labelInfo">Enter the email address of the highest ranking official of the proposed Co-Applicant Unit for assessment</p>
+
+                      <input type="text" class="form-control " placeholder="" id="" formControlName="co_email" (input)="Setvalue($event,'co_email','with')" [value]="this.co_emailVal" />
+                      <div *ngIf="f.co_email.errors && f.co_email.errors.pattern && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.co_email.errors.pattern">Email is not valid</div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 form-group">
+                      <label>Country Code </label>
+                      <p class="labelInfo">Enter the country code </p>
+                      <input type="text" class="form-control" placeholder="" formControlName="code1">
+                    </div>
+                    <div class="col-md-9 form-group">
+                      <label> Mobile </label>
+                      <p class="labelInfo">Enter the mobile number of the highest ranking official of the proposed Co-Applicant Unit
+                        for assessment</p>
+                        <input type="text" class="form-control" placeholder="" formControlName="co_mobileNo">
+                        <div *ngIf="f.co_mobileNo.errors && f.co_mobileNo.errors.pattern && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.co_mobileNo.errors.pattern">Mobile is not valid</div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Address of the Co-Applicant Unit </label>
+                      <p class="labelInfo">Address of Supplier/Co-Packers/Franchise/3rd Party Co-Applicant Unit</p>
+                      <textarea type="text" class="form-control app" placeholder="" id=""
+                        formControlName="co_applicantAddress1"></textarea>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Country </label>
+                      <p class="labelInfo">Select the Country of the Co-Applicant Unit</p>
+                      <select class="form-control" formControlName="co_applicantCountry" (change)="getStateByCountryName($event,'sett')">
+                        <option value=""> Select Country</option>
+                        <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}</option>
+                      </select>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>State </label>
+                      <p class="labelInfo">State of the Co-Applicant Unit</p>
+                      <select class="form-control" formControlName="co_applicantState">
+                        <option value=""> Select State</option>
+                        <option *ngFor="let obj of statedata" value={{obj}}> {{obj}} </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>City </label>
+                      <p class="labelInfo">City of the Co-Applicant Unit</p>
+                      <input type="" class="form-control" formControlName="co_applicantCity" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label> Zip Code </label>
+                      <p class="labelInfo">Enter 6 digit Zip Code </p>
+                      <input type="" class="form-control " placeholder="" formControlName="co_applicantZipCode" />
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-12" id="">
+
+                    <div class="bTop"></div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h4>Contact Person 1</h4>
+                        </div>
+
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+
+                      <div class="row">
+
+                        <div class="col-md-12 form-group ">
+                          <label>Contact Person </label>
+                          <p class="labelInfo">Name of the Contact Person in Supplier/Co-Packers/Franchise/3rd Party Applicant Unit</p>
+
+                          <input type="text" class="form-control" placeholder="" formControlName="co_contactPerson">
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Designation </label>
+                          <p class="labelInfo">Enter the designation of the contact person of the proposed Co-Applicant Unit for assessment</p>
+
+                          <input type="text" class="form-control" placeholder="" id=""
+                            formControlName="co_contactDesignation" />
+
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Email </label>
+                          <p class="labelInfo">Enter the email address of the contact person of the proposed Co-Applicant Unit for assessment
+                          </p>
+
+                          <input type="text" class="form-control " placeholder="" id="" formControlName="co_contactEmail" />
+                          <div *ngIf="f.co_contactEmail.errors && f.co_contactEmail.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.co_contactEmail.errors.pattern">Email is not valid</div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 form-group">
+                          <label>Country Code </label>
+                          <p class="labelInfo">Enter the country code </p>
+                          <input type="text" class="form-control" placeholder="" formControlName="code2">
+                        </div>
+                        <div class="col-md-9 form-group">
+                          <label> Mobile </label>
+                          <p class="labelInfo">Enter the mobile number of the contact person of the proposed Co-Applicant Unit for assessment
+                          </p>
+
+                            <input type="text" class="form-control" placeholder="" formControlName="co_contactMobile">
+
+                          <div *ngIf="f.co_contactMobile.errors && f.co_contactMobile.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.co_contactMobile.errors.pattern">Please Enter 10 digit Mobile Number.</div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="bTop"></div>
+                    <div class="col-md-6">
+
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Food Category Name and Number </label>
+                          <p class="labelInfo">Enter the food category name & number under which FSSAI license has been
+                            issued </p>
+                          <input type="text" class="form-control " placeholder=""
+                            formControlName="co_FoodCategoryNameNumber">
+
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Criteria of Assessment of the Co-Applicant Unit </label>
+                          <p class="labelInfo">Criteria of Assessment of the Supplier/Co-Packers/Franchise/3rd Party Applicant Unit
+                          </p>
+
+
+
+                          <div class="info-select-box">
+                            <select class="form-control" formControlName="co_criteria">
+                              <option value="">Select Criteria</option>
+                              <option value="Criteria 1">Criteria 1</option>
+                              <option value="Criteria 2 Large">Criteria 2 Large</option>
+                              <option value="Criteria 2 for SMB">Criteria 2 for SMB</option>
+                              <option value="Criteria 3 Large">Criteria 3 Large</option>
+                              <option value="Criteria 3 for SMB">Criteria 3 for SMB</option>
+                              <option value="Criteria 4">Criteria 4</option>
+                              <option value="Criteria 5">Criteria 5</option>
+                              <option value="Criteria 6">Criteria 6</option>
+                              <option value="Criteria 7">Criteria 7</option>
+                              <option value="Criteria 8">Criteria 8</option>
+                              <option value="Criteria 9">Criteria 9</option>
+                              <option value="Criteria 10">Criteria 10</option>
+                              <option value="Criteria 11">Criteria 11</option>
+                              <option value="Criteria 12">Criteria 12</option>
+                            </select>
+                            <i class="fa fa-info-circle" data-toggle="modal" data-target="#exampleModalLong"
+                              aria-hidden="true"></i>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-9 form-group">
+                          <label>Annual Sales Turnover (proposed Co-Applicant Unit)</label>
+                          <p class="labelInfo">Annual Sales turnover of the Supplier/Co-Packers/Franchise/3rd Party Applicant unit for
+                            previous year (INR/USD) 2021 - 22</p>
+                          <input type="text" class="form-control " placeholder="" id="" formControlName="co_annualApplicant" />
+
+                        </div>
+                        <div class="col-md-3 form-group">
+                          <label>Currency </label>
+
+                          <select class="form-control annualApplicantRupee" formControlName="annualApplicantRupee">
+                            <option value="INR" selected>INR</option>
+                            <option value="USD">USD</option>
+                          </select>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Product & Services </label>
+                          <p class="labelInfo">Product and Services Offered by the Supplier/Co-Packers/Franchise/3rd Party Applicant Unit
+                          </p>
+                          <ng-multiselect-dropdown [placeholder]="'Select Product / Service'" [settings]="dropdownSettings"
+                            [data]="SectorPrevdropdownList" [(ngModel)]="seccselectedItems" formControlName="co_product"
+                            (onSelect)="onItemSelectDropDown($event,'co_product')">
+                          </ng-multiselect-dropdown>
+                          <!--<input class="form-control" formControlName="co_product" />-->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Employee </label>
+                          <p class="labelInfo">Total Number of Employees in the Supplier/Co-Packers/Franchise/3rd Party Applicant Unit
+                          </p>
+                          <input type="number" class="form-control " placeholder="" formControlName="co_totalEmployee"
+                            min="0">
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Investment in Equipment (for service unit) </label>
+                          <p class="labelInfo">Investment in Plant & Machinery of the Supplier Unit (for Manufacturing)</p>
+                          <input type="number" class="form-control" placeholder="" id=""
+                            formControlName="co_applicantEquipment" min="0" />
+
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>GST No </label>
+                          <p class="labelInfo">Enter GST No.</p>
+                          <input class="form-control" formControlName="co_gst" />
+                          <div *ngIf="f.co_gst.errors && f.co_gst.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.co_gst.errors.pattern">Invalid GST</div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Whether Proforma / Tax Invoice is required </label>
+                          <p class="labelInfo">Select if proforma / tax invoice is required</p>
+                          <select class="form-control" formControlName="co_tax_invoice">
+                            <option>Yes</option>
+                            <option>No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Billing Address </label>
+                          <p class="labelInfo">Enter the complete billing address of the Co-Applicant Unit for which assessment is to be
+                            undertaken</p>
+
+
+                          <textarea class="form-control con2" rows="5" placeholder="" id="" formControlName="co_billingAddress"></textarea>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div style="margin:10px 0px;">
+                    <button type="submit" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <div class="alert alert-danger" *ngIf="this.FinalError.status">{{ this.FinalError.errMsg }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLongTitle">Criteria Table, 2022</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Nature of Business </th>
+              <th scope="col">Large Organisations </th>
+              <th scope="col">Medium Organisations </th>
+              <th scope="col">Small Organisations</th>
+              <th scope="col">Basis of Criteria </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="col">Food Vendors (Mobile Carts and Stalls, Meat Shops, Sweet Meat Shops, Confectioneriees,
+                Vending and Dispensing.)</td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Based on FSSAI Checkpoints and CII 14 Points Check </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Food Service : Hotels & Eateries (Involved in Preparation, Serving, Take Aways with
+                Permanent Establishment and Address) e.g: Restaurants, Catering, Institutional Canteens, Cloud Kichen,
+                Food Courts)</td>
+              <td scope="col">Criteria 2 Large </td>
+              <td scope="col">Criteria 2 for SMB </td>
+              <td scope="col">Criteria 2 for SMB </td>
+              <td scope="col">Based on ISO 22000, FSSR and PRP for Food Service Establishment Having permanent addresses
+                + Change Management Initiatives + Social Compilance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Manufacturing (Food Processing Companies)</td>
+              <td scope="col">Criteria 3 Large </td>
+              <td scope="col">Criteria 3 for SMB </td>
+              <td scope="col">Criteria 3 for SMB </td>
+              <td scope="col">Based on ISO 22000: 2018 ISO 22002-1 + FSSR, Change Management Initiatives + Social
+                Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Food Service: Food Wholesale, Retail, Warehousing, Transportation, C&F</td>
+              <td scope="col">Criteria 4 </td>
+              <td scope="col">Criteria 4</td>
+              <td scope="col">Criteria 4 </td>
+              <td scope="col">Based on FSSR + Risk Analysis + Social Compliance+ Change Management Initiatives</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Primary Production: Fruits and Vegetables Fresh Produce (On farm practices, Grading.
+                Packing, Dispatch)</td>
+              <td scope="col">Criteria 5 </td>
+              <td scope="col">Criteria 5</td>
+              <td scope="col">Criteria 5 </td>
+              <td scope="col">Based on Global Gap, Codex Standards + Social and Regulatory Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Packaging & Food Chain Inputs Criteria 6 Providers (Manufacturing of Cleaning &
+                Sanitation, Food Equipment, Pest Control)</td>
+              <td scope="col">Criteria 6 </td>
+              <td scope="col">Criteria 6</td>
+              <td scope="col">Criteria 6 </td>
+              <td scope="col">Based on ISO 22000; 2018 & Best Practices in PRP&GMP Change Management Initiatives +
+                Social & Regulatory Compliance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Joint Application of Customer & Supplier / Co-Packers / Franchise 3rd Party - Food Safety
+                Excellence through Partnership Development</td>
+              <td scope="col">Criteria 7 </td>
+              <td scope="col">Criteria 7</td>
+              <td scope="col">Criteria 7 </td>
+              <td scope="col">Best Practices in Partnership Development Criteria 3 or Criteria 2 as applicable</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Primary Production: Dairy Farm</td>
+              <td scope="col">Criteria 8 </td>
+              <td scope="col">Criteria 8</td>
+              <td scope="col">Criteria 8 </td>
+              <td scope="col">Based on GLOBAL GAP + Social Compliance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">E-commerce- online Marketplace (Grocery. fruits and Vegetables & products)</td>
+              <td scope="col">Criteria 9 </td>
+              <td scope="col">Criteria 9</td>
+              <td scope="col">Criteria 9 </td>
+              <td scope="col">Based on FSSAI checkpoints for online food delivery + ISO 22000:2018 + FSSR for retail &
+                distribution</td>
+            </tr>
+            <tr>
+              <td scope="col">E-commerce-Ready to eat cooked Meal </td>
+              <td scope="col">Criteria 10 </td>
+              <td scope="col">Criteria 10</td>
+              <td scope="col">Criteria 10 </td>
+              <td scope="col">Based on FSSAI checkpoints for catering and online food delivery + ISO 22000:2018</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Laboratories Performance of Food Analysis & Testing Labs </td>
+              <td scope="col">Criteria 11 </td>
+              <td scope="col">Criteria 11</td>
+              <td scope="col">Criteria 11 </td>
+              <td scope="col">Based on ISO 17025 2017, Best Practices & Leadership Initiatives+ Statutory & Social
+                Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Innovation Management with Food Safety</td>
+              <td scope="col">Criteria 12 </td>
+              <td scope="col">Criteria 12</td>
+              <td scope="col">Criteria 12 </td>
+              <td scope="col">Innovation in Best Practices in FSMS</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLongTitle">Categorization of Co-Applicant Units:</h5>
+        <p>For purposes of assigning categorization to Award Applications (eg large, medium,
+          small and micro) Enterprise /unit would be defined as follows:</p>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+              <th scope="col">Manufacturing Sector (New
+                classification Post June 2020) </th>
+              <th scope="col">Service Sector
+                (New classification Post June
+                2020) </th>
+            </tr>
+            <tr>
+              <th scope="col">Enterprises / Units </th>
+              <th scope="col">Investment in plant & machinery </th>
+              <th scope="col">Investment in Equipment </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td scope="col">Micro & Small Enterprises / Unit*</td>
+              <td scope="col">Investment does not exceed 10 crore rupees and turnover does not exceed 50 Cr </td>
+              <td scope="col">Investment does not exceed 10 crore rupees and turnover does not exceed 50 Cr</td>
+            </tr>
+            <tr>
+              <td scope="col">Medium Enterprises / Unit*</td>
+              <td scope="col">Investment does not exceed 50 Crore Rupees and turnover does not exceed 250 Cr </td>
+              <td scope="col">Investment does not exceed 50 Crore Rupees and turnover does not exceed 250 Cr</td>
+            </tr>
+            <tr>
+              <td scope="col">Large Enterprises / Unit</td>
+              <td scope="col">> 50 Crores Investment &<br />
+                > 250 Crores Turnover
+              </td>
+              <td scope="col">> 50 Crores Investment &<br />
+                > 250 Crores Turnover</td>
+            </tr>
+          </tbody>
+        </table>
+        <p> Proof of the latest investment figure (either UAM / or registration certificate as per MSME Act or a
+          certification by
+          the auditors/authority) is to be submitted</p>
+        <p> In the absence of UAM, please attach form 14A mentioning the size Categorization Declaration</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById("newsectionbtn").onclick = function () {
+    var container = document.getElementById("container");
+    var section = document.getElementById("mainsection");
+    container.appendChild(section.cloneNode(true));
+  }
+</script>

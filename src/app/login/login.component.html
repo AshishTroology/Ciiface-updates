@@ -1,0 +1,138 @@
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> -->
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+  function validateForm() {
+
+    let x = document.forms["myForm"]["g-recaptcha-response"].value;
+    if (x == "") {
+      alert("Captcha must be filled out");
+      return false;
+    }
+  }
+</script>
+
+<!-- content1 -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Hold on while we take you to your CII FACE Account! </p>
+</ngx-spinner>
+
+<section class="main-bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="food-img-bg">
+          <div class="top-logo"> <img src="../../assets/img/CII-Logo.png" alt="" class="cii-logo"> <img src="../../assets/img/CII-Face.png" alt=""  class="cii-face"> </div>
+          <div class="main-bg-con">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="left-content">
+                  <h3>Welcome to <br>Food Safety Award 2022</h3>
+                  <span>Assessment Portal</span>
+                  <p>The Award is one of its kind and focuses on Food Safety Maturity Assessment to promote excellence. Since its inception in 2010, the CII Food Safety Award has become a symbol of credibility and pride for Food Business operators. More than recognition, the Awards measure performance and provide detailed feedback from an external perspective on opportunities to excel.</p>
+
+                  <p>Please use the <a href="/signUp">sign-up</a> form to create your application if you have received invitation from CII Food & Agriculture Centre of Excellence (FACE).</p>
+                  <h6>Awarding excellence in Food Safety!</h6>
+                  <h5 class="moreDetail">For more details, please contact:</h5>
+                  <h5>CII Food Safety Award Secretariat</h5>
+                  <h5 class="colorBlue"><a href="mailto:fs.award@cii.in" target="_blank">fs.award@cii.in</a></h5>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="login-sec"  *ngIf="!maintainance">
+                  <h2>Login</h2>
+                  <p>Login to your CII FACE Assessment Application</p>
+                  <div class="login-sec-con">
+                    <form [formGroup]="checkoutForm" method="post" onsubmit="return validateForm()"
+                      formControlName="myForm">
+                      <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" [readonly]="this.active" class="form-control user-bg" id="username" placeholder="Email" formControlName="email">
+                      </div>
+                      </div>
+                      <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="password" [readonly]="this.active" class="form-control user-password" id=""
+                          placeholder="Password" formControlName="password">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <re-captcha (resolved)="resolved($event)" siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+                      </div>
+                      </div>
+                      <span class="msg-error error text-danger" *ngIf="this.captchaError">{{ this.captchaError }}</span>
+
+                      <div class="col-md-12 form-group">
+                        <button type="button" (click)="SubmitLogin();"
+                          class="btn btn-primary btn-lg btn-block login_btn" id="btn-validate">Login</button>
+                      </div>
+
+                      <div>
+                        <a href="/forgot-password" class="forget_password">Forgot Password?</a>
+                      </div>
+
+                      <div class="clearfix"></div>
+
+                      <p class="Create_Account">New to CII FACE Assessment Portal?<a href="/signUp"> Sign Up</a>
+                      </p>
+
+                      <!-- <p style="font-size: 12px; color: #f05050; background-color: #fff5f0;padding: 10px; border-radius: 5px;cursor:pointer">Please press <strong>Ctrl + Shift + R</strong> to update the system at your browser or <span class="text-info" (click)="deleteItems()">Click Here</span></p> -->
+                      <div class="captcha-text">
+                        <p>Protected by reCAPTCHA. Google <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> & <a href="https://policies.google.com/terms" target="_blank">Terms of
+                            Service</a> apply.</p>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+                <div class="login-sec" *ngIf="maintainance">
+                  <br />
+                  <br /><br /><br /><br />
+                  <div class="card-body text-center">
+                    <img src="../../assets/img/maintanance.png" style="width: 50%" />
+                    <h4>System Under Maintenance!</h4>
+                    <br />
+                    <p style="font-size: 1.5rem;color: #739002;">We are improving your experience and shall be back by 2100 Hours (IST).
+                      Kindly visit again!</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="troo-logo"> <a href="https://www.troology.com/" target="_blank"><img src="../../assets/img/Footer.svg" alt=""></a> </div>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button>
+<kendo-dialog *ngIf="opened" (close)="close('cancel')" [width]="500">
+  <section style="text-align: center; background-color: #fffffe;">
+    <div style="padding: 1rem;">
+      <span><img src="https://award.face-cii.in/assets/img/CII-Logo.png" style="width: 30%;"></span>
+      <span><img src="https://award.face-cii.in/assets/img/CII-Face.png" style="width: 23%; margin-left: 1%;"></span>
+    </div>
+    <div style="padding: 3rem 1rem;">
+      <h1>Welcome to <br />Food Safety Award 2022</h1>
+      <p style="margin-top: 2%;">Awarding Excellence in Food Safety</p>
+      <button class="btn btn-primary btn-lg LoginBTN" style="margin-top: 2rem;" (click)="close('yes')">
+        Launch
+      </button>
+    </div>
+    <!-- <div style="background-color: #869b49; padding: 0rem;">
+      <p>&nbsp;</p>
+    </div> -->
+  </section>
+
+  <kendo-dialog-actions>
+    <!-- <button class="btn btn-primary btn-lg btn-block login_btn" (click)="close('yes')">
+      Launch
+    </button> -->
+  </kendo-dialog-actions>
+</kendo-dialog>

@@ -1,0 +1,162 @@
+<aside id="aside" class="app-aside hidden-xs bg-white">
+  <div class="aside-wrap" id="sidebar">
+    <div class="navi-wrap">
+      <!-- nav -->
+      <nav ui-nav class="navi clearfix" id="leftmenuinnerinner">
+        <ul class="nav">
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">NAVIGATION </span>
+          </li>
+          <li>
+            <a routerLink="/dashboard" routerLinkActive="active">
+              <i class="glyphicon glyphicon-th-large"></i>
+              <span style="color: black;">Dashboard</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">Applicant </span>
+          </li>
+          <li>
+            <a routerLink="/view-applicant" routerLinkActive="active">
+              <i class="fa fa-envelope-square"></i>
+              <span style="color: black;">List of Applicants</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/view-applicant" routerLinkActive="active">
+              <i class="fa fa-envelope-square"></i>
+              <span style="color: black;">Criteria wise Applicants</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/view-applicant" routerLinkActive="active">
+              <i class="fa fa-envelope-square"></i>
+              <span style="color: black;">Sector wise Applicants</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/view-applicant" routerLinkActive="active">
+              <i class="fa fa-envelope-square"></i>
+              <span style="color: black;">State wise Applicants</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">Assessor </span>
+          </li>
+          <li>
+            <a routerLink="/view-assessors" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">List of Assessors</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/add-assessors" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">Add New Assessor</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/view-assessors" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">Sector wise Assessor</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/view-assessors" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">State wise Assessor</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">Assessments </span>
+          </li>
+          <li>
+            <a routerLink="/dashboard" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">List of Assessments</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/create-allocation" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">Create Assessment</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">Reports </span>
+          </li>
+          <li>
+            <a routerLink="/dashboard" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">Applicant Self Assessment</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/dashboard" routerLinkActive="active">
+              <i class="fa fa-comments"></i>
+              <span style="color: black;">Assessor Report</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span style="color: black;">System Configuration </span>
+          </li>
+          <li>
+            <a routerLink="/questionaire" routerLinkActive="active">
+              <i class="glyphicon glyphicon-th-large"></i>
+              <span style="color: black;">Questionaire</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/instruction" routerLinkActive="active">
+              <i class="glyphicon glyphicon-th-large"></i>
+              <span style="color: black;">Instruction</span>
+            </a>
+          </li>
+        <!-- <li>
+            <a routerLink="/assessment" routerLinkActive="active">
+              <i class="glyphicon glyphicon-th-large"></i>
+              <span style="color: black;">Assessment</span>
+            </a>
+          </li>
+
+           <li>
+             <a href="/signUp" class="active">
+               <i class="fa fa-th"></i>
+               <span>Sign Up</span>
+             </a>
+           </li> -->
+
+          <li class="line dk"></li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+            <span>LOGOUT</span>
+          </li>
+          <li>
+            <a (click)="logout()" routerLink="/login" routerLinkActive="active">
+              <i class="fa fa-power-off"></i>
+              <span>Logout </span>
+
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- nav -->
+      <!-- aside footer -->
+    <div class="aside-footer wrapper-sm poppins">
+      <div class="text-center-folded text-center">
+        <p class="hidden-folded text-xs">For details, please contact:</p>
+        <p>CII Food Safety Award Secretariat</p>
+        <a href="mailto:fs.award@cii.in" target="_blank" class="link">fs.award@cii.in</a>
+        <div class="cleafix"></div>
+
+        <img src="../../../assets/img/CII-Face.png" style=" margin-top: 8px;"
+          class="center-block img-responsive m-b-xs" width="75px" />
+
+        <hr style="margin: 10px 0;" />
+
+      </div>
+    </div>
+      <!-- / aside footer -->
+    </div>
+  </div>
+</aside>

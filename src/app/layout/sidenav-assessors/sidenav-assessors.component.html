@@ -1,0 +1,70 @@
+<aside id="aside" class="app-aside hidden-xs bg-white">
+    <div class="aside-wrap" id="sidebar">
+      <div class="navi-wrap">
+        <!-- nav -->
+        <nav ui-nav class="navi clearfix" id="leftmenuinnerinner">
+          <ul class="nav">
+            <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+              <span style="color: black;">NAVIGATION </span>
+            </li>
+            <li>
+              <a routerLink="/assessors-dashboard" routerLinkActive="active">
+                <i class="glyphicon glyphicon-th-large"></i>
+                <span style="color: black;">Dashboard</span>
+              </a>
+            </li>
+
+            <li>
+                <a routerLink="/assessors" routerLinkActive="active">
+                  <i class="fa fa-comments"></i>
+                  <span style="color: black;">Assessors</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/assessors-assess-information" routerLinkActive="active">
+                  <i class="fa fa-envelope-o"></i>
+                  <span>Assessment Information</span>
+                </a>
+              </li>
+
+              <li>
+                <a routerLink="/assessor-resource" routerLinkActive="active">
+                  <i class="fa fa-envelope-o"></i>
+                  <span>Resources</span>
+                </a>
+              </li>
+
+            <li class="line dk"></li>
+            <li class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10">
+              <span>LOGOUT</span>
+            </li>
+            <li>
+              <a (click)="logout()" routerLink="/login" routerLinkActive="active">
+                <i class="fa fa-power-off"></i>
+                <span>Logout </span>
+
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- nav -->
+        <!-- aside footer -->
+        <div class="aside-footer wrapper-sm poppins">
+          <div class="text-center-folded text-center">
+            <p class="hidden-folded text-xs">For details, please contact:</p>
+            <p>CII Food Safety Award Secretariat</p>
+            <a href="mailto:fs.award@cii.in" target="_blank" class="link">fs.award@cii.in</a>
+            <div class="cleafix"></div>
+
+            <img src="../../../assets/img/CII-Face.png" style="margin-top: 8px;"
+              class="center-block img-responsive m-b-xs" width="75px" />
+
+            <hr style="margin: 10px 0;" />
+
+          </div>
+        </div>
+        <!-- / aside footer -->
+      </div>
+    </div>
+  </aside>

@@ -1,0 +1,53 @@
+<app-header></app-header>
+<app-sidenav-applicant></app-sidenav-applicant>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <h2>Section {{ this.section_no }}</h2>
+
+      <div class="card">
+        <form (ngSubmit)="onSubmit()" [formGroup]="Sectionform">
+        <div class="col-sm-12" *ngFor="let item of this.subsection">
+          <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Qs #</th>
+                <th>Checkpoint</th>
+                <th>Selection / Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item_inner of this.questions">
+                <td *ngIf="item.sub_section_no===item_inner.sub_section_no" style="width: 8rem;">{{ item_inner.question_no }}</td>
+                <td *ngIf="item.sub_section_no===item_inner.sub_section_no">{{ item_inner.question_title }}<br/><small>{{ item_inner.question_description }}</small></td>
+                <td *ngIf="item.sub_section_no===item_inner.sub_section_no" style="width: 30rem;">
+                  <textarea class="form-control" [(ngModel)]="this.modall[item_inner._id]" [ngModelOptions]="{standalone: true}"
+                    name="{{ item_inner._id }}" *ngIf="item_inner.type=='T'?true:false"
+                    (input)="onChangeControl(item_inner._id,$event,null)" [disabled]="!this.finalStatus"></textarea>
+                  <select *ngIf="item_inner.type=='DD'?true:false" name="{{ item_inner._id }}" class="form-control"
+                    (change)=" onChangeControl(item_inner._id,$event,null)" [(ngModel)]="this.modall[item_inner._id]"
+                    [ngModelOptions]="{standalone: true}" [disabled]="!this.finalStatus">
+                    <option value="">Choose any option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Partly">Partly</option>
+                  </select>
+                  <div class="text-danger text-left mb-1"  *ngIf="this.Sectionform.controls[item_inner._id].errors && this.Sectionform.controls[item_inner._id].errors?.required">
+                    <div *ngIf="this.Sectionform.controls[item_inner._id].errors?.required">This field is required</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="col-sm-12">
+          <button class="btn btn-success" *ngIf="this.finalStatus">Save</button>
+        </div>
+        </form>
+      </div>
+
+
+  </div>
+</div>

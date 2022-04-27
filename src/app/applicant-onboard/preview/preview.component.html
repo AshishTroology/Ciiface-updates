@@ -1,0 +1,30 @@
+<p>preview works!</p>
+<app-header></app-header>
+<app-sidenav-applicant></app-sidenav-applicant>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <div class="col-sm-12" *ngFor="let item_section of this.secArr">
+      <a href="/section/{{ item_section.section_no }}/1"  *ngIf="this.finalStatus">
+      <div class="well well-success"><span class="h3">Section {{item_section.section_no }}</span>
+        <span class="pull-right"><i class="label label-success" *ngIf="item_section.emptycount == '0'"><i class="fa fa-check-circle "> Completed</i></i><i class="label label-danger" *ngIf="item_section.emptycount != '0'"><i class="fa fa-close "></i> {{ item_section.emptycount }} Fields Pending</i></span>
+        <br/>
+        <small class="text-danger"> Click here to move in the Section.</small>
+      </div>
+      </a>
+    </div>
+    <div class="col-sm-12"  *ngIf="this.finalStatus">
+      <button class="btn btn-success" *ngIf="this.btnDisabled" (click)="onsubmit()">Final Submit</button>
+      <br />
+      <hr />
+      <br />
+    </div>
+    <div class="col-sm-12" *ngIf="!this.finalStatus">
+      <div class="col-sm-12 card text-success text-center">
+      <h2>Congratulations, Your Assessment has been successfully completed.</h2>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

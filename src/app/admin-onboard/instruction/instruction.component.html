@@ -1,0 +1,61 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12 mb-3">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Instruction</h4><br />
+        </div>
+        <div class="col-sm-6 col-xs-12 mb-3 text-right">
+         <button class="btn btn-success" (click)="chkDiv()" *ngIf="!this.showdiv">Add Instruction</button>
+         <button class="btn btn-success" (click)="chkDivFalse()" *ngIf="this.showdiv">List of Instruction</button>
+        </div>
+        <div class="col-md-12" *ngIf="this.showdiv">
+          <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
+
+            <div>
+              <label for="name">Criteria</label>
+              <select class="form-control" [(ngModel)]="model.criteria" ngModel required #criteria="ngModel"  name="criteria" required>
+                <option value="">Select Criteria</option>
+                <option value="Criteria 1">Criteria 1</option>
+                <option value="Criteria 2 Large">Criteria 2 Large</option>
+                <option value="Criteria 2 for SMB">Criteria 2 for SMB</option>
+                <option value="Criteria 3 Large">Criteria 3 Large</option>
+                <option value="Criteria 3 for SMB">Criteria 3 for SMB</option>
+                <option value="Criteria 4">Criteria 4</option>
+                <option value="Criteria 5">Criteria 5</option>
+                <option value="Criteria 6">Criteria 6</option>
+                <option value="Criteria 7">Criteria 7</option>
+                <option value="Criteria 8">Criteria 8</option>
+                <option value="Criteria 9">Criteria 9</option>
+                <option value="Criteria 10">Criteria 10</option>
+                <option value="Criteria 11">Criteria 11</option>
+                <option value="Criteria 12">Criteria 12</option>
+              </select>
+              <span class="text-danger" *ngIf="criteria.invalid">Please Choose Criteria</span>
+            </div>
+
+            <label for="description">Description</label>
+            <ckeditor #editor [(ngModel)]="model.description" id="description" name="description" required>
+            </ckeditor>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="col-sm-12" *ngIf="!this.showdiv">
+          <kendo-grid [data]="gridData">
+            <kendo-grid-column field="description" title="Instruction">
+              <ng-template kendoGridCellTemplate  let-dataItem="dataItem">
+                <p>{{ dataItem.criteria }}<button class="btn btn-info btn-xs pull-right" (click)="editForm(dataItem)">Edit</button></p>
+                <blockquote [innerHTML]="dataItem.description"></blockquote>
+              </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,95 @@
+<app-header></app-header>
+<app-sidenav-applicant *ngIf="this.udata.role=='applicant'?true:false"></app-sidenav-applicant>
+<app-sidenav *ngIf="this.udata.role!='applicant'?true:false"></app-sidenav>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Loading Co-Applicants list... </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+      <div class="b-b-none wrapper-md main">
+        <div class="row alignMid">
+
+          <div class="col-sm-4 col-xs-12">
+            <h4 class="m-n font-bold ">List of Co-Applicant</h4>
+          </div>
+          <div class="col-sm-8 text-right poppins hidden-xs pull-right" *ngIf="this.udata.role=='applicant'?true:false">
+            <a href="/co-applicant"><i class="fa fa-plus"></i> Add Co-Applicant</a><br />
+            <p style="font-size: 9px;color: #646362;font-style:italic">Joint Application of Customer & Supplier / Co-Packers /
+              Franchise / 3rd Party – Food Safety Excellence through
+              Partnership Development</p>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nominated Organisation</th>
+                  <th>Food Category</th><th>Criteria</th>
+                  <th>Product Details</th>
+                  <th>Address</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let co of allcoapplicant">
+                  <td>
+                    <span class="font-bold text-theme">#{{ co._id }}</span>
+                    <ul class="list-unstyled detailList">
+                      <li>Created On: {{ co.created_at|date:'dd-MM-yyyy' }}</li>
+                      <li>Last Modified: {{ co.updated_at|date:'dd-MM-yyyy' }}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <span class="font-bold text-theme">{{ co.co_organizationName }}</span>
+                    <ul class="list-unstyled detailList">
+                      <li>Designation: {{ co.co_Designation }}</li>
+                      <li>Name: {{ co.co_hightestRanking }}</li>
+                      <li>Email: {{ co.co_email }}</li>
+                      <li>Mobile Number: {{ co.co_mobileNo }}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <span class="font-bold text-theme">{{ co.co_FoodCategoryNameNumber }}</span>
+                  </td>
+                  <td>
+                    <span class="font-bold text-theme">{{ co.co_criteria }}</span>
+                  </td>
+                  <td>
+                    <span class="font-bold text-theme">{{ co.co_annualApplicant }}</span>
+                    <ul class="list-unstyled">
+                      <li>Product: {{ getValuemap(co.co_product) }}</li>
+                      <li>GST: {{ co.co_gst}}</li>
+                      <li>Tax Invoice: {{ co.co_tax_invoice }}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="list-unstyled">
+                      <span class="font-bold text-theme">{{ co.co_applicantAddress1 }}</span>
+                      <li>City: {{ co.co_applicantCity }}</li>
+                      <li>State: {{ co.co_applicantState }}</li>
+                      <li>Pin Code: {{ co.co_applicantZipCode }}</li>
+                    </ul>
+                  </td>
+                 <td class="text-xs-center">
+                    <div class="btn-group dropdown"><button class="btn btn-default w-xxs btn-sm r-2x" data-toggle="dropdown"
+                        aria-expanded="false"><i class="fa fa-cog g-px-5  text-info text-sm"></i> <span class=""><i
+                            class="fa fa-caret-down"></i></span></button>
+                      <ul class="dropdown-menu">
+                        <li *ngIf="this.udata.role=='applicant'?true:false"><a href="/co-applicant-edit/{{ co._id }}"><i class="fa fa-edit"></i> Edit </a></li>
+                        <li class="disabled"><a href="/co-applicant-delete/{{ co._id }}"><i class="fa fa-trash-o"></i> Delete </a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+  </div>
+</div>

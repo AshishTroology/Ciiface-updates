@@ -1,0 +1,1075 @@
+<app-header></app-header>
+<app-sidenav-applicant *ngIf="this.udata.role=='applicant'?true:false"></app-sidenav-applicant>
+<app-sidenav *ngIf="this.udata.role!='applicant'?true:false"></app-sidenav>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Please wait while CII FACE LoI Form is getting loaded... </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <form  [formGroup]="appForm" (ngSubmit)="clickFunction()" id="applicantForm">
+      <div class="b-b-none wrapper-md main">
+        <div class="row alignMid">
+
+          <div class="col-sm-4 col-xs-12">
+            <h4 class="m-n font-bold ">Letter of Intent</h4>
+          </div>
+          <div class="col-sm-8 text-right poppins hidden-xs pull-right">
+            <a href="/co-applicant" *ngIf="this.udata.role=='applicant'?true:false"><i class="fa fa-plus"></i> Add Co-Applicant</a><br/>
+            <p class="labelInfo" style="font-style:italic" *ngIf="this.udata.role=='applicant'?true:false">Joint Application of Customer & Supplier / Co-Packers / Franchise / 3rd Party – Food Safety Excellence through
+            Partnership Development</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="wrapper-md" ng-controller="FormDemoCtrl">
+        <div class="alert alert-info info-circle-alert">
+          <i class="fa fa-info-circle"></i>
+          This application form is a letter of intent and it is recommended that you should fill up the complete
+          information correctly in order to facilitate the assessment team to undertake proper assessment of your
+          prestigious unit.
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><b>Organization </b>
+                <p class="labelInfo">Information about the organization</p>
+              </div>
+              <div class="panel-body">
+
+                <div class="col-md-6 form-group">
+                  <label>Organization Name <span class="text-danger" *ngIf="f.organizationName.errors && f.organizationName.errors.required && isValidFormSubmitted">*</span></label>
+                  <p class="labelInfo">Enter the full name of the Organization</p>
+                  <input type="text" class="form-control " placeholder="" formControlName="organizationName"
+                    value="{{ this.organizationNameVal }}" (input)="getOrgName($event,'organizationName')">
+                  <div *ngIf="f.organizationName.errors && f.organizationName.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.organizationName.errors.required">This field is required</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                  <label>Highest Ranking Official <span class="text-danger" *ngIf="f.hightestRanking.errors && f.hightestRanking.errors.required && isValidFormSubmitted">*</span></label>
+                  <p class="labelInfo">Enter the full name of the highest ranking official of the Organization</p>
+                  <input type="text" class="form-control " placeholder="" formControlName="hightestRanking" value="{{ this.hightestRankingVal }}" (input)="getOrgName($event,'hightestRanking')">
+                  <div *ngIf="f.hightestRanking.errors && f.hightestRanking.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.hightestRanking.errors.required">This field is required</div>
+                  </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-6 form-group">
+                  <label>Designation <span class="text-danger" *ngIf="f.designation.errors && f.designation.errors.required && isValidFormSubmitted">*</span></label>
+                  <p class="labelInfo">Enter the designation of the highest ranking official of the Organization</p>
+                  <input type="text" class="form-control " placeholder="" formControlName="designation" value="{{ this.designationVal }}" (input)="getOrgName($event,'designation')">
+                  <div *ngIf="f.designation.errors && f.designation.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.designation.errors.required">This field is required</div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-6 form-group">
+                  <label>Email <span class="text-danger" *ngIf="f.organizationEmail.errors && f.organizationEmail.errors.required && isValidFormSubmitted">*</span></label>
+                  <p class="labelInfo">Enter the email address of the highest ranking official of the Organization</p>
+                  <input type="text" class="form-control" placeholder="" formControlName="organizationEmail">
+                  <div *ngIf="f.organizationEmail.errors && f.organizationEmail.errors.pattern && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.organizationEmail.errors.pattern">Email is not valid</div>
+                  </div>
+                  <div *ngIf="f.organizationEmail.errors && f.organizationEmail.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.organizationEmail.errors.required">This field is required</div>
+                  </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-3 form-group">
+                      <label>Country Code <span class="text-danger" *ngIf="f.code1.errors && f.code1.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter country code  </p>
+                      <input type="text" class="form-control" placeholder="" formControlName="code1" >
+                      <div *ngIf="f.code1.errors && f.code1.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.code1.errors.required">This field is required</div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-9 form-group">
+                      <label>Mobile <span class="text-danger" *ngIf="f.organizationMobile.errors && f.organizationMobile.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the mobile number of the highest ranking official of the Organization</p>
+                        <input type="text" class="form-control" placeholder="" formControlName="organizationMobile" >
+                      <div *ngIf="f.organizationMobile.errors && f.organizationMobile.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.organizationMobile.errors.required">This field is required</div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><b>Applicant Information</b>
+                <p class="labelInfo">Information about the Applicant’s Unit for the assessment</p>
+              </div>
+              <div class="panel-body">
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Name of Applicant Unit <span class="text-danger" *ngIf="f.firstName.errors && f.firstName.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the full name of the Unit for which assessment is to be undertaken</p>
+                      <input type="text" class="form-control " placeholder="" formControlName="firstName">
+                      <div *ngIf="f.firstName.errors && f.firstName.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.firstName.errors.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Applicant Unit is in operation from (DD/MM/YYYY) <span class="text-danger" *ngIf="f.operationForm.errors && f.operationForm.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Select the date from which the proposed Unit for assessment is in operation
+                      </p>
+
+                      <div class="">
+                        <input type="date" class="form-control" placeholder="DD/MM/YY" formControlName="operationForm">
+                        <div *ngIf="f.operationForm.errors && f.operationForm.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.operationForm.errors.required">This field is required</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Highest Ranking Official of the Unit <span class="text-danger" *ngIf="f.applicanthightestRanking.errors && f.applicanthightestRanking.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the full name of the highest ranking official of the proposed unit for
+                        assessment</p>
+                      <input type="text" class="form-control " placeholder=""
+                        formControlName="applicanthightestRanking">
+                        <div *ngIf="f.applicanthightestRanking.errors && f.applicanthightestRanking.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.applicanthightestRanking.errors.required">This field is required</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Designation <span class="text-danger" *ngIf="f.applicantDesignation.errors && f.applicantDesignation.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the designation of the highest ranking official of the proposed unit
+                        for assessment</p>
+                      <input type="text" class="form-control" placeholder="" id=""
+                        formControlName="applicantDesignation" />
+                        <div *ngIf="f.applicantDesignation.errors && f.applicantDesignation.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.applicantDesignation.errors.required">This field is required</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Email <span class="text-danger" *ngIf="f.email.errors && f.email.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the email address of the highest ranking official of the proposed unit
+                        for assessment</p>
+
+                      <input type="text" class="form-control " placeholder="" id="" formControlName="email" readonly />
+                      <div *ngIf="f.email.errors && f.email.errors.pattern && isValidFormSubmitted"
+                        class="text-danger text-left mb-1 ">
+                        <div *ngIf="f.email.errors.pattern">Email is not valid</div>
+                      </div>
+                      <div *ngIf="f.email.errors && f.email.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.email.errors.required">This field is required</div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-3 form-group">
+                          <label>Country Code <span class="text-danger" *ngIf="f.code2.errors && f.code2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the country code </p>
+                          <input type="text" class="form-control" placeholder=""  formControlName="code2">
+                          <div *ngIf="f.code2.errors && f.code2.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.code2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                        <div class="col-md-9 form-group">
+                          <label>Mobile <span class="text-danger" *ngIf="f.mobileNo.errors && f.mobileNo.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the mobile no. of the highest ranking official of the proposed unit
+                          for assessment</p>
+                          <input type="text" class="form-control" placeholder="" formControlName="mobileNo">
+                          <div *ngIf="f.mobileNo.errors && f.mobileNo.errors.pattern && isValidFormSubmitted" class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.mobileNo.errors.pattern">Please Enter 10 digit Mobile Number.</div>
+                          </div>
+                          <div *ngIf="f.mobileNo.errors && f.mobileNo.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.mobileNo.errors.required">This field is required</div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Address of the Applicant Unit <span class="text-danger"  *ngIf="f.applicantAddress1.errors && f.applicantAddress1.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the complete address of the Unit for which assessment is to be
+                        undertaken</p>
+                      <textarea type="text" class="form-control app" placeholder="" id=""
+                        formControlName="applicantAddress1"></textarea>
+                        <div *ngIf="f.applicantAddress1.errors && f.applicantAddress1.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.applicantAddress1.errors.required">This field is required</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>Country <span class="text-danger" *ngIf="f.applicantCountry.errors && f.applicantCountry.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Select the Country of the Applicant Unit</p>
+                      <select class="form-control" formControlName="applicantCountry" (change)="getStateByCountryName($event,'sett')">
+                        <option value=""> Select Country</option>
+                        <option *ngFor="let element of countrydata" [value]="element.country" >{{ element.country }}</option>
+                      </select>
+                      <div *ngIf="f.applicantCountry.errors && f.applicantCountry.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.applicantCountry.errors.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>State <span class="text-danger" *ngIf="f.applicantState.errors && f.applicantState.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">State of the Applicant Unit</p>
+                      <select class="form-control" formControlName="applicantState" >
+                      <option value=""> Select State</option>
+                      <option *ngFor="let obj of statedata" value={{obj}} [selected]="obj===this.statedata?true:false"> {{obj}} </option>
+                    </select>
+                        <div *ngIf="f.applicantState.errors && f.applicantState.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.applicantState.errors.required">This field is required</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label>City <span class="text-danger" *ngIf="f.applicantCity.errors && f.applicantCity.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">City of the Applicant Unit</p>
+                      <input type="" class="form-control" formControlName="applicantCity"
+                        value="{{ this.Applicant_city }}"  />
+                      <div *ngIf="f.applicantCity.errors && f.applicantCity.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.applicantCity.errors.required">This field is required</div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label> Zip Code <span class="text-danger" *ngIf="f.applicantZipCode.errors && f.applicantZipCode.errors.pattern && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter 6 digit Zip Code </p>
+                      <input type="" class="form-control " placeholder="" formControlName="applicantZipCode" />
+
+                      <div *ngIf="f.applicantZipCode.errors && f.applicantZipCode.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.applicantZipCode.errors.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-12" id="">
+
+                    <div class="bTop"></div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4>Contact Person 1</h4>
+                        </div>
+                        <div class="col-md-6">
+                          <h4>Contact Person 2</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+
+                      <div class="row">
+
+                        <div class="col-md-12 form-group ">
+                          <label>Contact Person <span class="text-danger" *ngIf="f.contactPerson.errors && f.contactPerson.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the full name of the Contact Person of the proposed unit for
+                            assessment. All the communication for assessment shall be sent to the contact person
+                            mentioned here.</p>
+
+                          <input type="text" class="form-control" placeholder="" formControlName="contactPerson">
+                            <div *ngIf="f.contactPerson.errors && f.contactPerson.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.contactPerson.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Designation <span class="text-danger" *ngIf="f.contactDesignation.errors && f.contactDesignation.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the designation of the contact person of the proposed unit for
+                            assessment</p>
+
+                          <input type="text" class="form-control" placeholder="" id=""
+                            formControlName="contactDesignation" />
+                            <div *ngIf="f.contactDesignation.errors && f.contactDesignation.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.contactDesignation.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Email <span class="text-danger" *ngIf="f.contactEmail.errors && f.contactEmail.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the email address of the contact person of the proposed unit for
+                            assessment</p>
+
+                          <input type="text" class="form-control " placeholder="" id=""
+                            formControlName="contactEmail" />
+                          <div *ngIf="f.contactEmail.errors && f.contactEmail.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.contactEmail.errors.pattern">Email is not valid</div>
+                          </div>
+                          <div *ngIf="f.contactEmail.errors && f.contactEmail.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactEmail.errors.required">This field is required</div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-3 form-group">
+                          <label>Country Code <span class="text-danger" *ngIf="f.code3.errors && f.code3.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the country code </p>
+                          <input type="text" class="form-control" placeholder=""  formControlName="code3">
+                          <div *ngIf="f.code3.errors && f.code3.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.code3.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                        <div class="col-md-9 form-group">
+                          <label>Mobile </label>
+                          <p class="labelInfo">Enter the mobile no. of the contact person of the proposed unit for
+                          assessment</p>
+                          <input type="text" class="form-control" placeholder="" formControlName="contactMobile">
+                          <div *ngIf="f.contactMobile.errors && f.contactMobile.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.contactMobile.errors.pattern">Please Enter 10 digit Mobile Number.</div>
+                          </div>
+                          <div *ngIf="f.contactMobile.errors && f.contactMobile.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactMobile.errors.required">This field is required</div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+
+                      <div class="row">
+
+                        <div class="col-md-12 form-group ">
+                          <label>Contact Person <span class="text-danger" *ngIf="f.contactPerson2.errors && f.contactPerson2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the full name of the Contact Person of the proposed unit for
+                            assessment. All the communication for assessment shall be sent to the contact person
+                            mentioned here.</p>
+
+                          <input type="text" class="form-control" placeholder="" formControlName="contactPerson2">
+                            <div *ngIf="f.contactPerson2.errors && f.contactPerson2.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.contactPerson2.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Designation <span class="text-danger" *ngIf="f.contactDesignation2.errors && f.contactDesignation2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the designation of the contact person of the proposed unit for
+                            assessment</p>
+
+                          <input type="text" class="form-control" placeholder="" id="" formControlName="contactDesignation2" />
+                          <div *ngIf="f.contactDesignation2.errors && f.contactDesignation2.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactDesignation2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Email <span class="text-danger" *ngIf="f.contactEmail2.errors && f.contactEmail2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the email address of the contact person of the proposed unit for
+                            assessment</p>
+
+                          <input type="text" class="form-control " placeholder="" id="" formControlName="contactEmail2" />
+                          <div *ngIf="f.contactEmail2.errors && f.contactEmail2.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.contactEmail2.errors.pattern">Email is not valid</div>
+                          </div>
+                          <div *ngIf="f.contactEmail2.errors && f.contactEmail2.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactEmail2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 form-group">
+                          <label>Country Code <span class="text-danger" *ngIf="f.code4.errors && f.code4.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the country code </p>
+                          <input type="text" class="form-control" placeholder=""  formControlName="code4">
+                          <div *ngIf="f.code4.errors && f.code4.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.code4.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                        <div class="col-md-9 form-group">
+                          <label>Mobile <span class="text-danger" *ngIf="f.contactMobile2.errors && f.contactMobile2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the mobile no. of the contact person of the proposed unit for
+                            assessment</p>
+                          <input type="text" class="form-control" placeholder="" formControlName="contactMobile2">
+                          <div *ngIf="f.contactMobile2.errors && f.contactMobile2.errors.pattern && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 ">
+                            <div *ngIf="f.contactMobile2.errors.pattern">Please Enter 10 digit Mobile Number.</div>
+                          </div>
+                          <div *ngIf="f.contactMobile2.errors && f.contactMobile2.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactMobile2.errors.required">This field is required</div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="bTop"></div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Sector <span class="text-danger" *ngIf="f.sector.errors && f.sector.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Select the sector of operation of the proposed unit for assessment</p>
+
+                          <select class="form-control" formControlName="sector" (change)="getProduct($event,'with')">
+                            <option value="">Select Sector</option>
+                            <option value="{{ sec }}" *ngFor="let sec of sector"> {{ sec }} </option>
+                            <option value="other">Other</option>
+                          </select>
+                          <div *ngIf="f.sector.errors && f.sector.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.sector.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Other Sector <span class="text-danger" *ngIf="f.othersector.errors && f.othersector.errors.required">*</span></label>
+                          <p class="labelInfo">Enter the Other Sector at the proposed unit for assessment
+                          </p>
+                          <input type="text" class="form-control " placeholder="" formControlName="othersector">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Food Category Name and Number <span class="text-danger" *ngIf="f.FoodCategoryNameNumber.errors && f.FoodCategoryNameNumber.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the food category name & number under which FSSAI license has been
+                            issued </p>
+                          <input type="text" class="form-control " placeholder=""
+                            formControlName="FoodCategoryNameNumber">
+                            <div *ngIf="f.FoodCategoryNameNumber.errors && f.FoodCategoryNameNumber.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                              <div *ngIf="f.FoodCategoryNameNumber.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label><input type="radio" name="un" formControlName="applicantProduct" value="Manufacturing Unit"  [checked]="this.unit=='Manufacturing Unit'?true:false" (change)="onItemChange($event,'sett')"  /> Investment in Plant & Machinery (for manufacturing unit) <span class="text-danger">*</span></label>
+                          <p class="labelInfo">Enter the amount of investment in plant & machinery at the proposed unit
+                            for assessment</p>
+                            <div class="input-group" >
+                              <span class="input-group-addon"><i class="fa fa-rupee"></i>
+                              </span>
+                              <input type="number" class="form-control " placeholder="" id=""
+                            formControlName="applicantPlant" min="0" [ngClass]="{ 'disabled': this.munitStatus }" />
+
+                            <div *ngIf="f.applicantProduct.errors && f.applicantProduct.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.applicantProduct.errors.required">This field is required</div>
+                            </div>
+                              </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-9 form-group">
+                          <label>Annual Sales Turnover (Organization) <span class="text-danger" *ngIf="f.annualOrganization.errors && f.annualOrganization.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the annual sales turnover of the Organization of the previous
+                            financial year (FY 2021-22)</p>
+
+                              <input type="text" class="form-control " placeholder="" id=""
+                              formControlName="annualOrganization" />
+                            <div *ngIf="f.annualOrganization.errors && f.annualOrganization.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.annualOrganization.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                          <label>Currency <span class="text-danger" *ngIf="f.annualOrganizationRupee.errors && f.annualOrganizationRupee.errors.required && isValidFormSubmitted">*</span></label>
+                          <select class="form-control annualOrganizationRupee"
+                            formControlName="annualOrganizationRupee">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                          </select>
+                          <div *ngIf="f.annualOrganizationRupee.errors && f.annualOrganizationRupee.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.annualOrganizationRupee.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Classification <span class="text-danger" *ngIf="f.classification.errors && f.classification.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Select the classification of the Organization</p>
+                          <div class="info-select-box">
+                            <select class="form-control" formControlName="classification">
+                              <option value="">Select</option>
+                              <option value="Micro">Micro</option>
+                              <option value="Small">Small</option>
+                              <option value="Medium">Medium</option>
+                              <option value="Large">Large</option>
+                            </select>
+                            <i class="fa fa-info-circle" data-toggle="modal" data-target="#exampleModalLong1" aria-hidden="true"></i>
+
+                          </div>
+                          <div *ngIf="f.classification.errors && f.classification.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.classification.errors.required">This field is required</div>
+                          </div>
+
+                        </div>
+                        <div class="col-md-12 form-group">
+                          <label>Udyog Aadhaar Memorandum (UAM)</label>
+                          <p class="labelInfo">Please attach Udyog Aadhaar Memorandum (UAM) to classify under above criteria (allowed file types are PDF, JPEG, PNG upto 5mb)</p>
+
+                          <input accept="application/pdf,image/*" type="file" (change)="handleUploadUAM($event)" class="form-control ">
+                          <div *ngIf="this.imageUAMError" class="text-danger text-left mb-1">
+                            <div *ngIf="this.imageUAMError">{{ this.imageUAMError }} </div>
+                          </div>
+                          <img [src]="this.uploadedimageUAM" style="width:30%" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Criteria of Assessment of the Applicant Unit <span class="text-danger" *ngIf="f.criteria.errors && f.criteria.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">For purposes of assigning categorization to Award Applications (e.g.
+                            large, medium, small and micro)
+
+                            Refer info section for Enterprise /Unit
+                          </p>
+                          <ul>
+                            <li class="labelInfo"> Proof of the latest investment figure (either a registration
+                              certificate as per MSME Act / UAM or a certification by the auditors/authority) is to be
+                              submitted</li>
+                            <li class="labelInfo"> Proof of the latest investment figure (either a registration
+                              certificate as per MSME Act / UAM or a certification by the auditors/authority) is to be
+                              submitted</li>
+                          </ul>
+
+
+
+                          <div class="info-select-box">
+                            <select class="form-control" formControlName="criteria">
+                              <option value="">Select Criteria</option>
+                              <option value="Criteria 1">Criteria 1</option>
+                              <option value="Criteria 2 Large">Criteria 2 Large</option>
+                              <option value="Criteria 2 for SMB">Criteria 2 for SMB</option>
+                              <option value="Criteria 3 Large">Criteria 3 Large</option>
+                              <option value="Criteria 3 for SMB">Criteria 3 for SMB</option>
+                              <option value="Criteria 4">Criteria 4</option>
+                              <option value="Criteria 5">Criteria 5</option>
+                              <option value="Criteria 6">Criteria 6</option>
+                              <option value="Criteria 7">Criteria 7</option>
+                              <option value="Criteria 8">Criteria 8</option>
+                              <option value="Criteria 9">Criteria 9</option>
+                              <option value="Criteria 10">Criteria 10</option>
+                              <option value="Criteria 11">Criteria 11</option>
+                              <option value="Criteria 12">Criteria 12</option>
+                            </select>
+                            <i class="fa fa-info-circle" data-toggle="modal" data-target="#exampleModalLong"
+                              aria-hidden="true"></i>
+                          </div>
+                          <div *ngIf="f.criteria.errors && f.criteria.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.criteria.errors.required">This field is required</div>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Product & Services <span class="text-danger" *ngIf="f.product.errors && f.product.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Select the product/services offered by the proposed unit for assessment
+                          </p>
+                          <select class="form-control" formControlName="product"  (change)="fetchProduct($event)">
+                            <option style="word-wrap:break-word" value="{{ pro }}" *ngFor="let pro of products"> {{ pro }}</option>
+                            <option value="other">Other</option>
+
+                          </select>
+                          <div *ngIf="f.product.errors && f.product.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.product.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Other Product <span class="text-danger" *ngIf="f.otherproduct.errors && f.otherproduct.errors.required">*</span></label>
+                          <p class="labelInfo">Enter the Other Product at the proposed unit for assessment
+                          </p>
+                          <input type="text" class="form-control " placeholder="" formControlName="otherproduct">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Employee <span class="text-danger" *ngIf="f.totalEmployee.errors && f.totalEmployee.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the total number of employees at the proposed unit for assessment
+                          </p>
+                          <input type="number" class="form-control " placeholder="" formControlName="totalEmployee"
+                            min="0">
+                          <div *ngIf="f.totalEmployee.errors && f.totalEmployee.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.totalEmployee.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label> <input type="radio" name="un" formControlName="applicantProduct" value="Service Unit" [checked]="this.unit=='Service Unit'?true:false" (change)="onItemChange($event,'sett')" /> Investment in Equipment (for service unit) <span class="text-danger">*</span></label>
+                          <p class="labelInfo">Enter the amount of investment in equipments at the proposed unit for
+                            assessment</p>
+                            <div class="input-group" >
+                              <span class="input-group-addon"><i class="fa fa-rupee"></i>
+                              </span>
+                          <input type="number" class="form-control" placeholder="" id=""
+                            formControlName="applicantEquipment" min="0" [ngClass]="{ 'disabled': this.sunitStatus }" />
+
+                            <div *ngIf="f.applicantProduct.errors && f.applicantProduct.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.applicantProduct.errors.required">This field is required</div>
+                            </div>
+                            </div>
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-9 form-group">
+                          <label>Annual Sales Turnover (proposed Applicant Unit) <span class="text-danger" *ngIf="f.annualApplicant.errors && f.annualApplicant.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the annual sales turnover of the proposed applicant unit for
+                            assessment of the previous financial year (FY 2021-22)</p>
+                          <input type="text" class="form-control " placeholder="" id=""
+                            formControlName="annualApplicant" />
+                            <div *ngIf="f.annualApplicant.errors && f.annualApplicant.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1">
+                              <div *ngIf="f.annualApplicant.errors.required">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                          <label>Currency <span class="text-danger" *ngIf="f.annualApplicantRupee.errors && f.annualApplicantRupee.errors.required && isValidFormSubmitted">*</span></label>
+
+                          <select class="form-control annualApplicantRupee" formControlName="annualApplicantRupee">
+                            <option value="INR" selected>INR</option>
+                            <option value="USD">USD</option>
+                          </select>
+                          <div *ngIf="f.annualApplicantRupee.errors && f.annualApplicantRupee.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.annualApplicantRupee.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Form 14A</label>
+                          <p class="labelInfo">Upload Form 14A (allowed file types are PDF, JPEG, PNG upto 5mb)</p>
+
+                          <input accept="application/pdf,image/*" type="file" (change)="handleUpload($event)"    class="form-control "  formControlName="attach_file" >
+                            <div *ngIf="this.imageError" class="text-danger text-left mb-1">
+                              <div *ngIf="this.imageError">{{ this.imageErrorMsg }} </div>
+                            </div>
+                            <img [src]="this.uploadedimage" style="width:30%" />
+                        </div>
+                        <div class="col-md-12 form-group">
+                          <label>Self Declaration:</label>
+                          <p class="labelInfo">
+                            <input type="checkbox" (change)="getChk($event)" [checked]="!this.textBoxDisabled" />
+                            I hereby declare that the investment of Plant & Machinery in case of Manufacturing / Equipment in case of Service
+                          Industry, as of date, for the subject unit is Rs <input type="number" [disabled]="this.textBoxDisabled" (input)="getAmount($event,'with')" [value]="this.amount" /></p>
+
+
+                        </div>
+
+
+
+
+
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-12">
+                    <h3>Billing Information</h3>
+
+                    <div class="col-md-6 form-group">
+                      <label>Invoice Type <span class="text-danger" *ngIf="f.applicantYear.errors && f.applicantYear.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Select the invoice type that you would require</p>
+                      <select formControlName="applicantYear" class="form-control">
+                        <option value="">Choose Invoice Type</option>
+                        <option value="Proforma Invoice">Proforma Invoice</option>
+                        <option value="Tax Invoice">Tax Invoice</option>
+                      </select>
+                      <div *ngIf="f.applicantYear.errors && f.applicantYear.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.applicantYear.errors.required">This field is required</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label>GST No. <span class="text-danger"  *ngIf="f.annualYear.errors && f.annualYear.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter the GST number for the purpose of invoice issuance</p>
+                      <input type="text" formControlName="annualYear" class="form-control" />
+                      <div *ngIf="f.annualYear.errors && f.annualYear.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.annualYear.errors.required">This field is required</div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                      <label>Billing Address <span class="text-danger" *ngIf="f.contactAddress2.errors && f.contactAddress2.errors.required && isValidFormSubmitted">*</span></label>
+                      <p class="labelInfo">Enter complete billing address for the purpose of invoice issuance</p>
+                      <textarea class="form-control" formControlName="contactAddress2" rows="8"></textarea>
+                      <div *ngIf="f.contactAddress2.errors && f.contactAddress2.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.contactAddress2.errors.required">This field is required</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+
+
+
+                        <div class="col-md-12 form-group">
+                          <label>Country <span class="text-danger"  *ngIf="f.contactCountry2.errors && f.contactCountry2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Select the Country of the Billing Address</p>
+                          <select class="form-control" formControlName="contactCountry2" (change)="getStateByCountryNameBill($event,'sett')">
+                            <option value=""> Select Country</option>
+                            <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}</option>
+                          </select>
+                          <div *ngIf="f.contactCountry2.errors && f.contactCountry2.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactCountry2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                          <label>State <span class="text-danger" *ngIf="f.contactState2.errors && f.contactState2.errors.required && isValidFormSubmitted"></span></label>
+                          <p class="labelInfo">Enter the State of the Billing Address</p>
+                          <select class="form-control" formControlName="contactState2">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let obj of statedataBill" value={{obj}}> {{obj}} </option>
+                          </select>
+
+                          <div *ngIf="f.contactState2.errors && f.contactState2.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactState2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                          <label>City <span class="text-danger" *ngIf="f.contactCity2.errors && f.contactCity2.errors.required && isValidFormSubmitted">*</span></label>
+                          <p class="labelInfo">Enter the City of the Billing Address</p>
+                          <input type="text" formControlName="contactCity2" class="form-control" [value]="this.bill_city" />
+                          <div *ngIf="f.contactCity2.errors && f.contactCity2.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactCity2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                          <label>Zip Code <span class="text-danger" *ngIf="f.contactZipCode2.errors && f.contactZipCode2.errors.required && isValidFormSubmitted" ></span></label>
+                          <p class="labelInfo">Enter the Zip Code of the Billing Address</p>
+                          <input type="text" formControlName="contactZipCode2" class="form-control" />
+                          <div *ngIf="f.contactZipCode2.errors && f.contactZipCode2.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                            <div *ngIf="f.contactZipCode2.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5" *ngIf="!this.applicantSdata.userStatus">
+          <div style="margin:10px 0px;" >
+            <button type="button" class="btn btn-danger" (click)="checkValid()" [disabled]="this.btnStatusDisabled">Save as
+              Draft</button>&nbsp;
+            <button type="submit" class="btn btn-info" (click)="finalSave()" [disabled]="this.btnStatusDisabled">Final
+              Submission</button>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="alert alert-danger" *ngIf="this.FinalError.status">{{ this.FinalError.errMsg }}</div>
+        </div>
+
+<div class="clearfix"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLongTitle">Criteria Table, 2022</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Nature of Business </th>
+              <th scope="col">Large Organisations </th>
+              <th scope="col">Medium Organisations </th>
+              <th scope="col">Small Organisations</th>
+              <th scope="col">Basis of Criteria </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="col">Food Vendors (Mobile Carts and Stalls, Meat Shops, Sweet Meat Shops, Confectioneriees,
+                Vending and Dispensing.)</td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Criteria 1 </td>
+              <td scope="col">Based on FSSAI Checkpoints and CII 14 Points Check </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Food Service : Hotels & Eateries (Involved in Preparation, Serving, Take Aways with
+                Permanent Establishment and Address) e.g: Restaurants, Catering, Institutional Canteens, Cloud Kichen,
+                Food Courts)</td>
+              <td scope="col">Criteria 2 Large </td>
+              <td scope="col">Criteria 2 for SMB </td>
+              <td scope="col">Criteria 2 for SMB </td>
+              <td scope="col">Based on ISO 22000, FSSR and PRP for Food Service Establishment Having permanent addresses
+                + Change Management Initiatives + Social Compilance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Manufacturing (Food Processing Companies)</td>
+              <td scope="col">Criteria 3 Large </td>
+              <td scope="col">Criteria 3 for SMB </td>
+              <td scope="col">Criteria 3 for SMB </td>
+              <td scope="col">Based on ISO 22000: 2018 ISO 22002-1 + FSSR, Change Management Initiatives + Social
+                Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Food Service: Food Wholesale, Retail, Warehousing, Transportation, C&F</td>
+              <td scope="col">Criteria 4 </td>
+              <td scope="col">Criteria 4</td>
+              <td scope="col">Criteria 4 </td>
+              <td scope="col">Based on FSSR + Risk Analysis + Social Compliance+ Change Management Initiatives</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Primary Production: Fruits and Vegetables Fresh Produce (On farm practices, Grading.
+                Packing, Dispatch)</td>
+              <td scope="col">Criteria 5 </td>
+              <td scope="col">Criteria 5</td>
+              <td scope="col">Criteria 5 </td>
+              <td scope="col">Based on Global Gap, Codex Standards + Social and Regulatory Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Packaging & Food Chain Inputs Criteria 6 Providers (Manufacturing of Cleaning &
+                Sanitation, Food Equipment, Pest Control)</td>
+              <td scope="col">Criteria 6 </td>
+              <td scope="col">Criteria 6</td>
+              <td scope="col">Criteria 6 </td>
+              <td scope="col">Based on ISO 22000; 2018 & Best Practices in PRP&GMP Change Management Initiatives +
+                Social & Regulatory Compliance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">Joint Application of Customer & Supplier / Co-Packers / Franchise 3rd Party - Food Safety
+                Excellence through Partnership Development</td>
+              <td scope="col">Criteria 7 </td>
+              <td scope="col">Criteria 7</td>
+              <td scope="col">Criteria 7 </td>
+              <td scope="col">Best Practices in Partnership Development Criteria 3 or Criteria 2 as applicable</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Primary Production: Dairy Farm</td>
+              <td scope="col">Criteria 8 </td>
+              <td scope="col">Criteria 8</td>
+              <td scope="col">Criteria 8 </td>
+              <td scope="col">Based on GLOBAL GAP + Social Compliance </td>
+            </tr>
+
+            <tr>
+              <td scope="col">E-commerce- online Marketplace (Grocery. fruits and Vegetables & products)</td>
+              <td scope="col">Criteria 9 </td>
+              <td scope="col">Criteria 9</td>
+              <td scope="col">Criteria 9 </td>
+              <td scope="col">Based on FSSAI checkpoints for online food delivery + ISO 22000:2018 + FSSR for retail &
+                distribution</td>
+            </tr>
+            <tr>
+              <td scope="col">E-commerce-Ready to eat cooked Meal </td>
+              <td scope="col">Criteria 10 </td>
+              <td scope="col">Criteria 10</td>
+              <td scope="col">Criteria 10 </td>
+              <td scope="col">Based on FSSAI checkpoints for catering and online food delivery + ISO 22000:2018</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Laboratories Performance of Food Analysis & Testing Labs </td>
+              <td scope="col">Criteria 11 </td>
+              <td scope="col">Criteria 11</td>
+              <td scope="col">Criteria 11 </td>
+              <td scope="col">Based on ISO 17025 2017, Best Practices & Leadership Initiatives+ Statutory & Social
+                Compliance</td>
+            </tr>
+
+            <tr>
+              <td scope="col">Innovation Management with Food Safety</td>
+              <td scope="col">Criteria 12 </td>
+              <td scope="col">Criteria 12</td>
+              <td scope="col">Criteria 12 </td>
+              <td scope="col">Innovation in Best Practices in FSMS</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLongTitle">Categorization of Applicant Units:</h5>
+        <p>For purposes of assigning categorization to Award Applications (eg large, medium,
+        small and micro) Enterprise /unit would be defined as follows:</p>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+              <th scope="col">Manufacturing Sector (New
+              classification Post June 2020) </th>
+              <th scope="col">Service Sector
+              (New classification Post June
+              2020) </th>
+            </tr>
+            <tr>
+              <th scope="col">Enterprises / Units </th>
+              <th scope="col">Investment in plant & machinery </th>
+              <th scope="col">Investment in Equipment </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td scope="col">Micro & Small Enterprises / Unit*</td>
+              <td scope="col">Investment does not exceed 10 crore rupees and turnover does not exceed 50 Cr </td>
+              <td scope="col">Investment does not exceed 10 crore rupees and turnover does not exceed 50 Cr</td>
+            </tr>
+            <tr>
+              <td scope="col">Medium Enterprises / Unit*</td>
+              <td scope="col">Investment does not exceed 50 Crore Rupees and turnover does not exceed 250 Cr </td>
+              <td scope="col">Investment does not exceed 50 Crore Rupees and turnover does not exceed 250 Cr</td>
+            </tr>
+            <tr>
+              <td scope="col">Large Enterprises / Unit</td>
+              <td scope="col">> 50 Crores Investment &<br/>
+              > 250 Crores Turnover
+              </td>
+              <td scope="col">> 50 Crores Investment &<br />
+              > 250 Crores Turnover</td>
+            </tr>
+          </tbody>
+        </table>
+        <p> Proof of the latest investment figure (either UAM / or registration certificate as per MSME Act or a certification by
+        the auditors/authority) is to be submitted</p>
+        <p> In the absence of UAM, please attach form 14A mentioning the size Categorization Declaration</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById("newsectionbtn").onclick = function () {
+    var container = document.getElementById("container");
+    var section = document.getElementById("mainsection");
+    container.appendChild(section.cloneNode(true));
+  }
+</script>

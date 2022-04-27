@@ -1,0 +1,139 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Assessors View List</h4>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 header-btn">
+            <div class="col-md-9" style="padding-right:0">
+              <!--
+              <label class="font-bold"><span
+                  id="selected_checkbox_count_vehicle">0</span> Selected</label>
+              <div class="btn-group g-px-12 dropdown"> <button class="btn btn-default btn-sm btn-bg dropdown-toggle"
+                  data-toggle="dropdown"> <span class="dropdown-label " disabled>List View &nbsp;&nbsp;&nbsp;<i
+                      class="fa fa-caret-down" aria-hidden="true"></i></span></button>
+                <ul class="dropdown-menu text-left text-sm">
+                  <li><a class="in-stock-open"> KANBAN </a></li>
+
+                </ul>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+              <div class="input-group universal-search">
+                <input  type="text" class="form-control" placeholder="Enter keyword to search" name="search" [(ngModel)]="term" autocomplete="off">
+                <span class="input-group-addon Search-icon"><i class="fa fa-search" aria-hidden="true"></i> </span>
+              </div>
+              -->
+            </div>
+
+
+            <div class="col-md-3">
+
+              <div class="btn-group  dropdown create-applicant pull-right"> <button
+                  class="btn btn-default btn-sm btn-bg-m dropdown-toggle r-2x" data-toggle="dropdown"> <span
+                    class="dropdown-label g-px-5"><a routerLink="/add-assessors" routerLinkActive="active"
+                      class="app-underline"><span class="txt-clr">Create Assessors</span></a></span></button></div>
+
+
+            </div>
+
+
+
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-12">
+
+          <table class="panel panel-default table table-dark" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox"/></th>
+                <th scope="col">ID</th>
+                <th scope="col">Assessors</th>
+                <th scope="col">Education Details</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Zone</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="assessors-xss">
+              <tr *ngFor="let assessorsval of assessors">
+                <td scope="row"><input type="checkbox"/></td>
+                <td class="applicant-id">
+                  <span class="app-id">#{{ assessorsval._id.slice(0, 6).toUpperCase()}}</span>
+                  <p class="icon"><i class="fa fa-calendar calendar-class" aria-hidden="true"></i>&nbsp;<span class="abc-cls date">{{ assessorsval.created_at|date:'dd-MM-yyyy'}}</span></p>
+                </td>
+                <td>
+                  <p class="app-id">{{ assessorsval.firstName}} </p>
+                  <p class="icon"><i class="fa fa-briefcase"></i>&nbsp;<span class="abc-cls">{{ assessorsval.designation}}</span></p>
+
+
+                </td>
+                <td>
+                  <p class="app-id">{{ assessorsval.assessorsEducation}}</p>
+                  <p class="app-id">{{ assessorsval.batch}}</p>
+                </td>
+                <td>
+                   <p class="icon"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{ assessorsval.assessorsPhone}} </span></p>
+                  <p class="abc">@&nbsp;<span class="abc-cls">{{ assessorsval.assessorsEmail}}</span></p>
+                </td>
+                <td>
+                    <p class="icon">{{ assessorsval.zone}}</p>
+                    <p class="abc-cls">{{ assessorsval.country}} <br/> {{ assessorsval.state}} <br/> {{ assessorsval.city}}</p>
+
+                </td>
+
+                <td>
+                  <p class="btn btn-xs btn-{{assessorsval.UserData.length!=0?'success':(assessorsval.invite?'warning':'danger')}}">{{assessorsval.UserData.length!=0?'invite accepted':(assessorsval.invite?'invite sent':'only save')}}</p>
+                </td>
+                <td>
+
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1" data-toggle="dropdown"><span class="app-id"> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;</span>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/edit-assessors/{{assessorsval._id}}">Access Details</a></li>
+                      <li class="{{assessorsval.UserData.length!=0?'disabled':''}}"><a role="menuitem" tabindex="-1" (click)="reSendEoi(assessorsval._id,assessorsval.email)"> <i class="fa fa-repeat">  Resend EOI </i></a></li>
+                       <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+
+
+                    </ul>
+                  </div>
+
+                </td>
+              </tr>
+
+
+
+
+            </tbody>
+          </table>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+

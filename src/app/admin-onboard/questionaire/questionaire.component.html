@@ -1,0 +1,42 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12 mb-3">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Questionaire List</h4><br />
+        </div>
+        <div class="col-md-12">
+          <input accept=".csv,.xls,.xlsx" type="file" encType="multipart/form-data" class="form-control "
+            (change)="onFileChange($event)" placeholder="Upload" id="file" formControlName="attach_file">
+        </div>
+        <div class="col-md-12">
+          <kendo-grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [filterable]="false"
+            [groupable]="true" [height]="510">
+            <kendo-grid-column field="criteria" title="Criteria" [width]="80"></kendo-grid-column>
+            <kendo-grid-column field="section_no" title="Sec. No." [width]="70"></kendo-grid-column>
+            <kendo-grid-column field="section_title" title="Sec. Title" [width]="100"></kendo-grid-column>
+            <kendo-grid-column field="sub_section_no" title="Sub Sec. No." [width]="80"></kendo-grid-column>
+            <kendo-grid-column field="sub_section_title" title="Sub Sec. Title" [width]="140"></kendo-grid-column>
+            <kendo-grid-column field="type" [width]="100" title="Type"></kendo-grid-column>
+            <kendo-grid-column field="question_no" title="Ques. No." [width]="70"></kendo-grid-column>
+            <kendo-grid-column field="question_title" title="Ques. Title" [width]="100"></kendo-grid-column>
+            <kendo-grid-column field="question_description" title="Ques. Desc.." [width]="200"></kendo-grid-column>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
