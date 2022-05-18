@@ -1,17 +1,21 @@
-.Search-icon{
+.Search-icon {
     background-color: white;
 }
-#text{
+
+#text {
     border-left: none;
 }
-.fa-search{
+
+.fa-search {
     transform: rotate(90deg);
     color: #718f25;
 }
-.col-md-3{
+
+.col-md-3 {
     width: 14%;
 }
-.period-icon{
+
+.period-icon {
     border: 2px solid #f2f2f2;
     font-size: 21px;
     padding: 1px;
@@ -20,34 +24,42 @@
     background: #ffffff;
     box-shadow: 0px 0px 0px 0px;
 }
-.btn-block{
+
+.btn-block {
     padding: 0px;
     height: 34px;
 
 }
-.change-period{
+
+.change-period {
     padding: 0px;
 }
- .app-licant{
+
+.app-licant {
     display: flex;
     background: #ef6a33;
 }
-.app-class{
+
+.app-class {
     display: flex;
     padding-left: 47px;
     padding-top: 21px;
 }
-.dashboard-applicant{
+
+.dashboard-applicant {
     display: flex;
     font-size: 5rem;
 }
-.app-bg{
+
+.app-bg {
     background-color: #ef6a33;
 }
-.assessor-bg{
+
+.assessor-bg {
     background-color: #718f25;
 }
-.allocated-bg{
+
+.allocated-bg {
     background-color: #ba7337;
 }
 
@@ -198,11 +210,247 @@ body {
 }
 
 .card {
-  text-align: center;
-   background: transparent;
-  box-shadow: none;
+    text-align: center;
+    background: transparent;
+    box-shadow: none;
 }
+
 .card p {
-  font-size: 2rem;
-  padding: 0 0 2rem 0;
+    font-size: 2rem;
+    padding: 0 0 2rem 0;
+}
+
+/* ***********************************brijesh css start********************************* */
+
+#dasboard-top-boxes {
+    margin-top: 2rem;
+}
+
+.first-sec {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -5px;
+}
+
+.top-box {
+    border: 1px solid #ffffff;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0px 0px 3px 1px #ddd;
+    flex-grow: 1;
+    margin: 0 5px;
+}
+
+.title {
+    padding-bottom: 2rem;
+    color: black;
+}
+
+.footer-number {
+    width: 81%;
+    margin-bottom: 10px;
+}
+
+.color1 {
+    border-bottom: 2px solid #f26722;
+}
+
+.color1 h5 {
+    color: #f26722;
+}
+
+.color2 {
+    border-bottom: 2px solid #ffcb08;
+}
+
+.color2 h5 {
+    color: #ffcb08;
+}
+
+.color3 {
+    border-bottom: 2px solid #a6ce39;
+}
+
+.color3 h5 {
+    color: #a6ce39;
+}
+
+.color4 {
+    border-bottom: 2px solid #bc7129;
+}
+
+.color4 h5 {
+    color: #bc7129;
+}
+
+#applicant-sec {
+    margin-top: 2rem;
+}
+
+#applicant-sec h6 {
+    color: #000;
+    font-size: 14px;
+}
+
+.applicant-title {
+    border: 1px solid #ffffff;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0px 0px 3px 1px #ddd;
+}
+
+.tabs-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabs-list li {
+    flex-grow: 1;
+    text-align: center;
+    background: #00000014;
+}
+
+.mx2 {
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+}
+
+.tab-cont-center {
+    text-align: center;
+    border: 1px solid #ffffff;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0px 1px 2px 1px #ddd;
+}
+
+#table-sec {
+    margin-top: 2rem;
+}
+
+#table-sec h6 {
+    color: #000;
+    font-size: 14px;
+}
+
+.table-title {
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0px 1px 2px 1px #ddd;
+}
+
+.table-area {
+    background: #eaf1d8;
+    box-shadow: 0px 1px 2px 1px #ddd;
+    height: 49rem;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(176, 173, 173);
+    border-radius: 19px;
+}
+
+.table-area td {
+    padding: 8px 2rem;
+}
+
+.table-area tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.center-td {
+    text-align: center;
+}
+
+#assisment-table {
+    margin-top: 2rem;
+    box-shadow: 0px 0px 3px 1px #ddd;
+}
+
+#assisment-table h6 {
+    color: #000;
+    font-size: 14px;
+}
+
+.applicants-title {
+    padding: 1rem 2rem;
+    background: #ffffff;
+}
+
+.applicants-data {
+    background: #ffffff;
+    padding: 0 2rem;
+}
+
+.applicants-data span {
+    font-size: 9px;
+}
+
+.applicants-data .pending {
+    padding: 3px;
+    border-radius: 4px;
+    background: rgb(209, 106, 106);
+    color: #ffffff;
+}
+
+.applicants-data .review {
+    padding: 3px;
+    border-radius: 4px;
+    background: #7197e9;
+    color: #ffffff;
+}
+
+.applicants-data .completed {
+    padding: 3px;
+    border-radius: 4px;
+    background: #87a63f;
+    color: #ffffff;
+}
+
+.applicants-data i {
+    color: #87a63f;
+}
+
+.applicants-data tbody tr td {
+    padding: 13px 15px;
+}
+
+#assisment-table thead {
+    border-bottom: 2px solid #ddd;
+}
+
+#pie-with-tab {
+    margin-top: 2rem;
+}
+
+#pie-with-tab h6 {
+    color: #000;
+    font-size: 14px;
+}
+
+.table-area-height {
+    background: #eaf1d8;
+    box-shadow: 0px 1px 2px 1px #ddd;
+    height: 29.2rem;
+    overflow: auto;
+}
+
+.table-area-height tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.mx1 {
+    border-left: 2px solid #ddd;
+}
+
+.latst-sec {
+    margin-bottom: 10rem;
 }

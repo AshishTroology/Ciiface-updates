@@ -62,7 +62,10 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { SectionComponent } from './applicant-onboard/section/section.component';
 import { PreviewComponent } from './applicant-onboard/preview/preview.component';
 import { CreateAllocationComponent } from './admin-onboard/create-allocation/create-allocation.component';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { ApplicantNewViewComponent } from './admin-onboard/applicant-new-view/applicant-new-view.component';
+import { ListAllocationComponent } from './admin-onboard/list-allocation/list-allocation.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -97,6 +100,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SectionComponent,
     PreviewComponent,
     CreateAllocationComponent,
+    ApplicantNewViewComponent,
+    ListAllocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +125,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgMultiSelectDropDownModule.forRoot(),
     Ng2TelInputModule,
     CKEditorModule,
-    NgSelectModule,
+    NgChartsModule,
   ],
   providers: [
     AuthGuardService,

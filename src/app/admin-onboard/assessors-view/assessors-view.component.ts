@@ -76,10 +76,10 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
   }
 
   reSendEoi(id: any, email: any) {
-    if (this.assessorsForm.invalid) {
-      console.log(this.assessorsForm, 'error');
-      this.isValidFormSubmitted = true;
-    } else {
+    // if (this.assessorsForm.invalid) {
+    //   console.log(this.assessorsForm, 'error');
+    //   this.isValidFormSubmitted = true;
+    // } else {
       console.log(id);
       let url = '/assessorReSendEOI/' + email;
       console.log(email);
@@ -92,7 +92,7 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
           this.toast.showSuccess('Resend EOI Successfully!.');
           window.location.reload();
         });
-    }
+    // }
   }
 
   ngOnDestroy(): void {

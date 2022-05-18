@@ -10,114 +10,155 @@
           <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Create Assessment Team</h4>
         </div>
         <div class="clearfix"></div>
+
           <div class="col-sm-12 col-xs-12">
             <div class="card"  style="margin-top: 1.5%;padding-top: 1%;min-height: 500px;padding-bottom:1rem">
               <form [formGroup]="allocationForm" (ngSubmit)="submitAllocation()" >
+                <input type="hidden" formControlName="period_from" />
+                <input type="hidden" formControlName="period_to" />
               <div class="col-md-6 form-group">
                 <label>Applicant </label>
                 <p class="labelInfo">Select Applicant</p>
-                <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)">
+                <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
                   <option value="">Select Applicant</option>
                   <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{ item.organizationName }} ({{ item.sector }})</option>
                 </select>
+                <div *ngIf="f.applicant_id.errors && f.applicant_id.errors.required && submitValid" class="text-danger text-left mb-1">
+                  <div *ngIf="f.applicant_id.errors.required">This field is required</div>
+                </div>
               </div>
+              <div class="col-md-2 form-group">
+                  <label> </label>
+                  <p class="labelInfo"></p>
+                <a href="/create-allocation" class="btn btn-danger" style="margin-top: 1.8rem;">Reset</a></div>
               <div class="clearfix"></div>
-              <div class="col-md-6 form-group">
-                <label>Assessment Schedule </label>
-                <p class="labelInfo">From</p>
-                <input type="date" formControlName="period_from" class="form-control" [min]="this.minDate| date:'yyyy-MM-dd'" (change)="getToDate($event)" />
-              </div>
-              <div class="col-md-6 form-group">
-                <label> </label>
-                <p class="labelInfo">To</p>
-                <input type="date" formControlName="period_to" class="form-control" [min]="this.maxDate | date:'yyyy-MM-dd'" [value]="this.todata" (change)="dateDiff($event,null)" />
-              </div>
-              <div class="col-md-12" *ngIf="this.days>0?true:false">
-                <label class="text-success">No. of Days:{{ this.days }}</label>
-              </div>
-              <div class="col-md-12 form-group">
-                <label>Remark </label>
-                <p class="labelInfo"></p>
-                <textarea formControlName="remark" class="form-control"></textarea>
-              </div>
-              <div class="col-md-12" *ngIf="this.days>0?true:false">
-                <table class="table table-striped table-bordered">
+              <div class="col-md-12 table-responsive">
+                <label class="h3 mt-1">Team Assessors </label>
+                <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                   <thead>
                     <tr>
-                      <th>Assessment Team</th>
-                      <th>Section</th>
-                      <th>Team Leader</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th></th>
+                      <th scope="col">Assessor Name</th>
+                      <th scope="col">Designation</th>
+                      <th scope="col">Present Organization</th>
+                      <th scope="col">Product / Service (Present Org)</th>
+                      <th scope="col">Mobile</th>
+                      <th scope="col">E-Mail</th>
+                      <th scope="col">Previous Company</th>
+                      <th scope="col">Product / Service (Previous Org)</th>
+                      <th scope="col">Education</th>
+                      <th scope="col">Expertise</th>
+                      <th scope="col">Skill</th>
+                      <th scope="col">Training</th>
+                      <th scope="col">Certificate</th>
+                      <th scope="col">Experience</th>
+                      <th scope="col">Assessments</th>
+                      <th scope="col">Site Visits</th>
                     </tr>
                   </thead>
                   <tbody>
-
-                    <tr>
+                    <tr *ngFor="let item of arraydata">
+                      <td><input type="checkbox" name="websitecheck"  value="{{ item._id }}"  (click)="checkuncheckall($event,item)"></td>
+                      <td>{{ item.firstName }}</td>
+                      <td>{{ item.designation }}</td>
+                      <td>{{ item.Organization }}</td>
                       <td>
-                        <ng-select #select [items]="arraydata[0]" [searchable]="false" [(ngModel)]="selected" bindLabel="firstName" bindValue="_id">
-                          <ng-template ng-header-tmp>
-                            <input style="width: 100%; line-height: 24px" type="text"  />
-                          </ng-template>
-                        </ng-select>
-                        <select (change)="onChange($event,i,'assessor_id')" class="form-control" formControlName="assessor" >
-                          <option value="">Select Assessor</option>
-                          <option *ngFor="let title of arraydata[0]" value="{{ title._id }}">{{title.firstName}}</option>
-                        </select>
+                        <span class="label label-pill label-primary" *ngFor="let item11 of item.organizationProductservice;let i = index">{{ item11.item_text }} <br *ngIf="(i+1)%4==0" /></span>
                       </td>
+                      <td>{{ item.assessorsPhone }}</td>
+                      <td>{{ item.assessorsEmail }}</td>
+                      <td>{{ item.Organization2 }}</td>
                       <td>
-                        <ng-select [items]="arraydatasec[0]" [multiple]="true" [(ngModel)]="selected" class="form-control" (add)="getValue($event)">
-                        </ng-select>
+                        <span class="label label-pill label-primary" *ngFor="let item12 of item.organizationProductservice2;let i = index">{{
+                          item12.item_text }} <br *ngIf="(i+1)%4==0" /></span>
                       </td>
+                      <td>{{ item.assessorsEducation }}</td>
                       <td>
-                        <input type="radio" name="chk"  [checked]="this.arrTeamleader[0]" /> <span class="text-danger"> Team Leader</span>
+                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index">{{ item1.item_text }} <br *ngIf="(i+1)%4==0" /></span>
                       </td>
-                      <td>
-                        <label class="label label-success">{{ this.arrTeamleader[0] }}</label>
-                      </td>
-                      <td>
-                        <button class="btn btn-default" type="button" (click)="deleteFieldValue('0')">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr *ngFor="let field of fieldArray; let i = index">
-                      <td>
-                        <select (change)="onChange($event,i,'assessor_id')" class="form-control" formControlName="assessor">
-                          <option  value="">Select Assessor</option>
-                          <option *ngFor="let title of arraydata[i+1]" [value]="title._id">{{title.firstName}}</option>
-                        </select>
-                      </td>
-                      <td>
-                        <ng-select [items]="arraydatasec[i+1]" [multiple]="true" [(ngModel)]="selected" class="form-control">
-                        </ng-select>
-                      </td>
-                      <td>
-                        <input type="radio" name="chk" [checked]="this.arrTeamleader[i+1]" /> <span class="text-danger"> Team Leader</span>
-                      </td>
-                      <td>
-                        <label class="label label-success">{{ this.arrTeamleader[i+1] }}</label>
-                      </td>
-                      <td>
-                        <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="5">
-                        <button class="btn btn-default" type="button" (click)="addFieldValue()">
-                          <i class="fa fa-plus"></i>
-                        </button>
-                      </td>
+                      <td>{{ item.skill }}</td>
+                      <td>{{ item.assessorsTraining }}</td>
+                      <td>{{ item.fsmsCertificate }}</td>
+                      <td>{{ item.experience }}</td>
+                      <td>0</td>
+                      <td>-</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-12">
+              <div class="clearfix"></div>
+              <div class="col-md-12 table-responsive">
+                <label class="h3 mt-1">Selected Assessors </label>
+                <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th scope="col">Assessor Name</th>
+                      <th scope="col">Designation</th>
+                      <th scope="col">Present Organization</th>
+                      <th scope="col">Product / Service (Present Org)</th>
+                      <th scope="col">Mobile</th>
+                      <th scope="col">E-Mail</th>
+                      <th scope="col">Previous Company</th>
+                      <th scope="col">Product / Service (Previous Org)</th>
+                      <th scope="col">Education</th>
+                      <th scope="col">Expertise</th>
+                      <th scope="col">Skill</th>
+                      <th scope="col">Training</th>
+                      <th scope="col">Certificate</th>
+                      <th scope="col">Experience</th>
+                      <th scope="col">Team Leader</th>
+                      <th scope="col">Calibrator</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of allocated_array;let j=index">
+                      <td><input type="checkbox" name="websitecheck" value="{{ item._id }}" (click)="checkuncheckall($event,item)"></td>
+                      <td>{{ item.firstName }}</td>
+                      <td>{{ item.designation }}</td>
+                      <td>{{ item.Organization }}</td>
+                      <td>
+                        <span class="label label-pill label-primary"
+                          *ngFor="let item11 of item.organizationProductservice;let i = index">{{ item11.item_text }} <br
+                            *ngIf="(i+1)%4==0" /></span>
+                      </td>
+                      <td>{{ item.assessorsPhone }}</td>
+                      <td>{{ item.assessorsEmail }}</td>
+                      <td>{{ item.Organization2 }}</td>
+                      <td>
+                        <span class="label label-pill label-primary"
+                          *ngFor="let item12 of item.organizationProductservice2;let i = index">{{
+                          item12.item_text }} <br *ngIf="(i+1)%4==0" /></span>
+                      </td>
+                      <td>{{ item.assessorsEducation }}</td>
+                      <td>
+                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index">{{ item1.item_text
+                          }} <br *ngIf="(i+1)%4==0" /></span>
+                      </td>
+                      <td>{{ item.skill }}</td>
+                      <td>{{ item.assessorsTraining }}</td>
+                      <td>{{ item.fsmsCertificate }}</td>
+                      <td>{{ item.experience }}</td>
+                      <td><input type="radio" name="teamleader" value="yes" (click)="getClickRadio($event,item._id,'teamleader')" /></td>
+                      <td><input type="radio" name="calibrator" value="yes" (click)="getClickRadio($event,item._id,'calibrator')"  /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-md-12 form-group mt-1">
+                <label>Remark </label>
+                <p class="labelInfo"></p>
+                <textarea formControlName="remark" class="form-control"></textarea>
+              </div>
+              <div class="col-md-12" style="margin-top: 10px;">
                 <button type="submit" class="btn btn-success">Save Allocation</button>
               </div>
               <div class="clearfix"></div>
+
+
+
+
               </form>
             </div>
           </div>

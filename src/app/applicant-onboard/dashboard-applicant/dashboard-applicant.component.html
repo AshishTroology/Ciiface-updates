@@ -3,11 +3,63 @@
 <div id="content" class="app-content" role="main">
   <div class="app-content-body container">
     <h2>Applicant Dashboard</h2>
-    <div class="card">
+    <!-- <div class="card">
       <img src="../../../assets/img/background-default.png" style="width:40%;" />
       <p>This section shall be available once your Application is accepted and the assessment is undertaken.</p>
-    </div>
+    </div> -->
+    <section id="applicant-db">
+      <div class="applicant-section-table">
+        <div class="applicant-section-title">
+          <h5>CII FACE Award Application Summary</h5>
+        </div>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td scope="row">1</td>
+              <td class="m-child">Lol Submission</td>
+              <td>{{ this.applicantData.updated_at|date:'dd-MM-yyyy' }}</td>
+            </tr>
+            <tr>
+              <td scope="row">2</td>
+              <td class="m-child">Criteria</td>
+              <td>{{ this.applicantData.criteria}}</td>
+            </tr>
+            <tr>
+              <td scope="row">3</td>
+              <td class="m-child">Criteria Checklist For Self Assessment</td>
+              <td>
+                  <p class="label label-{{this.applicantData.finalassessmentsData.length==1?'success':'warning'}}">
+                    {{this.applicantData.finalassessmentsData.length==1?'Completed':'Process'}}</p>
 
+            </tr>
+            <tr>
+              <td scope="row">4</td>
+              <td class="m-child">Onsite Assessment Schedule</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td scope="row">5</td>
+              <td class="m-child">Onsite Assessment Lead Assessor</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td scope="row">6</td>
+              <td class="m-child">Assessor 1</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td scope="row">7</td>
+              <td class="m-child">Assessor 2</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td scope="row">8</td>
+              <td class="m-child">Assessor 3</td>
+              <td>Pending</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
 </div>
-

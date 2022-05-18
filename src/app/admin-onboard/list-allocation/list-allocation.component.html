@@ -1,0 +1,74 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Allocation List</h4>
+          <hr />
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 table-responsive">
+
+          <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th scope="col">Applicant Detail</th>
+                <th scope="col">Assessment Schedule</th>
+                <th scope="col">Assessment Team</th>
+                <th scope="col">Created On</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let allval of AllocationList">
+                  <td>
+                    <span class="app-id">Name: {{ allval.applicantData[0].firstName}}</span><br/>
+                    <span>Email: {{ allval.applicantData[0].email}}</span><br />
+                    <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span>
+                  </td>
+                  <td>
+                    From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b><br/>
+                    To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b>
+                  </td>
+                  <td>
+                    <ul class="nav nav-stacked">
+                      <li class="" *ngFor="let ab of allval.assessorData">{{ ab.firstName }} ({{ ab.assessorsEmail }})</li>
+                    </ul>
+                  </td>
+                  <td> {{ allval.created_at|date:'dd-MM-yyyy' }} </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1" data-toggle="dropdown"><span
+                          class="app-id"> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;</span>
+                        <span class="caret"></span></button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Allocation
+                            Details</a></li>
+
+                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+
+
+                      </ul>
+                    </div>
+                  </td>
+                  </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

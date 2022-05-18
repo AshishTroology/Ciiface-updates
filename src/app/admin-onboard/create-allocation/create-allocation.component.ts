@@ -1,44 +1,103 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataTableDirective } from 'angular-datatables';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Subject } from 'rxjs';
 import { AllocationService } from 'src/app/services/allocation.service';
 import { ApplicantService } from 'src/app/services/applicant.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { TosterService } from 'src/app/services/toster.service';
 @Component({
   selector: 'app-create-allocation',
   templateUrl: './create-allocation.component.html',
   styleUrls: ['./create-allocation.component.css'],
 })
 export class CreateAllocationComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement!: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtOptions1: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  dtTrigger1: Subject<any> = new Subject<any>();
   applicantlist: any;
   allocationForm!: FormGroup;
   minDate: Date;
   fromDate: any;
   todata: any;
   maxDate: Date;
-  fieldArray: Array<any> = [];
-  newAttribute: any = {};
-  i = 0;
-  arraydata: Array<any> = [];
-  arraydatasec: Array<any> = [];
-  arrAssStatus: Array<any> = [];
-  arrTeamleader: Array<any> = [];
-  selectedDevice: any;
   disabled = false;
-  selected: any = [];
-  selectedAssessment: any = [];
   days: any;
+  arraydata: any;
+  arraydatasec: any;
+  allocated_array: any = [];
+  dropdownSettings: IDropdownSettings = {};
+  secselectedItems: Array<any> = [];
+  assessorArray: any = [];
+  spreaded: any;
+  submitValid: Boolean = false;
+  ddState:any;
   constructor(
     public allocation: AllocationService,
     private applicantS: ApplicantService,
     public fb: FormBuilder,
-    private quest: QuestionService
+    private quest: QuestionService,
+    private toast: TosterService
   ) {
     this.minDate = new Date();
     this.maxDate = new Date();
   }
+  isChecked = false;
+  checkuncheckall(e: any, it: any) {
+    console.log(e.target.value, e.target.checked, it);
+    if (e.target.checked) {
+      it.teamleader = false;
+      it.calibrator = false;
+      this.allocated_array.push(it);
+    } else {
+      var index = this.allocated_array.findIndex(function (o: any) {
+        return o._id === e.target.value;
+      });
+      if (index !== -1) this.allocated_array.splice(index, 1);
+    }
+  }
+  getClickRadio(e: any, it: any,field:any) {
+    console.log(e.target.checked,it,field)
+    this.allocated_array.map((itemm:any)=>{
+      if(itemm._id==it){
+        itemm[field] = true;
+      }
+      else{
+        itemm[field] = false;
+      }
+    })
+    console.log(this.allocated_array);
+
+  }
 
   ngOnInit(): void {
     this.arraydata = [];
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ordering: false,
+      searching: true,
+      processing: true,
+    };
+    this.dtOptions1 = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ordering: false,
+      searching: true,
+      processing: true,
+    };
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'firstName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true,
+    };
 
     this.allocation.getviewApplicantLOISubmitted().subscribe((item: any) => {
       console.log(item.ass);
@@ -47,43 +106,53 @@ export class CreateAllocationComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+    this.dtTrigger1.unsubscribe();
+  }
+
   initForm() {
     this.allocationForm = this.fb.group({
       applicant_id: ['', [Validators.required]],
-      period_from: ['', [Validators.required]],
-      period_to: ['', [Validators.required]],
+      period_from: [''],
+      period_to: [''],
       remark: '',
-      assessment_list: [],
+      assessment_list: [''],
     });
   }
-
-  getToDate(e: any) {
-    this.maxDate = e.target.value;
-    this.fromDate = e.target.value;
-    this.todata = e.target.value;
-    this.dateDiff(this.todata, 'from');
+  // setDefaultData() {
+  //   this.addProduct('', null, '');
+  // }
+  // addProduct(name = '', desc = null, tl = '') {
+  //   if (this.aliases.length < 4) {
+  //     this.aliases.push(
+  //       this.fb.group({
+  //         assessor: [name, [Validators.required]],
+  //         section: [desc, [Validators.required]],
+  //         teamleader: [tl],
+  //       })
+  //     );
+  //   } else {
+  //     alert(
+  //       'Oops! Assessment Team should comprise of 4 Members. Please add Assessors.'
+  //     );
+  //   }
+  // }
+  public get f() {
+    return this.allocationForm.controls;
   }
 
-  dateDiff(e: any, t: any) {
-    var date1 = new Date(this.fromDate);
-    var date2 = new Date(t == 'from' ? e : e.target.value);
-
-    var Time = date2.getTime() - date1.getTime();
-    var Days = Time / (1000 * 3600 * 24);
-    console.log(Days + 1);
-    this.days = Days + 1;
-    this.selectedAssessment.push({
-      assessor_id: '',
-      section: [],
-      assessment_status: 'pending',
-      assessedby: '',
-      teamleader: false,
-    });
-  }
+  // get aliases() {
+  //   return this.allocationForm.get('assessment_list') as FormArray;
+  // }
 
   getApplicantId(e: any) {
-    this.arrTeamleader.push(false);
-    this.arrAssStatus.push('Pending');
+    this.arraydata = [];
+    this.ddState=true;
+    this.allocation.checkallocation(e.target.value).subscribe((iiteem: any) => {
+      console.log(iiteem);
+    });
     this.applicantS
       .GetAdminApplicantSingle(e.target.value)
       .subscribe((pitem: any) => {
@@ -95,64 +164,54 @@ export class CreateAllocationComponent implements OnInit {
           .subscribe((iittem: any) => {
             console.log(iittem);
             if (iittem.ass.length == 0) {
-              this.arraydata = [];
-              this.fieldArray = [];
               alert('No Assessor found in this Sector');
             } else {
-              this.arraydata.push(iittem.ass);
+              this.dtTrigger.next();
+              this.dtTrigger1.next();
+              this.arraydata = iittem.ass;
+              this.allocated_array = [];
             }
           });
-        this.quest
-          .viewQuestionSec({ criteria: pitem.applicanData[0].criteria })
-          .subscribe((item: any) => {
-            //  console.log(item);
-            this.arraydatasec.push(item.sec);
-          });
+
       });
-  }
-
-  onChange(deviceValue: any, i: any,field:any) {
-    this.selectedDevice = deviceValue.target.value;
-    let s = 'assessor' + i;
-    this.selectedAssessment[i][field] = deviceValue.target.value;
-  }
-
-  getValue(e:any){
-    console.log(e.target.value);
-
-  }
-
-  addFieldValue() {
-    if (this.fieldArray.length < 3) {
-      const arr = [...this.arraydata];
-      const arrsec = [...this.arraydatasec];
-      this.arraydata.push(arr[this.i]);
-      this.arraydatasec.push(arrsec[this.i]);
-      this.arrAssStatus.push('pending');
-      this.arrTeamleader.push(false);
-      this.fieldArray.push(this.newAttribute);
-      console.log(this.newAttribute);
-
-      this.newAttribute = {};
-      this.selectedAssessment.push({
-        assessor_id: '',
-        section: [],
-        assessment_status: 'pending',
-        assessedby: '',
-        teamleader: false,
-      });
-      this.i += 1;
-    } else {
-      alert('Oops! You can select only 4 Assessors for an Assessment.');
-    }
-  }
-
-  deleteFieldValue(index: any) {
-    this.fieldArray.splice(index, 1);
   }
 
   submitAllocation() {
-    this.allocationForm.value.assessment_list = this.selectedAssessment;
-    console.log(this.allocationForm.value);
+    if (this.allocationForm.invalid) {
+      console.log(this.allocationForm);
+      this.submitValid = true;
+      this.toast.showError('Sorry, Something went wrong');
+    } else {
+      this.submitValid = false;
+
+      if (this.allocated_array.length == 4) {
+        this.allocationForm.value.assessment_list = this.allocated_array;
+        this.allocation
+          .saveAllocation(this.allocationForm.value)
+          .subscribe((item: any) => {
+            console.log(item);
+            if (item.statusCode == 200) {
+              this.toast.showSuccess(
+                'Congratulation!, Assessors has been Added.'
+              );
+              setTimeout(() => {
+                window.location.href = '/list-allocation';
+              }, 2000);
+            } else {
+              this.toast.showError('Sorry, Something went wrong');
+            }
+          });
+      } else {
+        alert(
+          'Oops! Assessment Team should comprise of 4 Members. Please add Assessors.'
+        );
+      }
+    }
+  }
+
+  getChecked(ev: any, i: any) {}
+
+  onItemSelectDropDown(item: any) {
+    console.log(item);
   }
 }

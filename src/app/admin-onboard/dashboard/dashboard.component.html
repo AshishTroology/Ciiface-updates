@@ -3,15 +3,355 @@
 <div id="content" class="app-content" role="main">
   <div class="app-content-body container">
     <h2>Admin Dashboard</h2>
-    <div class="card">
-      <img src="../../../assets/img/background-default.png" style="width:40%;" />
-    </div>
+    <section id="dasboard-top-boxes">
+      <!-- <div class="card">
+        <img src="../../../assets/img/background-default.png" style="width:40%;" />
+
+      </div> -->
+      <div class="first-sec">
+        <div class="top-box">
+          <div class="title">
+            <h6>Total Registrations</h6>
+          </div>
+          <div class="footer-number color1">
+            <h5>{{ this.totalApplicant }}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>LOI Submission</h6>
+          </div>
+          <div class="footer-number color2">
+            <h5>{{ this.totalLOI }}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>Instruction</h6>
+          </div>
+          <div class="footer-number color1">
+            <h5>{{ this.totalInstruction }}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>Checklist</h6>
+          </div>
+          <div class="footer-number color2">
+            <h5>{{ this.totalChecklist }}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>Co Applicant</h6>
+          </div>
+          <div class="footer-number color3">
+            <h5>{{ this.detail.coapp_count}}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>Assessor</h6>
+          </div>
+          <div class="footer-number color4">
+            <h5>{{ this.detail.ass_count }}</h5>
+          </div>
+        </div>
+        <div class="top-box">
+          <div class="title">
+            <h6>Calibrator</h6>
+          </div>
+          <div class="footer-number color4">
+            <h5>0</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="applicant-sec">
+      <div class="applicant-title">
+        <h6>APPLICANT</h6>
+      </div>
+      <div class="tab-area">
+        <div>
+          <ul class="nav tabs-list" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                data-toggle="tab">Sector Wise</a>
+            </li>
+            <li class="mx2" role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                data-toggle="tab">Criteria Wise</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">State
+                Wise</a></li>
+          </ul>
+
+          <div class="tab-content tab-cont-center">
+            <div role="tabpanel" class="tab-pane active" id="home">
+              <div>
+                <div>
+                  <div style="display: block; margin: auto;height: auto;width: 30%;">
+                    <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <div>
+                <div>
+                  <div style="display: block; margin: auto;height: auto;width: 41%;">
+                    <canvas baseChart [data]="doughnutChartData1" [type]="doughnutChartType">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+              <div>
+                <div>
+                  <div style="display: block; margin: auto;height: auto;width: 41%;">
+                    <canvas baseChart [data]="doughnutChartData2" [type]="doughnutChartType">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="table-sec">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Applicants (Sector Wise)</h6>
+          </div>
+          <div class="table-area">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr *ngFor="let item of this.detail.app_sector">
+                  <td scope="row"  *ngIf="item._id.sector==null?false:true"> <span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.sector }}</td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.count }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Applicants (Criteria Wise)</h6>
+          </div>
+          <div class="table-area">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr *ngFor="let item of this.detail.app_criteria">
+                  <td scope="row" *ngIf="item._id.criteria==null?false:true"><span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.criteria }}</td>
+                  <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.count }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Applicants (State Wise)</h6>
+          </div>
+          <div class="table-area">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr *ngFor="let item of this.detail.app_state">
+                  <td scope="row" *ngIf="item._id.applicantState==null?false:true"><span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.applicantState }}</td>
+                  <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.count }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="assisment-table">
+      <div class="applicants-title">
+        <h6>ASSESSMENTS</h6>
+      </div>
+      <div class="applicants-data">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>APPLICANT</th>
+              <th>SCHEDULE</th>
+              <th>TEAM LEAD</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--<tr>
+              <td scope="row">1</td>
+              <td>Company Name 1</td>
+              <td><i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
+              <td>Team Member 1</td>
+              <td><span class="review">Review</span></td>
+            </tr>-->
+            <tr>
+              <td colspan="5"> No Record Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="pie-with-tab">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="applicant-title">
+            <h6>ASSESSOR</h6>
+          </div>
+          <div class="tab-area">
+            <div>
+              <ul class="nav tabs-list" role="tablist">
+                <li role="presentation" class="active"><a href="#Sector" aria-controls="Sector" role="tab"
+                    data-toggle="tab">Sector
+                    Wise</a>
+                </li>
+                <li class="mx1" role="presentation"><a href="#State" aria-controls="State" role="tab"
+                    data-toggle="tab">State Wise</a></li>
+              </ul>
+
+              <div class="tab-content tab-cont-center">
+                <div role="tabpanel" class="tab-pane active" id="Sector">
+                  <div>
+                    <div>
+                      <div style="display: block; margin: auto;height: auto;width: 41%;">
+                        <canvas baseChart [data]="doughnutChartData_1" [type]="doughnutChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="State">
+                  <div>
+                    <div>
+                      <div style="display: block; margin: auto;height: auto;width: 41%;">
+                        <canvas baseChart [data]="doughnutChartData_2" [type]="doughnutChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Assessor (Sector Wise)</h6>
+          </div>
+          <div class="table-area-height">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr>
+                  <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Assessor (State Wise)</h6>
+          </div>
+          <div class="table-area-height">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr>
+                  <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="pie-with-tab" class="latst-sec">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="applicant-title">
+            <h6>CALIBRATOR</h6>
+          </div>
+          <div class="tab-area">
+            <div>
+              <ul class="nav tabs-list" role="tablist">
+                <li role="presentation" class="active"><a href="#Sector2" aria-controls="Sector2" role="tab"
+                    data-toggle="tab">Sector
+                    Wise</a>
+                </li>
+                <li class="mx1" role="presentation"><a href="#State2" aria-controls="State2" role="tab"
+                    data-toggle="tab">State Wise</a></li>
+              </ul>
+
+              <div class="tab-content tab-cont-center">
+                <div role="tabpanel" class="tab-pane active" id="Sector2">
+                  <div>
+                    <div>
+                      <div style="display: block; margin: auto;height: auto;width: 41%;">
+                        <canvas baseChart [data]="doughnutChartData_1" [type]="doughnutChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="State2">
+                  <div>
+                    <div>
+                      <div style="display: block; margin: auto;height: auto;width: 41%;">
+                        <canvas baseChart [data]="doughnutChartData_1" [type]="doughnutChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Calibrator (Sector Wise)</h6>
+          </div>
+          <div class="table-area-height">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr>
+                  <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="table-title">
+            <h6>Calibrator (State Wise)</h6>
+          </div>
+          <div class="table-area-height">
+            <table class="table" style="margin: 0%;">
+              <tbody>
+                <tr>
+                  <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </div>
-
-
 </div>
-
-
-
-

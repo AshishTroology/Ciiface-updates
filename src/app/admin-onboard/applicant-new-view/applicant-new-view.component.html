@@ -1,0 +1,248 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Applicant View List</h4>
+          <hr />
+        </div>
+        <div class="col-sm-6 col-xs-12 mb-3 text-right">
+          <a href="/view-applicant" class="btn btn-success">Grid View</a>
+        </div>
+        <div class="clearfix"></div>
+        <div id="col-sm-6">
+          <div class="col-md-3">
+            <div
+              class="panel padder-v-30 m-b-xs item widget-statstic-card r-1x b-a b-gray b-t b-t-3x b-t-success text-center">
+              <span class="h4 font-medium text-dark-lter poppins ">Total</span>
+              <div class="row no-gutter padder-v b-b b-light">
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalApplicant }}</p>
+                  <span class="text-10 text-dark-lter poppins">Activated</span>
+                </div>
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">0</p>
+                  <span class="text-10 text-dark-lter poppins">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="panel padder-v-30 m-b-xs item widget-statstic-card r-1x b-a b-gray b-t b-t-3x b-t-success text-center">
+              <span class="h4 font-medium text-dark-lter poppins ">LOI</span>
+              <div class="row no-gutter padder-v b-b b-light">
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalLOI }}</p>
+                  <span class="text-10 text-dark-lter poppins">Submitted</span>
+                </div>
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalApplicant-this.totalLOI }}</p>
+                  <span class="text-10 text-dark-lter poppins">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div
+              class="panel padder-v-30 m-b-xs item widget-statstic-card r-1x b-a b-gray b-t b-t-3x b-t-success text-center">
+              <span class="h4 font-medium text-dark-lter poppins ">Instruction</span>
+              <div class="row no-gutter padder-v b-b b-light">
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalInstruction }}</p>
+                  <span class="text-10 text-dark-lter poppins">Activated</span>
+                </div>
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalApplicant-this.totalInstruction }}</p>
+                  <span class="text-10 text-dark-lter poppins">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div
+              class="panel padder-v-30 m-b-xs item widget-statstic-card r-1x b-a b-gray b-t b-t-3x b-t-success text-center">
+              <span class="h4 font-medium text-dark-lter poppins ">Checklist</span>
+              <div class="row no-gutter padder-v b-b b-light">
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalChecklist }}</p>
+                  <span class="text-10 text-dark-lter poppins">Completed</span>
+                </div>
+                <div class="col-xs-6 b-r b-light text-center">
+                  <p class="text-lite font-bold m-b-none">{{ this.totalApplicant-this.totalChecklist }}</p>
+                  <span class="text-10 text-dark-lter poppins">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-12" *ngIf="this.query=='all'?false:true">
+          <div class="col-md-4" *ngIf="this.query=='criteria'?true:false">
+            <label>Criteria</label>
+            <select class="form-control" (change)="getData($event,'criteria')">
+              <option value="">Select Criteria</option>
+              <option value="Criteria 1">Criteria 1</option>
+              <option value="Criteria 2 Large">Criteria 2 Large</option>
+              <option value="Criteria 2 for SMB">Criteria 2 for SMB</option>
+              <option value="Criteria 3 Large">Criteria 3 Large</option>
+              <option value="Criteria 3 for SMB">Criteria 3 for SMB</option>
+              <option value="Criteria 4">Criteria 4</option>
+              <option value="Criteria 5">Criteria 5</option>
+              <option value="Criteria 6">Criteria 6</option>
+              <option value="Criteria 7">Criteria 7</option>
+              <option value="Criteria 8">Criteria 8</option>
+              <option value="Criteria 9">Criteria 9</option>
+              <option value="Criteria 10">Criteria 10</option>
+              <option value="Criteria 11">Criteria 11</option>
+              <option value="Criteria 12">Criteria 12</option>
+            </select>
+          </div>
+          <div class="col-md-4" *ngIf="this.query=='state'?true:false">
+            <label>State </label>
+            <select class="form-control"  (change)="getData($event,'state')">
+              <option value=""> Select State</option>
+              <option *ngFor="let obj of statedata" value={{obj}}> {{obj}} </option>
+            </select>
+          </div>
+          <div class="col-md-4" *ngIf="this.query=='sector'?true:false">
+            <label>Sector </label>
+            <select class="form-control" (change)="getData($event,'sector')">
+              <option value="">Select Sector</option>
+              <option value="{{ sec }}" *ngFor="let sec of sector"> {{ sec }} </option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="clearfix"></div>
+          <br/><br />
+        </div>
+        <div class="col-md-12 table-responsive">
+
+          <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Status</th>
+                <th scope="col">LOI</th>
+                <th scope="col">Instruction</th>
+                <th scope="col">CheckList</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Criteria</th>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Applicant Designation</th>
+                <th scope="col">Applicant Email</th>
+                <th scope="col">Applicant Mobile</th>
+                <th scope="col">State</th>
+                <th scope="col">City</th>
+                <th scope="col">Sector</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="assessors-xss">
+              <tr *ngFor="let assessorsval of assessors">
+                <td>
+                  <span class="app-id">{{ assessorsval.applicantId}}</span>
+                </td>
+                <td>
+                  <p class="label label-{{assessorsval.UserData[0].status?'success':'danger'}}">
+                    {{assessorsval.UserData[0].status?'Activated':'Pending'}}</p>
+
+                </td>
+                <td>
+                  <label class="label label-{{ assessorsval.userStatus?'success':'danger' }}">LOI {{
+                    assessorsval.userStatus?'SUBMITTED':'PENDING' }}</label>
+
+                </td>
+                <td>
+                  <p class="label label-{{assessorsval.InstructionData.length==1?'success':'danger'}}">
+                    {{assessorsval.InstructionData?(assessorsval.InstructionData.length==1?'Accepted':'Pending'):'N/A'}}
+                  </p>
+                  <span style="display: block;font-size: 10px;"
+                    *ngIf="assessorsval.InstructionData.length==1?true:false">{{assessorsval.InstructionData[0].created_at|date:'dd-MM-yyyy'}}</span>
+
+                </td>
+                <td>
+                  <p class="label label-{{assessorsval.finalassessmentsData.length==1?'success':'warning'}}">
+                    {{assessorsval.finalassessmentsData.length==1?'Completed':'Process'}}</p>
+                  <span style="display: block;font-size: 10px;"
+                    *ngIf="assessorsval.finalassessmentsData.length==1?true:false">{{assessorsval.finalassessmentsData.length==1?(assessorsval.finalassessmentsData[0].created_at|date:'dd-MM-yyyy'):''}}</span>
+                </td>
+                <td>{{ assessorsval.created_at|date:'dd-MM-yyyy'}}</td>
+                <td>{{ assessorsval.updated_at|date:'dd-MM-yyyy'}}</td>
+                <td><span class="app-id">{{ assessorsval.organizationName}}</span></td>
+                <td><span class="app-id">{{ assessorsval.criteria}}</span> </td>
+                <td><span class="app-id">{{ assessorsval.firstName}}</span></td>
+                <td>{{ assessorsval.designation}}</td>
+                <td>{{ assessorsval.email}} </td>
+                <td>{{ assessorsval.mobileNo}}</td>
+                <td><span class="app-id">{{ assessorsval.applicantState}}</span> </td>
+                <td>{{ assessorsval.applicantCity}} </td>
+                <td><span class="app-id" title="{{assessorsval.product}}">{{ assessorsval.sector}}</span></td>
+
+
+                <td>
+
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1"
+                      data-toggle="dropdown"><span class="app-id"> <i class="fa fa-cog"
+                          aria-hidden="true"></i>&nbsp;</span>
+                      <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                      <li role="presentation"><a role="menuitem" tabindex="-1"
+                          href="/edit-applicant/{{assessorsval._id}}">Access Details</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1"
+                          href="//list-co-applicant/{{assessorsval._id}}">Co-Applicant</a></li>
+
+                      <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+
+
+                    </ul>
+                  </div>
+
+                </td>
+              </tr>
+
+
+
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Status</th>
+                <th scope="col">LOI</th>
+                <th scope="col">Instruction</th>
+                <th scope="col">CheckList</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Criteria</th>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Applicant Designation</th>
+                <th scope="col">Applicant Email</th>
+                <th scope="col">Applicant Mobile</th>
+                <th scope="col">State</th>
+                <th scope="col">City</th>
+                <th scope="col">Sector</th>
+                <th scope="col">Action</th>
+              </tr>
+            </tfoot>
+          </table>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

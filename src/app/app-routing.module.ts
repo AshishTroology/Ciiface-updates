@@ -30,7 +30,8 @@ import { SectionComponent } from './applicant-onboard/section/section.component'
 
 import { PreviewComponent } from './applicant-onboard/preview/preview.component';
 import { CreateAllocationComponent } from './admin-onboard/create-allocation/create-allocation.component';
-
+import { ApplicantNewViewComponent } from './admin-onboard/applicant-new-view/applicant-new-view.component';
+import { ListAllocationComponent } from './admin-onboard/list-allocation/list-allocation.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -152,6 +153,32 @@ const routes: Routes = [
   {
     path: 'create-allocation',
     component: CreateAllocationComponent,
+  },
+
+  {
+    path: 'list-allocation',
+    component: ListAllocationComponent,
+  },
+
+  {
+    path: 'newApplicant/:id',
+    component: ApplicantNewViewComponent,
+  },
+  {
+    path: 'newApplicant/:id',
+    component: ApplicantNewViewComponent,
+  },
+  {
+    path: 'newApplicant/:id',
+    component: ApplicantNewViewComponent,
+  },
+  {
+    path: 'newApplicant/:id',
+    component: ApplicantNewViewComponent,
+  },
+  {
+    path:'edit-assessors/:id',
+    component:AssessorsComponent
   },
 
   { path: '**', redirectTo: 'login' },

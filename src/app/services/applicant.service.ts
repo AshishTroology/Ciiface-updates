@@ -13,21 +13,23 @@ export class ApplicantService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError((err: HttpErrorResponse) => {
-      if (err.status >= 200 && err.status < 300) {
-        const res = new HttpResponse({
-          body: null,
-          headers: err.headers,
-          status: err.status,
-          statusText: err.statusText,
-          url: err.url?.toString(),
-        });
+    return next.handle(req).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status >= 200 && err.status < 300) {
+          const res = new HttpResponse({
+            body: null,
+            headers: err.headers,
+            status: err.status,
+            statusText: err.statusText,
+            url: err.url?.toString(),
+          });
 
-        return of(res);
-      } else {
-        return Observable.throw(err);
-      }
-    }));
+          return of(res);
+        } else {
+          return Observable.throw(err);
+        }
+      })
+    );
   }
 
   submitForm(data: any) {
@@ -60,6 +62,17 @@ export class ApplicantService implements HttpInterceptor {
       }),
     };
     return this.http.get(api_url, httpOptions);
+  }
+
+  getApplicantSearch(data: any) {
+    let api_url = base_url + 'viewApplicantByEmail';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        // 'apikey': this.api_key
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
   }
 
   GetApplicantSingle(id: any) {
@@ -279,10 +292,15 @@ export class ApplicantService implements HttpInterceptor {
 
     formData.append('file', file);
 
-    const request = new HttpRequest('POST', base_url_upload + 'upload', formData, {
-      reportProgress: false,
-      responseType: 'text',
-    });
+    const request = new HttpRequest(
+      'POST',
+      base_url_upload + 'upload',
+      formData,
+      {
+        reportProgress: false,
+        responseType: 'text',
+      }
+    );
 
     return this.http.request(request);
   }
@@ -300,6 +318,17 @@ export class ApplicantService implements HttpInterceptor {
 
   sendActivationEmail(id: any) {
     let api_url = base_url + 'sendActivationEmail/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        // 'apikey': this.api_key
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
+  AdminDashboard() {
+    let api_url = base_url + 'dashboardAdmin';
     const httpOptions = {
       headers: new HttpHeaders({
         'content-type': 'application/json;charset=UTF-8',

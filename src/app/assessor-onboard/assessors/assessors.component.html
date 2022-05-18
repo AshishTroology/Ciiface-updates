@@ -5,80 +5,87 @@
 <div id="content" class="app-content" role="main">
   <div class="app-content-body ">
     <form [formGroup]="assessorsForm" (ngSubmit)="clickFunction()">
-    <div class="b-b-none wrapper-md main">
-      <div class="row">
+      <div class="b-b-none wrapper-md main">
+        <div class="row">
 
-        <div class="col-sm-6 col-xs-12">
-          <h4 class="m-n font-bold ">Create Assessors</h4>
-        </div>
-        <div class="col-sm-6 text-right poppins hidden-xs pull-right header-btn">
+          <div class="col-sm-6 col-xs-12">
+            <h4 class="m-n font-bold ">Create Assessors</h4>
+          </div>
+          <div class="col-sm-6 text-right poppins hidden-xs pull-right header-btn">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="wrapper-md" ng-controller="FormDemoCtrl">
+      <div class="wrapper-md" ng-controller="FormDemoCtrl">
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="pull-right" style="margin:15px 15px"><i class="btn btn-info btn-sm fa fa-refresh"
-                onclick="window.location.reload()"></i></div>
-            <div class="panel-heading"><b>Basic Information</b>
-              <p class="labelInfo">Please complete the basic information section</p></div>
-            <div class="panel-body">
-
-              <div class="col-md-6 form-group">
-                <label>Name of the Assessor </label>
-                <p class="labelInfo">Enter the full name of the assessor</p>
-                <input type="text" class="form-control" placeholder=" Enter" formControlName="firstName" [value]="this.firstNameValue" (input)="getValuesName($event,'name')">
-                <div *ngIf="f.firstName.errors && f.firstName.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.firstName.errors.required">This field is required</div>
-                </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="pull-right" style="margin:15px 15px"><i class="btn btn-info btn-sm fa fa-refresh"
+                  onclick="window.location.reload()"></i></div>
+              <div class="panel-heading"><b>Basic Information</b>
+                <p class="labelInfo">Please complete the basic information section</p>
               </div>
+              <div class="panel-body">
 
-              <div class="col-md-6 form-group">
-                <label>Date of Birth </label>
-                <p class="labelInfo">Enter the date of birth of the assessor</p>
-                <input type="date" class="form-control" placeholder="Please input Date (dd/mm/yy)" formControlName="assessorsDate" [value]="this.dobValue" (input)="getValues($event,'dob')">
-                <div *ngIf="f.assessorsDate.errors && f.assessorsDate.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.assessorsDate.errors.required">This field is required</div>
+                <div class="col-md-6 form-group">
+                  <label>Name of the Assessor </label>
+                  <p class="labelInfo">Enter the full name of the assessor</p>
+                  <input type="text" class="form-control" placeholder=" Enter" formControlName="firstName"
+                    [value]="this.firstNameValue" (input)="getValuesName($event,'name')">
+                  <div *ngIf="f.firstName.errors && f.firstName.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.firstName.errors.required">This field is required</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-6 form-group">
-                <label>Designation </label>
-                <p class="labelInfo">Enter the designation of the assessor</p>
-                <input type="text" class="form-control" placeholder="Enter" formControlName="designation" style="margin-top: 2.7rem;">
-                <div *ngIf="f.designation.errors && f.designation.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.designation.errors.required">This field is required</div>
+                <div class="col-md-6 form-group">
+                  <label>Date of Birth </label>
+                  <p class="labelInfo">Enter the date of birth of the assessor</p>
+                  <input type="date" class="form-control" placeholder="Please input Date (dd/mm/yy)"
+                    formControlName="assessorsDate" [value]="this.dobValue" (input)="getValues($event,'dob')">
+                  <div *ngIf="f.assessorsDate.errors && f.assessorsDate.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.assessorsDate.errors.required">This field is required</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-6 form-group">
-                <label>Email </label>
-                <p class="labelInfo">Enter the official email address of the assessor for communication (link for account activation shall be sent on this e-mail id)</p>
-                <input type="text" class="form-control" placeholder="Enter " formControlName="assessorsEmail" [readonly]="this.udata.role=='assessor'?true:false">
-                <div *ngIf="f.assessorsEmail.errors && f.assessorsEmail.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.assessorsEmail.errors.required">This field is required</div>
+                <div class="col-md-6 form-group">
+                  <label>Designation </label>
+                  <p class="labelInfo">Enter the designation of the assessor</p>
+                  <input type="text" class="form-control" placeholder="Enter" formControlName="designation"
+                    style="margin-top: 2.7rem;">
+                  <div *ngIf="f.designation.errors && f.designation.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.designation.errors.required">This field is required</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-6 form-group">
-                <label>Secondary Email   </label>
-                <p class="labelInfo">Enter the secondary email address </p>
-                <input type="text" class="form-control" placeholder="Enter" formControlName="assessorsSecondaryemail">
-                <div *ngIf="f.assessorsSecondaryemail.errors && f.assessorsSecondaryemail.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.assessorsSecondaryemail.errors.required">This field is required</div>
+                <div class="col-md-6 form-group">
+                  <label>Email </label>
+                  <p class="labelInfo">Enter the official email address of the assessor for communication (link for
+                    account activation shall be sent on this e-mail id)</p>
+                  <input type="text" class="form-control" placeholder="Enter " formControlName="assessorsEmail"
+                    [readonly]="this.udata.role=='assessor'?true:false">
+                  <div *ngIf="f.assessorsEmail.errors && f.assessorsEmail.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.assessorsEmail.errors.required">This field is required</div>
+                  </div>
                 </div>
-              </div>
+
+                <div class="col-md-6 form-group">
+                  <label>Secondary Email </label>
+                  <p class="labelInfo">Enter the secondary email address </p>
+                  <input type="text" class="form-control" placeholder="Enter" formControlName="assessorsSecondaryemail">
+                  <div
+                    *ngIf="f.assessorsSecondaryemail.errors && f.assessorsSecondaryemail.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.assessorsSecondaryemail.errors.required">This field is required</div>
+                  </div>
+                </div>
 
 
-              <div class="col-md-6 form-group">
-                <div class="row">
+                <div class="col-md-6 form-group">
+                  <div class="row">
                     <div class="col-md-3 form-group">
                       <label>Country Code </label>
                       <p class="labelInfo">Enter country code </p>
@@ -88,60 +95,64 @@
                       <label>Mobile No </label>
                       <p class="labelInfo">Enter the official mobile number </p>
 
-                        <input type="text" class="form-control" placeholder="Enter " formControlName="assessorsPhone" >
-                        <div *ngIf="f.assessorsPhone.errors && f.assessorsPhone.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.assessorsPhone.errors.required">This field is required</div>
-                        </div>
-                    </div>
-                </div>
-
-
-              </div>
-
-
-              <div class="col-md-6 form-group">
-                <div class="row">
-                  <div class="col-md-3 form-group">
-                    <label>Country Code </label>
-                    <p class="labelInfo">Enter country code </p>
-                    <input type="text" class="form-control" placeholder="" formControlName="code2">
-                  </div>
-                  <div class="col-md-9">
-                    <label>Alternate Mobile No. </label>
-                    <p class="labelInfo">Enter the alternate mobile no </p>
-                    <div class="input-group">
-                      <span class="input-group-addon">+91
-                      </span>
-                      <input type="text" class="form-control" placeholder="Enter Phone Number" formControlName="assessorsAlternateno"
-                        >
-                      <div *ngIf="f.assessorsAlternateno.errors && f.assessorsAlternateno.errors.required && isValidFormSubmitted"
+                      <input type="text" class="form-control" placeholder="Enter " formControlName="assessorsPhone">
+                      <div *ngIf="f.assessorsPhone.errors && f.assessorsPhone.errors.required && isValidFormSubmitted"
                         class="text-danger text-left mb-1">
-                        <div *ngIf="f.assessorsAlternateno.errors.required">This field is required</div>
+                        <div *ngIf="f.assessorsPhone.errors.required">This field is required</div>
                       </div>
                     </div>
                   </div>
+
+
                 </div>
 
-              </div>
 
-              <div class="col-md-6 form-group">
-                <label>Education Qualification </label>
-                <p class="labelInfo">Enter the highest qualification</p>
-                <input type="text" class="form-control" placeholder="Enter Education" formControlName="assessorsEducation">
-                <div *ngIf="f.assessorsEducation.errors && f.assessorsEducation.errors.required && isValidFormSubmitted"
-                  class="text-danger text-left mb-1">
-                  <div *ngIf="f.assessorsEducation.errors.required">This field is required</div>
+                <div class="col-md-6 form-group">
+                  <div class="row">
+                    <div class="col-md-3 form-group">
+                      <label>Country Code </label>
+                      <p class="labelInfo">Enter country code </p>
+                      <input type="text" class="form-control" placeholder="" formControlName="code2">
+                    </div>
+                    <div class="col-md-9">
+                      <label>Alternate Mobile No. </label>
+                      <p class="labelInfo">Enter the alternate mobile no </p>
+                      <div class="input-group">
+                        <span class="input-group-addon">+91
+                        </span>
+                        <input type="text" class="form-control" placeholder="Enter Phone Number"
+                          formControlName="assessorsAlternateno">
+                        <div
+                          *ngIf="f.assessorsAlternateno.errors && f.assessorsAlternateno.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1">
+                          <div *ngIf="f.assessorsAlternateno.errors.required">This field is required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-              </div>
-<div class="clearfix"></div>
+
+                <div class="col-md-6 form-group">
+                  <label>Education Qualification </label>
+                  <p class="labelInfo">Enter the highest qualification</p>
+                  <input type="text" class="form-control" placeholder="Enter Education"
+                    formControlName="assessorsEducation">
+                  <div
+                    *ngIf="f.assessorsEducation.errors && f.assessorsEducation.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.assessorsEducation.errors.required">This field is required</div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
                 <div class="col-md-6 form-group">
                   <label>Are you a qualified lead auditor in FSMS </label>
                   <div class="input-group">
-                    <br/>
+                    <br />
                     <input type="radio" formControlName="assessorsFsmsqualified" value="Yes" selected> Yes
                     &nbsp; <input type="radio" formControlName="assessorsFsmsqualified" value="No"> No
-                    <div *ngIf="f.assessorsFsmsqualified.errors && f.assessorsFsmsqualified.errors.required && isValidFormSubmitted"
+                    <div
+                      *ngIf="f.assessorsFsmsqualified.errors && f.assessorsFsmsqualified.errors.required && isValidFormSubmitted"
                       class="text-danger text-left mb-1">
                       <div *ngIf="f.assessorsFsmsqualified.errors.required">This field is required</div>
                     </div>
@@ -150,26 +161,28 @@
 
                 <div class="col-md-6 form-group">
                   <label>Domain Expertise </label>
-                  <p class="labelInfo">Enter domain name (e.g.: bakery / dairy  / beverages / nutraceuticals or any
+                  <p class="labelInfo">Enter domain name (e.g.: bakery / dairy / beverages / nutraceuticals or any
                     other food categories)</p>
-                    <ng-multiselect-dropdown [placeholder]="'Select Domain Expertise'" [settings]="dropdownSettings" [data]="SectordropdownList"
-                      [(ngModel)]="secselectedItems" formControlName="domain" (onSelect)="onItemSelectDropDown($event,'domain')">
-                    </ng-multiselect-dropdown>
-                <!-- <input type="text" class="form-control" placeholder="Enter " formControlName="domain">-->
-                    <div *ngIf="f.domain.errors && f.domain.errors.required && isValidFormSubmitted"
-                      class="text-danger text-left mb-1">
-                      <div *ngIf="f.domain.errors.required">This field is required</div>
-                    </div>
-              </div>
+                  <ng-multiselect-dropdown [placeholder]="'Select Domain Expertise'" [settings]="dropdownSettings"
+                    [data]="SectordropdownList" [(ngModel)]="secselectedItems" formControlName="domain"
+                    (onSelect)="onItemSelectDropDown($event,'domain')">
+                  </ng-multiselect-dropdown>
+                  <!-- <input type="text" class="form-control" placeholder="Enter " formControlName="domain">-->
+                  <div *ngIf="f.domain.errors && f.domain.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.domain.errors.required">This field is required</div>
+                  </div>
+                </div>
                 <div class="col-md-6 form-group">
                   <label>Professional Training </label>
                   <p class="labelInfo">Enter the list of training undergone</p>
                   <input type="text" class="form-control " placeholder="Enter" formControlName="assessorsTraining">
-                  <div *ngIf="f.assessorsTraining.errors && f.assessorsTraining.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
+                  <div *ngIf="f.assessorsTraining.errors && f.assessorsTraining.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
                     <div *ngIf="f.assessorsTraining.errors.required">This field is required</div>
                   </div>
                 </div>
-              <div class="col-md-6 form-group">
+                <div class="col-md-6 form-group">
                   <label>FSMS Certificate </label>
                   <p class="labelInfo">Enter certificate name</p>
                   <input type="text" class="form-control " placeholder="Enter" formControlName="fsmsCertificate">
@@ -177,29 +190,31 @@
                     class="text-danger text-left mb-1">
                     <div *ngIf="f.fsmsCertificate.errors.required">This field is required</div>
                   </div>
-              </div>
-              <div class="col-md-6 form-group">
-                  <label>Exposure  </label>
-                  <p class="labelInfo">Select your professional exposure (you can select multiple) </p>
-                    <ng-multiselect-dropdown [placeholder]="'Select Exposure'" [settings]="dropdownSettings" [data]="ExpodropdownList" formControlName="exposure"
-                      [(ngModel)]="selectedItems" (onSelect)="onItemSelectDropDown($event,'exposure')">
-                    </ng-multiselect-dropdown>
-                    <div *ngIf="f.exposure.errors && f.exposure.errors.required && isValidFormSubmitted"
-                      class="text-danger text-left mb-1">
-                      <div *ngIf="f.exposure.errors.required">This field is required</div>
-                    </div>
-              </div>
-              <div class="col-md-6 form-group">
-                <label>Experience </label>
-                <p class="labelInfo">Select the number of years of experience you have </p>
-               <select class="form-control " formControlName="experience">
-                  <option *ngFor="let exp of ExpdropdownList" value="{{ exp.item_text }}">{{ exp.item_text }}</option>
-                </select>
-                <div *ngIf="f.experience.errors && f.experience.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
-                  <div *ngIf="f.experience.errors.required">This field is required</div>
                 </div>
-              </div>
-              <div class="col-md-6 form-group">
+                <div class="col-md-6 form-group">
+                  <label>Exposure </label>
+                  <p class="labelInfo">Select your professional exposure (you can select multiple) </p>
+                  <ng-multiselect-dropdown [placeholder]="'Select Exposure'" [settings]="dropdownSettings"
+                    [data]="ExpodropdownList" formControlName="exposure" [(ngModel)]="selectedItems"
+                    (onSelect)="onItemSelectDropDown($event,'exposure')">
+                  </ng-multiselect-dropdown>
+                  <div *ngIf="f.exposure.errors && f.exposure.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.exposure.errors.required">This field is required</div>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Experience </label>
+                  <p class="labelInfo">Select the number of years of experience you have </p>
+                  <select class="form-control " formControlName="experience">
+                    <option *ngFor="let exp of ExpdropdownList" value="{{ exp.item_text }}">{{ exp.item_text }}</option>
+                  </select>
+                  <div *ngIf="f.experience.errors && f.experience.errors.required && isValidFormSubmitted"
+                    class="text-danger text-left mb-1">
+                    <div *ngIf="f.experience.errors.required">This field is required</div>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group">
                   <label>SKILLS </label>
                   <p class="labelInfo">Enter the skills name </p>
                   <input type="text" class="form-control " placeholder="Enter" formControlName="skill">
@@ -207,151 +222,165 @@
                     class="text-danger text-left mb-1">
                     <div *ngIf="f.skill.errors.required">This field is required</div>
                   </div>
-              </div>
-
-
-              <div class="row">
-
-                <div class="col-md-12" id="" >
-
-                  <div class="bTop"></div>
-
-                  <div class="col-md-6">
-                    <!-- <h3 class="assessorsAddress">Residential Address	</h3> -->
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>Residential Address  </label>
-                        <p class="labelInfo">Enter residential address </p>
-
-                        <textarea type="text" rows="3.5" class="form-control " placeholder="Enter" id=""
-                          formControlName="residentialAddressline"></textarea>
-                        <div *ngIf="f.residentialAddressline.errors && f.residentialAddressline.errors.required && isValidFormSubmitted" class="text-danger text-left mb-1">
-                          <div *ngIf="f.residentialAddressline.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>Country </label>
-                        <select class="form-control" formControlName="residentialCountry" (change)="getStateByCountryName($event,'sett')">
-                          <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}</option>
-                        </select>
-                        <div *ngIf="f.residentialCountry.errors && f.residentialCountry.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.residentialCountry.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>State </label>
-                        <select class="form-control" formControlName="residentialState">
-                          <option value=""> Select State</option>
-                          <option *ngFor="let obj of statedata" value={{obj}}> {{obj}} </option>
-                        </select>
-                        <div *ngIf="f.residentialState.errors && f.residentialState.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.residentialState.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>City </label>
-                        <input class="form-control" formControlName="residentialCity" />
-                        <div *ngIf="f.residentialCity.errors && f.residentialCity.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.residentialCity.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label> Zip Code </label>
-                        <input type="number" class="form-control " placeholder="Enter "
-                          formControlName="residentialZipcode" maxlength="6" minlength="6">
-                        <div *ngIf="f.residentialZipcode.errors && f.residentialZipcode.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.residentialZipcode.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
-                  <div class="col-md-6">
-                    <!-- <h3 class="assessorsAddress">Official Address	</h3> -->
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>Official Address  </label>
-                        <p class="labelInfo">Enter the current official address </p>
-                        <textarea type="text" rows="3.5" class="form-control " placeholder="Enter" id=""
-                          formControlName="organizationAddressline1"></textarea>
-                        <div *ngIf="f.organizationAddressline1.errors && f.organizationAddressline1.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.organizationAddressline1.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>Country </label>
-                        <select class="form-control" formControlName="organizationCountry"
-                        (change)="getStateByCountryName2($event,'sett')">
-                        <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}</option>
-                        </select>
-                        <div *ngIf="f.organizationCountry.errors && f.organizationCountry.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.organizationCountry.errors.required">This field is required</div>
-                        </div>
-
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>State </label>
-                        <select class="form-control" formControlName="organizationState">
-                          <option value=""> Select State</option>
-                          <option *ngFor="let obj of statedata2" value={{obj}}> {{obj}} </option>
-                        </select>
-                        <div *ngIf="f.organizationState.errors && f.organizationState.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.organizationState.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label>City </label>
-                        <input class="form-control" formControlName="organizationCity" />
-
-                        <div *ngIf="f.organizationCity.errors && f.organizationCity.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.organizationCity.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <label> Zip Code </label>
-                        <input type="number" class="form-control " placeholder="Enter "
-                          formControlName="organizationZipcode" maxlength="6" minlength="6">
-                        <div *ngIf="f.organizationZipcode.errors && f.organizationZipcode.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.organizationZipcode.errors.required">This field is required</div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
                 </div>
 
+
+                <div class="row">
+
+                  <div class="col-md-12" id="">
+
+                    <div class="bTop"></div>
+
+                    <div class="col-md-6">
+                      <!-- <h3 class="assessorsAddress">Residential Address	</h3> -->
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Residential Address </label>
+                          <p class="labelInfo">Enter residential address </p>
+
+                          <textarea type="text" rows="3.5" class="form-control " placeholder="Enter" id=""
+                            formControlName="residentialAddressline"></textarea>
+                          <div
+                            *ngIf="f.residentialAddressline.errors && f.residentialAddressline.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.residentialAddressline.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Country </label>
+                          <select class="form-control" formControlName="residentialCountry"
+                            (change)="getStateByCountryName($event,'sett')">
+                            <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="f.residentialCountry.errors && f.residentialCountry.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.residentialCountry.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>State </label>
+                          <select class="form-control" formControlName="residentialState">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let obj of statedata" value={{obj}}> {{obj}} </option>
+                          </select>
+                          <div
+                            *ngIf="f.residentialState.errors && f.residentialState.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.residentialState.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>City </label>
+                          <input class="form-control" formControlName="residentialCity" />
+                          <div
+                            *ngIf="f.residentialCity.errors && f.residentialCity.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.residentialCity.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label> Zip Code </label>
+                          <input type="number" class="form-control " placeholder="Enter "
+                            formControlName="residentialZipcode" maxlength="6" minlength="6">
+                          <div
+                            *ngIf="f.residentialZipcode.errors && f.residentialZipcode.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.residentialZipcode.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <h3 class="assessorsAddress">Official Address	</h3> -->
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Official Address </label>
+                          <p class="labelInfo">Enter the current official address </p>
+                          <textarea type="text" rows="3.5" class="form-control " placeholder="Enter" id=""
+                            formControlName="organizationAddressline1"></textarea>
+                          <div
+                            *ngIf="f.organizationAddressline1.errors && f.organizationAddressline1.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.organizationAddressline1.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>Country </label>
+                          <select class="form-control" formControlName="organizationCountry"
+                            (change)="getStateByCountryName2($event,'sett')">
+                            <option *ngFor="let element of countrydata" [value]="element.country">{{ element.country }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="f.organizationCountry.errors && f.organizationCountry.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.organizationCountry.errors.required">This field is required</div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>State </label>
+                          <select class="form-control" formControlName="organizationState">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let obj of statedata2" value={{obj}}> {{obj}} </option>
+                          </select>
+                          <div
+                            *ngIf="f.organizationState.errors && f.organizationState.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.organizationState.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label>City </label>
+                          <input class="form-control" formControlName="organizationCity" />
+
+                          <div
+                            *ngIf="f.organizationCity.errors && f.organizationCity.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.organizationCity.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <label> Zip Code </label>
+                          <input type="number" class="form-control " placeholder="Enter "
+                            formControlName="organizationZipcode" maxlength="6" minlength="6">
+                          <div
+                            *ngIf="f.organizationZipcode.errors && f.organizationZipcode.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1">
+                            <div *ngIf="f.organizationZipcode.errors.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
 
 
@@ -371,7 +400,7 @@
                       <label>Zone </label>
                       <p class="labelInfo">Select the zone</p>
 
-                      <select class="form-control" formControlName="zone" >
+                      <select class="form-control" formControlName="zone">
                         <option value="">Select Zone </option>
                         <option value="East"> East</option>
                         <option value="North"> North</option>
@@ -391,7 +420,8 @@
                       <p class="labelInfo">Enter location</p>
                       <input type="text" class="form-control " placeholder="Enter"
                         formControlName="OrganizationLocation">
-                      <div *ngIf="f.OrganizationLocation.errors && f.OrganizationLocation.errors.required && isValidFormSubmitted"
+                      <div
+                        *ngIf="f.OrganizationLocation.errors && f.OrganizationLocation.errors.required && isValidFormSubmitted"
                         class="text-danger text-left mb-1">
                         <div *ngIf="f.OrganizationLocation.errors.required">This field is required</div>
                       </div>
@@ -406,11 +436,11 @@
                     <div class="col-md-12 form-group">
                       <label>Batch </label>
                       <p class="labelInfo">Enter the batch</p>
-                     <input type="text" formControlName="batch" class="form-control" placeholder="Enter " >
-                    <div *ngIf="f.batch.errors && f.batch.errors.required && isValidFormSubmitted"
-                      class="text-danger text-left mb-1">
-                      <div *ngIf="f.batch.errors.required">This field is required</div>
-                    </div>
+                      <input type="text" formControlName="batch" class="form-control" placeholder="Enter ">
+                      <div *ngIf="f.batch.errors && f.batch.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.batch.errors.required">This field is required</div>
+                      </div>
                     </div>
                   </div>
 
@@ -421,7 +451,7 @@
 
                 <div class="row">
 
-                  <div class="col-md-12" id="" >
+                  <div class="col-md-12" id="">
 
                     <div class="bTop"></div>
 
@@ -442,8 +472,10 @@
                         <div class="col-md-12 form-group">
                           <label>Designation </label>
                           <p class="labelInfo">Enter your designation at your current organization </p>
-                          <input type="text" class="form-control" placeholder="Enter Designation" formControlName="organizationDesignation">
-                          <div *ngIf="f.organizationDesignation.errors && f.organizationDesignation.errors.required && isValidFormSubmitted"
+                          <input type="text" class="form-control" placeholder="Enter Designation"
+                            formControlName="organizationDesignation">
+                          <div
+                            *ngIf="f.organizationDesignation.errors && f.organizationDesignation.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1">
                             <div *ngIf="f.organizationDesignation.errors.required">This field is required</div>
                           </div>
@@ -460,10 +492,13 @@
                           <p class="labelInfo">Enter the current organization’s product/ service</p>
                           <!--<input type="text" class="form-control"
                           placeholder="Enter " formControlName="organizationProductservice">-->
-                          <ng-multiselect-dropdown [placeholder]="'Select Product / Service'" [settings]="dropdownSettings" [data]="SectorCurrdropdownList"
-                            [(ngModel)]="seccselectedItems" formControlName="organizationProductservice" (onSelect)="onItemSelectDropDown($event,'organizationProductservice')">
+                          <ng-multiselect-dropdown [placeholder]="'Select Product / Service'"
+                            [settings]="dropdownSettings" [data]="SectorCurrdropdownList"
+                            [(ngModel)]="seccselectedItems" formControlName="organizationProductservice"
+                            (onSelect)="onItemSelectDropDown($event,'organizationProductservice')">
                           </ng-multiselect-dropdown>
-                          <div *ngIf="f.organizationProductservice.errors && f.organizationProductservice.errors.required && isValidFormSubmitted"
+                          <div
+                            *ngIf="f.organizationProductservice.errors && f.organizationProductservice.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1">
                             <div *ngIf="f.organizationProductservice.errors.required">This field is required</div>
                           </div>
@@ -498,8 +533,7 @@
                           <label>Organization Name</label>
                           <p class="labelInfo">Enter your previous organization name</p>
 
-                          <input type="text" class="form-control" placeholder="Enter "
-                            formControlName="Organization2">
+                          <input type="text" class="form-control" placeholder="Enter " formControlName="Organization2">
                           <div *ngIf="f.Organization2.errors && f.Organization2.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1">
                             <div *ngIf="f.Organization2.errors.required">This field is required</div>
@@ -514,7 +548,8 @@
 
                           <input type="text" class="form-control" placeholder="Enter "
                             formControlName="organizationDesignation2">
-                          <div *ngIf="f.organizationDesignation2.errors && f.organizationDesignation2.errors.required && isValidFormSubmitted"
+                          <div
+                            *ngIf="f.organizationDesignation2.errors && f.organizationDesignation2.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1">
                             <div *ngIf="f.organizationDesignation2.errors.required">This field is required</div>
                           </div>
@@ -532,10 +567,13 @@
 
                           <!--<input type="text" class="form-control" placeholder="Enter "
                             formControlName="organizationProductservice2">-->
-                          <ng-multiselect-dropdown [placeholder]="'Select Product / Service'" [settings]="dropdownSettings" [data]="SectorPrevdropdownList"
-                            [(ngModel)]="secpselectedItems"  formControlName="organizationProductservice2" (onSelect)="onItemSelectDropDown($event,'organizationProductservice2')">
+                          <ng-multiselect-dropdown [placeholder]="'Select Product / Service'"
+                            [settings]="dropdownSettings" [data]="SectorPrevdropdownList"
+                            [(ngModel)]="secpselectedItems" formControlName="organizationProductservice2"
+                            (onSelect)="onItemSelectDropDown($event,'organizationProductservice2')">
                           </ng-multiselect-dropdown>
-                          <div *ngIf="f.organizationProductservice2.errors && f.organizationProductservice2.errors.required && isValidFormSubmitted"
+                          <div
+                            *ngIf="f.organizationProductservice2.errors && f.organizationProductservice2.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1">
                             <div *ngIf="f.organizationProductservice2.errors.required">This field is required</div>
                           </div>
@@ -564,8 +602,11 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default">
-              <div class="panel-heading"><b>Reporting to / Official to whom 'Assessor Invitation' copy is to be marked</b>
-                <p class="labelInfo">Enter the details of the official to whom you report in your current organization (copy of assessor invitation shall be marked)</p></div>
+              <div class="panel-heading"><b>Reporting to / Official to whom 'Assessor Invitation' copy is to be
+                  marked</b>
+                <p class="labelInfo">Enter the details of the official to whom you report in your current organization
+                  (copy of assessor invitation shall be marked)</p>
+              </div>
               <div class="panel-body">
 
 
@@ -573,11 +614,10 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label>Name </label>
-                      <p class="labelInfo">Enter the name of the official to whom you report in your current organization</p>
-                      <input type="text" class="form-control " placeholder="Enter"
-                        formControlName="org_Fullname">
-                      <div
-                        *ngIf="f.org_Fullname.errors && f.org_Fullname.errors.required && isValidFormSubmitted"
+                      <p class="labelInfo">Enter the name of the official to whom you report in your current
+                        organization</p>
+                      <input type="text" class="form-control " placeholder="Enter" formControlName="org_Fullname">
+                      <div *ngIf="f.org_Fullname.errors && f.org_Fullname.errors.required && isValidFormSubmitted"
                         class="text-danger text-left mb-1">
                         <div *ngIf="f.org_Fullname.errors.required">This field is required</div>
                       </div>
@@ -586,13 +626,14 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label>Designation</label>
-                      <p class="labelInfo">Enter the designation of the official to whom you report in your current organization</p>
-                      <input type="text" class="form-control " placeholder="Enter"
-                        formControlName="report_Designation">
-                        <div *ngIf="f.report_Designation.errors && f.report_Designation.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.report_Designation.errors.required">This field is required</div>
-                        </div>
+                      <p class="labelInfo">Enter the designation of the official to whom you report in your current
+                        organization</p>
+                      <input type="text" class="form-control " placeholder="Enter" formControlName="report_Designation">
+                      <div
+                        *ngIf="f.report_Designation.errors && f.report_Designation.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.report_Designation.errors.required">This field is required</div>
+                      </div>
                     </div>
                   </div>
 
@@ -602,17 +643,18 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label>Email </label>
-                      <p class="labelInfo">Enter the email of the official to whom you report in your current organization</p>
+                      <p class="labelInfo">Enter the email of the official to whom you report in your current
+                        organization</p>
                       <input type="email" class="form-control" placeholder="Enter " formControlName="org_Email">
                       <div *ngIf="f.org_Email.errors && f.org_Email.errors.pattern && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.org_Email.errors.pattern">Email is not valid</div>
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.org_Email.errors.pattern">Email is not valid</div>
 
-                        </div>
-                        <div *ngIf="f.org_Email.errors && f.org_Email.errors.required && isValidFormSubmitted"
-                          class="text-danger text-left mb-1">
-                          <div *ngIf="f.org_Email.errors.required">This field is required</div>
-                        </div>
+                      </div>
+                      <div *ngIf="f.org_Email.errors && f.org_Email.errors.required && isValidFormSubmitted"
+                        class="text-danger text-left mb-1">
+                        <div *ngIf="f.org_Email.errors.required">This field is required</div>
+                      </div>
                     </div>
                   </div>
 
@@ -634,18 +676,19 @@
         </div>
         <!-- end -->
 
-<div class="col-md-7">
-  <div class="alert alert-danger" *ngIf="this.FinalError.status">{{ this.FinalError.errMsg }}</div>
-</div>
-<div class="col-md-5">
-<div style="text-align: right; margin:10px 0px;">
-  <button type="submit" class="btn btn-danger" (click)="removeValidators()">Save as Draft</button>&nbsp;
-  <button type="submit" class="btn btn-info" (click)="finalsave()">Final Submission</button>
-</div>
-</div>
+        <div class="col-md-5">
+          <div style="margin:10px 0px;">
+            <button type="submit" class="btn btn-danger" (click)="removeValidators()">Save as Draft</button>&nbsp;
+            <button type="submit" class="btn btn-info" (click)="finalsave()" *ngIf="this.editStatus">Final
+              Submission</button>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="alert alert-danger" *ngIf="this.FinalError.status">{{ this.FinalError.errMsg }}</div>
+        </div>
 
 
-    </div>
-  </form>
+      </div>
+    </form>
   </div>
 </div>

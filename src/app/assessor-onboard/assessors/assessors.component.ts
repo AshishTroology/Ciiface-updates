@@ -40,6 +40,7 @@ export class AssessorsComponent implements OnInit {
   FinalError: any = { errMsg: '', status: false };
   countrydata: any;
   statedata2: any;
+  editStatus: any;
   constructor(
     private fb: FormBuilder,
     private assessorss: AssessorsService,
@@ -92,6 +93,7 @@ export class AssessorsComponent implements OnInit {
     this.id = this.udata._id;
 
     if (this.udata.role == 'assessor') {
+      this.editStatus = true;
       this.applicantS.getSector().subscribe((items: any) => {
         items.result.map((item: any) => {
           this.SectordropdownList.push({ item_text: item });
@@ -105,7 +107,6 @@ export class AssessorsComponent implements OnInit {
           console.log(data.applicanData);
           this.applicantSdata = data.applicanData;
           this.onforminit(this.applicantSdata);
-          // this.firstNameValue = this.applicantSdata.firstName;
           this.secselectedItems = this.applicantSdata.domain;
           this.selectedItems = this.applicantSdata.exposure;
           this.seccselectedItems =
@@ -114,10 +115,6 @@ export class AssessorsComponent implements OnInit {
             this.applicantSdata.organizationProductservice2;
           this.getValuesName(this.applicantSdata.firstName, '');
           this.getValues(this.applicantSdata.assessorsDate, '');
-          // this.getdistrictonloadContact(this.applicantSdata.organizationState);
-          // this.getdistrictonloadResidential(
-          //   this.applicantSdata.residentialState
-          // );
           this.getStateByCountryName(
             this.applicantSdata.residentialCountry,
             ''
@@ -135,11 +132,43 @@ export class AssessorsComponent implements OnInit {
           this.SectorPrevdropdownList.push({ item_text: item });
           this.SectorCurrdropdownList.push({ item_text: item });
         });
-        this.onforminit(this.applicantSdata);
-        this.secselectedItems = [];
-        this.selectedItems = [];
-        this.seccselectedItems = [];
-        this.secpselectedItems = [];
+        if(this._Activatedroute.snapshot.paramMap.get('id')){
+          this.editStatus=false;
+           this.assessorss
+             .GetAssessorSingle(
+               this._Activatedroute.snapshot.paramMap.get('id')
+             )
+             .subscribe((data: any) => {
+               console.log(data.applicanData);
+               this.applicantSdata = data.applicanData;
+               this.onforminit(this.applicantSdata);
+               this.secselectedItems = this.applicantSdata.domain;
+               this.selectedItems = this.applicantSdata.exposure;
+               this.seccselectedItems =
+                 this.applicantSdata.organizationProductservice;
+               this.secpselectedItems =
+                 this.applicantSdata.organizationProductservice2;
+               this.getValuesName(this.applicantSdata.firstName, '');
+               this.getValues(this.applicantSdata.assessorsDate, '');
+               this.getStateByCountryName(
+                 this.applicantSdata.residentialCountry,
+                 ''
+               );
+               this.getStateByCountryName2(
+                 this.applicantSdata.organizationCountry,
+                 ''
+               );
+               console.log(this.seccselectedItems, this.secpselectedItems);
+             });
+        }
+        else{
+          this.editStatus = true;
+          this.onforminit(this.applicantSdata);
+          this.secselectedItems = [];
+          this.selectedItems = [];
+          this.seccselectedItems = [];
+          this.secpselectedItems = [];
+        }
       });
     }
     this.locationS.getAllCountries().subscribe((data: any) => {

@@ -114,6 +114,8 @@ export class ApplicantComponent implements OnInit {
       this.applicantS
         .GetAdminApplicantSinglebyemail(this.email)
         .subscribe((data: any) => {
+          console.log(data.applicanData);
+
           this.spinner.hide();
           this.applicantSdata = data.applicanData;
           this.organizationNameVal = data.applicanData.organizationName;
@@ -358,9 +360,9 @@ export class ApplicantComponent implements OnInit {
                  'Congratulation!, Applicant has been updated.'
                );
                this.spinner.hide();
-               setTimeout(() => {
-                   window.location.reload();
-               }, 1000);
+              //  setTimeout(() => {
+              //      window.location.reload();
+              //  }, 1000);
              });
        } else {
          this.spinner.hide();
