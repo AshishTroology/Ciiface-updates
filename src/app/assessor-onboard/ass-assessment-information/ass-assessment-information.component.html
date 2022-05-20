@@ -5,7 +5,8 @@
     <h2>Assessment Information</h2>
     <div class="col-md-12 table-responsive">
 
-      <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger">
         <thead>
           <tr>
             <th scope="col">Applicant Detail</th>
@@ -33,19 +34,29 @@
                 <li class="" *ngIf="!allval.calibrator && !allval.teamleader">Assessor</li>
               </ul>
             </td>
-            <td> {{ allval.created_at|date:'dd-MM-yyyy' }} </td>
+            <td> {{ allval.created_at|date:'dd-MM-yyyy' }} <br />{{ allval.allocationliststatus }}</td>
             <td>
               <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1"
                   data-toggle="dropdown"><span class="app-id"> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;</span>
                   <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Allocation
-                      Details</a></li>
-
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Accepted</a></li>
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Rejected</a></li>
-
+                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
+                      href="/team-allocation/{{ allval._id }}">Team Info</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/team-allocation/{{ allval._id }}"
+                      *ngIf="allval.teamleader">Manage Assessment
+                    </a></li>
+                  <li role="presentation" *ngIf="allval.allocationliststatus=='pending'?true:false"
+                    (click)="updateStatus($event, allval._id , 'accepted',allval.applicantData[0].email,allval.teamleader,allval.applicantData[0].firstName)">
+                    <a role="menuitem" tabindex="-1">Accept</a></li>
+                  <li role="presentation" *ngIf="allval.allocationliststatus=='pending'?true:false"
+                    (click)="updateStatus($event, allval._id , 'rejected',allval.applicantData[0].email,allval.teamleader,allval.applicantData[0].firstName)">
+                    <a role="menuitem" tabindex="-1">Reject</a></li>
+                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
+                      href="">Applicant LOI</a></li>
+                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
+                      href="">Applicant Checklist</a></li>
+                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="">Assess Applicant</a></li>
 
                 </ul>
               </div>

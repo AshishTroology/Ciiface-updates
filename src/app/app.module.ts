@@ -65,6 +65,8 @@ import { CreateAllocationComponent } from './admin-onboard/create-allocation/cre
 import { ApplicantNewViewComponent } from './admin-onboard/applicant-new-view/applicant-new-view.component';
 import { ListAllocationComponent } from './admin-onboard/list-allocation/list-allocation.component';
 import { NgChartsModule } from 'ng2-charts';
+import { TeamallocationComponent } from './assessor-onboard/teamallocation/teamallocation.component';
+import { EllipsisModule } from 'ngx-ellipsis';
 
 
 @NgModule({
@@ -102,6 +104,7 @@ import { NgChartsModule } from 'ng2-charts';
     CreateAllocationComponent,
     ApplicantNewViewComponent,
     ListAllocationComponent,
+    TeamallocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +129,7 @@ import { NgChartsModule } from 'ng2-charts';
     Ng2TelInputModule,
     CKEditorModule,
     NgChartsModule,
+    EllipsisModule,
   ],
   providers: [
     AuthGuardService,

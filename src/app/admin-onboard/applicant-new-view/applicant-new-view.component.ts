@@ -102,14 +102,31 @@ export class ApplicantNewViewComponent implements OnInit {
   }
   getData(e: any, field: any) {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      if (field == 'criteria') {
-        dtInstance.column(8).search(e.target.value).draw();
-      } else if (field == 'state') {
-        dtInstance.column(13).search(e.target.value).draw();
-      } else {
-        dtInstance.column(15).search(e.target.value).draw();
-      }
+    // if (e.target.value==''){
+
+    // }
+    // else
+    // {
+        if (field == 'criteria')
+        {
+          dtInstance
+            .column(8)
+            .search('^' + e.target.value + '$', true, false, true)
+            .draw();
+        } else if (field == 'state') {
+          dtInstance
+            .column(13)
+            .search('^' + e.target.value + '$', true, false, true)
+            .draw();
+        } else {
+          dtInstance
+            .column(15)
+            .search('^' + e.target.value + '$', true, false, true)
+            .draw();
+        }
+      // }
     });
+
   }
 }
 

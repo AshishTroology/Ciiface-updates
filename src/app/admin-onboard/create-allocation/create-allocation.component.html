@@ -34,7 +34,7 @@
               <div class="clearfix"></div>
               <div class="col-md-12 table-responsive">
                 <label class="h3 mt-1">Team Assessors </label>
-                <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <table class="table table-dark table-bordered mt-1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                   <thead>
                     <tr>
                       <th></th>
@@ -61,20 +61,26 @@
                       <td><input type="checkbox" name="websitecheck"  value="{{ item._id }}"  (click)="checkuncheckall($event,item)"></td>
                       <td>{{ item.firstName }}</td>
                       <td>{{ item.designation }}</td>
-                      <td>{{ item.Organization }}</td>
+                      <td ellipsis style="width:130px">{{ item.Organization }}</td>
                       <td>
-                        <span class="label label-pill label-primary" *ngFor="let item11 of item.organizationProductservice;let i = index">{{ item11.item_text }} <br *ngIf="(i+1)%4==0" /></span>
+                        <span class="label label-pill label-primary" *ngFor="let item11 of item.organizationProductservice;let i = index"><b *ngIf="(i+1)<=4?true:false">{{ item11.item_text }}</b></span> <label *ngIf="item.organizationProductservice.length>=4?true:false" class="label label-success">+{{ item.organizationProductservice.length-4}}</label>
                       </td>
                       <td>{{ item.assessorsPhone }}</td>
                       <td>{{ item.assessorsEmail }}</td>
-                      <td>{{ item.Organization2 }}</td>
+                      <td ellipsis>{{ item.Organization2 }}</td>
                       <td>
-                        <span class="label label-pill label-primary" *ngFor="let item12 of item.organizationProductservice2;let i = index">{{
-                          item12.item_text }} <br *ngIf="(i+1)%4==0" /></span>
+                        <span class="label label-pill label-primary" *ngFor="let item12 of item.organizationProductservice2;let i = index"><b
+                            *ngIf="(i+1)<=4?true:false">{{ item12.item_text }}</b></span> <label
+                          *ngIf="item.organizationProductservice2.length>=4?true:false" class="label label-success">+{{
+                          item.organizationProductservice.length-4}}</label>
                       </td>
                       <td>{{ item.assessorsEducation }}</td>
                       <td>
-                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index">{{ item1.item_text }} <br *ngIf="(i+1)%4==0" /></span>
+                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index"><b
+                            *ngIf="(i+1)<=4?true:false">{{ item1.item_text }}</b></span> <label
+                          *ngIf="item.domain.length>=4?true:false" class="label label-success">+{{
+                          item.organizationProductservice.length-4}}</label>
+
                       </td>
                       <td>{{ item.skill }}</td>
                       <td>{{ item.assessorsTraining }}</td>
@@ -89,6 +95,7 @@
               <div class="clearfix"></div>
               <div class="col-md-12 table-responsive">
                 <label class="h3 mt-1">Selected Assessors </label>
+
                 <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1">
                   <thead>
                     <tr>
@@ -139,8 +146,8 @@
                       <td>{{ item.assessorsTraining }}</td>
                       <td>{{ item.fsmsCertificate }}</td>
                       <td>{{ item.experience }}</td>
-                      <td><input type="radio" name="teamleader" value="yes" (click)="getClickRadio($event,item._id,'teamleader')" /></td>
-                      <td><input type="radio" name="calibrator" value="yes" (click)="getClickRadio($event,item._id,'calibrator')"  /></td>
+                      <td><input type="radio" name="teamleader" value="yes" (click)="getClickRadio($event,item._id,'teamleader')" required /></td>
+                      <td><input type="radio" name="calibrator" value="yes" (click)="getClickRadio($event,item._id,'calibrator')" required /></td>
                     </tr>
                   </tbody>
                 </table>

@@ -8,8 +8,8 @@ import { base_url, base_url_upload } from '../global';
 export class AllocationService {
   constructor(private http: HttpClient) {}
 
-  checkallocation(id:any) {
-    let api_url = base_url + 'checkAllocation/'+id;
+  checkallocation(id: any) {
+    let api_url = base_url + 'checkAllocation/' + id;
     const httpOptions = {
       headers: new HttpHeaders({
         'content-type': 'application/json;charset=UTF-8',
@@ -65,5 +65,15 @@ export class AllocationService {
       }),
     };
     return this.http.get(api_url, httpOptions);
+  }
+
+  updateStatusAllocationByAssessor(id: any,data:any) {
+    let api_url = base_url + 'updateStatusAllocationByAssessor/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url,data, httpOptions);
   }
 }

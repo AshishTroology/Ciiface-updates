@@ -36,6 +36,7 @@ export class CreateAllocationComponent implements OnInit {
   spreaded: any;
   submitValid: Boolean = false;
   ddState:any;
+  html = '<span><i>Tooltip</i> <u>with</u> <b>HTML</b></span>';
   constructor(
     public allocation: AllocationService,
     private applicantS: ApplicantService,
@@ -160,6 +161,7 @@ export class CreateAllocationComponent implements OnInit {
         this.allocation
           .viewAssessorAsPerSector({
             sector: pitem.applicanData[0].sector,
+            applicant_name: pitem.applicanData[0].firstName,
           })
           .subscribe((iittem: any) => {
             console.log(iittem);
@@ -185,22 +187,40 @@ export class CreateAllocationComponent implements OnInit {
       this.submitValid = false;
 
       if (this.allocated_array.length == 4) {
-        this.allocationForm.value.assessment_list = this.allocated_array;
-        this.allocation
-          .saveAllocation(this.allocationForm.value)
-          .subscribe((item: any) => {
-            console.log(item);
-            if (item.statusCode == 200) {
-              this.toast.showSuccess(
-                'Congratulation!, Assessors has been Added.'
-              );
-              setTimeout(() => {
-                window.location.href = '/list-allocation';
-              }, 2000);
-            } else {
-              this.toast.showError('Sorry, Something went wrong');
-            }
-          });
+        let notl = 0;
+        let noca = 0;
+        this.allocated_array.map((ch:any)=>{
+          if(ch.teamleader==true){
+            notl++;
+          }
+          if (ch.calibrator == true) {
+            noca++;
+          }
+        })
+        if (notl == 1 && noca == 1) {
+          this.allocationForm.value.assessment_list = this.allocated_array;
+          this.allocation
+            .saveAllocation(this.allocationForm.value)
+            .subscribe((item: any) => {
+              console.log(item);
+              if (item.statusCode == 200) {
+                this.toast.showSuccess(
+                  'Congratulation!, Assessors has been Added.'
+                );
+                setTimeout(() => {
+                  window.location.href = '/list-allocation';
+                }, 2000);
+              } else {
+                this.toast.showError('Sorry, Something went wrong');
+              }
+            });
+        }
+        else {
+          alert(
+            'Please check a Team leader & Calibrator'
+          );
+        }
+
       } else {
         alert(
           'Oops! Assessment Team should comprise of 4 Members. Please add Assessors.'
