@@ -1,0 +1,221 @@
+<app-header></app-header>
+<app-sidenav-assessors></app-sidenav-assessors>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body container">
+        <h2>Applicant Details</h2>
+        <div class="panel">
+            <div class="container-fluid">
+                <h3>Organization</h3>
+                <div class="row bb">
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Organization Name</h5>
+                            <p>{{this.applicantData.organizationName}}</p>
+                            <h5>Designation</h5>
+                            <p>{{this.applicantData.applicantDesignation}}</p>
+
+                            <h5>Mobile</h5>
+                            <p>{{this.applicantData.code1}}-{{this.applicantData.organizationMobile}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Highest Ranking Official</h5>
+                            <p>{{this.applicantData.applicanthightestRanking}}</p>
+                            <h5>Email</h5>
+                            <p>{{this.applicantData.organizationEmail}}</p>
+                        </div>
+                    </div>
+                </div>
+                <h3>Applicant Information</h3>
+                <div class="row bb">
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Name of Applicant Unit</h5>
+                            <p>{{this.applicantData.firstName}}</p>
+                            <h5>Applicant Unit is in operation</h5>
+                            <p>{{this.applicantData.operationForm}}</p>
+                            <h5>Highest Ranking Official of the Unit</h5>
+                            <p>{{this.applicantData.applicanthightestRanking}}</p>
+                            <h5>Designation</h5>
+                            <p>{{this.applicantData.applicantDesignation}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Email</h5>
+                                    <p>{{this.applicantData.email}}</p>
+                                </div>
+                                <div>
+                                    <h5>Mobile</h5>
+                                    <p>{{this.applicantData.code2}}-{{this.applicantData.contactMobile}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Address of the Applicant Unit</h5>
+                            <p>{{this.applicantData.applicantAddress1}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Country</h5>
+                                    <p>{{this.applicantData.applicantCountry}}</p>
+                                </div>
+                                <div>
+                                    <h5>State</h5>
+                                    <p>{{this.applicantData.applicantState}}</p>
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>City</h5>
+                                    <p>{{this.applicantData.applicantCity}}</p>
+                                </div>
+                                <div>
+                                    <h5>Zip Code</h5>
+                                    <p>{{this.applicantData.applicantZipCode}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bb">
+                    <div class="col-lg-6">
+                        <h3>Contact Person 1</h3>
+                        <div class="formView">
+                            <h5>Contact Person</h5>
+                            <p>{{this.applicantData.contactPerson}}</p>
+                            <h5>Designation</h5>
+                            <p>{{this.applicantData.contactDesignation}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Email</h5>
+                                    <p>{{this.applicantData.contactEmail}}</p>
+                                </div>
+                                <div>
+                                    <h5>Mobile</h5>
+                                    <p>{{this.applicantData.code3}}-{{this.applicantData.contactMobile}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>Contact Person 2</h3>
+                        <div class="formView">
+                            <h5>Contact Person</h5>
+                            <p>{{this.applicantData.contactPerson2}}</p>
+                            <h5>Designation</h5>
+                            <p>{{this.applicantData.contactDesignation2}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Email</h5>
+                                    <p>{{this.applicantData.contactEmail2}}</p>
+                                </div>
+                                <div>
+                                    <h5>Mobile</h5>
+                                    <p>{{this.applicantData.code4}}-{{this.applicantData.contactMobile2}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row bb">
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Sector</h5>
+                            <p>{{this.applicantData.sector}}</p>
+                            <h5>Other Sector</h5>
+                            <p>{{this.applicantData.othersector}}</p>
+                            <h5>Food Category Name and Number</h5>
+                            <p> {{this.applicantData.FoodCategoryNameNumber}}</p>
+                            <h5>Investment in Plant & Machinery (for manufacturing unit) *</h5>
+                            <p>{{this.applicantData.applicantPlant}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Annual Sales Turnover (Organization)</h5>
+                                    <p>{{this.applicantData.annualOrganization}}</p>
+                                </div>
+                                <div>
+                                    <h5>Currency</h5>
+                                    <p>{{this.applicantData.annualOrganizationRupee}}</p>
+                                </div>
+                            </div>
+                            <h5>Classification</h5>
+                            <p>{{this.applicantData.classification}}</p>
+                            <h5>Udyog Aadhaar Memorandum (UAM)</h5>
+                            <a style="color:blue" target="_blank"
+                                href="{{this.applicantData.uploadFormUAM}}">{{this.applicantData.uploadFormUAM}}</a>
+                            <h5>Criteria of Assessment of the Applicant Unit</h5>
+                            <p>{{this.applicantData.criteria}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Product & Services</h5>
+                            <p>{{this.applicantData.product}}</p>
+                            <h5>Other Product</h5>
+                            <p>{{this.applicantData.otherproduct}}</p>
+                            <h5>Employee</h5>
+                            <p>{{this.applicantData.totalEmployee}}</p>
+                            <h5>Investment in Equipment (for service unit) *</h5>
+                            <p>{{this.applicantData.applicantEquipment}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Annual Sales Turnover (proposed Applicant Unit)</h5>
+                                    <p>{{this.applicantData.annualOrganization}}</p>
+                                </div>
+                                <div>
+                                    <h5>Currency</h5>
+                                    <p>{{this.applicantData.annualOrganizationRupee}}</p>
+                                </div>
+                            </div>
+                            <!--<h5>Form 14A</h5>
+                            <img class="file" src="assets/img/CII-Face.png" alt="">-->
+                            <h5>Amount:</h5>
+                            <p>{{this.applicantData.amount}}</p>
+                        </div>
+                    </div>
+                </div>
+                <h3>Billing Information</h3>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>Invoice Type</h5>
+                            <p>{{this.applicantData.applicantYear}}</p>
+                            <h5>Billing Address</h5>
+                            <p>{{this.applicantData.applicantAddress1}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="formView">
+                            <h5>GST No.</h5>
+                            <p> {{this.applicantData.annualYear}}</p>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>Country</h5>
+                                    <p>{{this.applicantData.applicantCountry}}</p>
+                                </div>
+                                <div>
+                                    <h5>State</h5>
+                                    <p>{{this.applicantData.applicantState}}</p>
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="country">
+                                    <h5>City</h5>
+                                    <p>{{this.applicantData.applicantCity}}</p>
+                                </div>
+                                <div>
+                                    <h5>Zip Code</h5>
+                                    <p>{{this.applicantData.applicantZipCode}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

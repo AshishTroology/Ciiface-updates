@@ -67,6 +67,8 @@ import { ListAllocationComponent } from './admin-onboard/list-allocation/list-al
 import { NgChartsModule } from 'ng2-charts';
 import { TeamallocationComponent } from './assessor-onboard/teamallocation/teamallocation.component';
 import { EllipsisModule } from 'ngx-ellipsis';
+import { ViewChecklistComponent } from './view-checklist/view-checklist.component';
+import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 
 
 @NgModule({
@@ -105,6 +107,8 @@ import { EllipsisModule } from 'ngx-ellipsis';
     ApplicantNewViewComponent,
     ListAllocationComponent,
     TeamallocationComponent,
+    ViewChecklistComponent,
+    ViewApplicantComponent,
   ],
   imports: [
     BrowserModule,

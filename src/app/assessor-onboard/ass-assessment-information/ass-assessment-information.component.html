@@ -52,10 +52,10 @@
                   <li role="presentation" *ngIf="allval.allocationliststatus=='pending'?true:false"
                     (click)="updateStatus($event, allval._id , 'rejected',allval.applicantData[0].email,allval.teamleader,allval.applicantData[0].firstName)">
                     <a role="menuitem" tabindex="-1">Reject</a></li>
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
-                      href="">Applicant LOI</a></li>
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
-                      href="">Applicant Checklist</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1"
+                      href="/view-app/{{ allval.applicantData[0]._id }}">Applicant LOI</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1"
+                      href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>
                   <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="">Assess Applicant</a></li>
 
                 </ul>
