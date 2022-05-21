@@ -17,7 +17,10 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
   isValidFormSubmitted: any;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-
+  score:number=0;
+  rating: number=0;
+  assessors_id: any;
+  updateAssessorScoreForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private assessorsS: AssessorsService,
@@ -38,6 +41,7 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
       this.assessors = data.applicanData;
       this.dtTrigger.next();
     });
+    this.onformUpdate();
   }
 
   public show: boolean = false;
@@ -46,6 +50,25 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
     this.show = !this.show;
     if (this.show) this.buttonName = false;
     else this.buttonName = true;
+  }
+
+  onformUpdate() {
+    this.updateAssessorScoreForm = this.fb.group({
+      score: this.score,
+      rating: this.rating,
+      rank: '',
+    })
+  }
+
+  updateScore(){
+    this.updateAssessorScoreForm.value.score = this.score
+    this.updateAssessorScoreForm.value.rating = this.rating
+    console.log(this.updateAssessorScoreForm.value);
+    this.assessorsS.updateScore(this.updateAssessorScoreForm.value,this.assessors_id).subscribe((result:any)=>{
+      // console.log(result);
+      window.location.reload()
+      
+    })
   }
 
   onforminit() {
@@ -98,5 +121,33 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
+  }
+
+  decValue(){
+    if(this.score<=0){
+      this.score=0;
+    }
+    else{
+      --this.score;
+    }
+  }
+  incValue() {
+    ++this.score;
+  }
+
+  mainesValue() {
+    if (this.rating <= 0) {
+      this.rating = 0;
+    }
+    else {
+      --this.rating;
+    }
+  }
+  plussValue() {
+    ++this.rating;
+  }
+
+  addScore(id:any){
+    this.assessors_id=id;
   }
 }
