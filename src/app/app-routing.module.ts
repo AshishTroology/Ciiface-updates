@@ -33,6 +33,8 @@ import { CreateAllocationComponent } from './admin-onboard/create-allocation/cre
 import { ApplicantNewViewComponent } from './admin-onboard/applicant-new-view/applicant-new-view.component';
 import { ListAllocationComponent } from './admin-onboard/list-allocation/list-allocation.component';
 import { TeamallocationComponent } from './assessor-onboard/teamallocation/teamallocation.component';
+import { ViewChecklistComponent } from './view-checklist/view-checklist.component';
+import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -184,6 +186,14 @@ const routes: Routes = [
   {
     path: 'team-allocation/:id',
     component: TeamallocationComponent,
+  },
+  {
+    path: 'view-app/:id',
+    component: ViewApplicantComponent,
+  },
+  {
+    path: 'view-checklist/:id',
+    component: ViewChecklistComponent,
   },
 
   { path: '**', redirectTo: 'login' },
