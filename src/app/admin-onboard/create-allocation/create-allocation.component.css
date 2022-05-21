@@ -1,3 +1,27 @@
 .mt-1 {
   margin-top: 1rem;
 }
+.teamLabel {
+  font-size: 17px;
+  color: #3c3c3c !important;
+  margin: 12px 0;
+}
+.tab-pane {
+  padding: 0;
+}
+.table>thead>tr>th {
+  vertical-align: top;
+}
+table {
+  margin-top: 1.5rem;
+}
+.color {
+  background: #87a63f;
+}
+.nav-tabs>li.active>a, .nav-tabs>li>a:hover {
+  color: #87a63f !important;
+}
+.nav-tabs>li>a::after {
+  content: "";
+  background: #87a63f;
+}

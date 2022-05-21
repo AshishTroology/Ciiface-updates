@@ -11,147 +11,230 @@
         </div>
         <div class="clearfix"></div>
 
-          <div class="col-sm-12 col-xs-12">
-            <div class="card"  style="margin-top: 1.5%;padding-top: 1%;min-height: 500px;padding-bottom:1rem">
-              <form [formGroup]="allocationForm" (ngSubmit)="submitAllocation()" >
-                <input type="hidden" formControlName="period_from" />
-                <input type="hidden" formControlName="period_to" />
+        <div class="col-sm-12 col-xs-12">
+          <div class="card" style="margin-top: 1.5%;padding-top: 1%;min-height: 500px;padding-bottom:1rem">
+            <form [formGroup]="allocationForm" (ngSubmit)="submitAllocation()">
+              <input type="hidden" formControlName="period_from" />
+              <input type="hidden" formControlName="period_to" />
               <div class="col-md-6 form-group">
                 <label>Applicant </label>
                 <p class="labelInfo">Select Applicant</p>
-                <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)"
+                  [attr.disabled]="this.ddState">
                   <option value="">Select Applicant</option>
-                  <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{ item.organizationName }} ({{ item.sector }})</option>
+                  <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{ item.organizationName }} ({{
+                    item.sector }})</option>
                 </select>
-                <div *ngIf="f.applicant_id.errors && f.applicant_id.errors.required && submitValid" class="text-danger text-left mb-1">
+                <div *ngIf="f.applicant_id.errors && f.applicant_id.errors.required && submitValid"
+                  class="text-danger text-left mb-1">
                   <div *ngIf="f.applicant_id.errors.required">This field is required</div>
                 </div>
               </div>
               <div class="col-md-2 form-group">
-                  <label> </label>
-                  <p class="labelInfo"></p>
-                <a href="/create-allocation" class="btn btn-danger" style="margin-top: 1.8rem;">Reset</a></div>
-              <div class="clearfix"></div>
-              <div class="col-md-12 table-responsive">
-                <label class="h3 mt-1">Team Assessors </label>
-                <table class="table table-dark table-bordered mt-1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th scope="col">Assessor Name</th>
-                      <th scope="col">Designation</th>
-                      <th scope="col">Present Organization</th>
-                      <th scope="col">Product / Service (Present Org)</th>
-                      <th scope="col">Mobile</th>
-                      <th scope="col">E-Mail</th>
-                      <th scope="col">Previous Company</th>
-                      <th scope="col">Product / Service (Previous Org)</th>
-                      <th scope="col">Education</th>
-                      <th scope="col">Expertise</th>
-                      <th scope="col">Skill</th>
-                      <th scope="col">Training</th>
-                      <th scope="col">Certificate</th>
-                      <th scope="col">Experience</th>
-                      <th scope="col">Assessments</th>
-                      <th scope="col">Site Visits</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of arraydata">
-                      <td><input type="checkbox" name="websitecheck"  value="{{ item._id }}"  (click)="checkuncheckall($event,item)"></td>
-                      <td>{{ item.firstName }}</td>
-                      <td>{{ item.designation }}</td>
-                      <td ellipsis style="width:130px">{{ item.Organization }}</td>
-                      <td>
-                        <span class="label label-pill label-primary" *ngFor="let item11 of item.organizationProductservice;let i = index"><b *ngIf="(i+1)<=4?true:false">{{ item11.item_text }}</b></span> <label *ngIf="item.organizationProductservice.length>=4?true:false" class="label label-success">+{{ item.organizationProductservice.length-4}}</label>
-                      </td>
-                      <td>{{ item.assessorsPhone }}</td>
-                      <td>{{ item.assessorsEmail }}</td>
-                      <td ellipsis>{{ item.Organization2 }}</td>
-                      <td>
-                        <span class="label label-pill label-primary" *ngFor="let item12 of item.organizationProductservice2;let i = index"><b
-                            *ngIf="(i+1)<=4?true:false">{{ item12.item_text }}</b></span> <label
-                          *ngIf="item.organizationProductservice2.length>=4?true:false" class="label label-success">+{{
-                          item.organizationProductservice.length-4}}</label>
-                      </td>
-                      <td>{{ item.assessorsEducation }}</td>
-                      <td>
-                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index"><b
-                            *ngIf="(i+1)<=4?true:false">{{ item1.item_text }}</b></span> <label
-                          *ngIf="item.domain.length>=4?true:false" class="label label-success">+{{
-                          item.organizationProductservice.length-4}}</label>
-
-                      </td>
-                      <td>{{ item.skill }}</td>
-                      <td>{{ item.assessorsTraining }}</td>
-                      <td>{{ item.fsmsCertificate }}</td>
-                      <td>{{ item.experience }}</td>
-                      <td>0</td>
-                      <td>-</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <label> </label>
+                <p class="labelInfo"></p>
+                <a href="/create-allocation" class="btn btn-danger" style="margin-top: 1.8rem;">Reset</a>
               </div>
-              <div class="clearfix"></div>
-              <div class="col-md-12 table-responsive">
-                <label class="h3 mt-1">Selected Assessors </label>
 
-                <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th scope="col">Assessor Name</th>
-                      <th scope="col">Designation</th>
-                      <th scope="col">Present Organization</th>
-                      <th scope="col">Product / Service (Present Org)</th>
-                      <th scope="col">Mobile</th>
-                      <th scope="col">E-Mail</th>
-                      <th scope="col">Previous Company</th>
-                      <th scope="col">Product / Service (Previous Org)</th>
-                      <th scope="col">Education</th>
-                      <th scope="col">Expertise</th>
-                      <th scope="col">Skill</th>
-                      <th scope="col">Training</th>
-                      <th scope="col">Certificate</th>
-                      <th scope="col">Experience</th>
-                      <th scope="col">Team Leader</th>
-                      <th scope="col">Calibrator</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of allocated_array;let j=index">
-                      <td><input type="checkbox" name="websitecheck" value="{{ item._id }}" (click)="checkuncheckall($event,item)"></td>
-                      <td>{{ item.firstName }}</td>
-                      <td>{{ item.designation }}</td>
-                      <td>{{ item.Organization }}</td>
-                      <td>
-                        <span class="label label-pill label-primary"
-                          *ngFor="let item11 of item.organizationProductservice;let i = index">{{ item11.item_text }} <br
-                            *ngIf="(i+1)%4==0" /></span>
-                      </td>
-                      <td>{{ item.assessorsPhone }}</td>
-                      <td>{{ item.assessorsEmail }}</td>
-                      <td>{{ item.Organization2 }}</td>
-                      <td>
-                        <span class="label label-pill label-primary"
-                          *ngFor="let item12 of item.organizationProductservice2;let i = index">{{
-                          item12.item_text }} <br *ngIf="(i+1)%4==0" /></span>
-                      </td>
-                      <td>{{ item.assessorsEducation }}</td>
-                      <td>
-                        <span class="label label-pill label-primary" *ngFor="let item1 of item.domain;let i = index">{{ item1.item_text
-                          }} <br *ngIf="(i+1)%4==0" /></span>
-                      </td>
-                      <td>{{ item.skill }}</td>
-                      <td>{{ item.assessorsTraining }}</td>
-                      <td>{{ item.fsmsCertificate }}</td>
-                      <td>{{ item.experience }}</td>
-                      <td><input type="radio" name="teamleader" value="yes" (click)="getClickRadio($event,item._id,'teamleader')" required /></td>
-                      <td><input type="radio" name="calibrator" value="yes" (click)="getClickRadio($event,item._id,'calibrator')" required /></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="col-md-12">
+                <!-- Nav tabs -->
+                <div class="card no-shadow m-b-none">
+                  <ul class="nav nav-tabs nav-justified m-t-md" role="tablist">
+                    <li role="presentation" class="active"><a href="#stockyard" aria-controls="stockyard" role="tab"
+                        data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="true">Team
+                        Assessors <span class="badge color">1</span></a>
+                    </li>
+                    <li role="presentation" class=""><a href="#showroom" aria-controls="showroom" role="tab"
+                        data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="false">Selected
+                        Assessors <span class="badge color">1</span></a>
+                    </li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content no-padding">
+                    <div role="tabpanel" class="tab-pane no-padding active" id="stockyard">
+                      <!-- 1st table -->
+                      <div class="col-md-12 table-responsive">
+                        <label class="h3 mt-1 teamLabel">Team Assessors </label>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <select class="form-control" formControlName="applicant_id"
+                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                              <option value="">Select Applicant</option>
+                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
+                                item.organizationName }} ({{
+                                item.sector }})</option>
+                            </select>
+                          </div>
+                          <div class="col-lg-6">
+                            <select class="form-control" formControlName="applicant_id"
+                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                              <option value="">Select Applicant</option>
+                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
+                                item.organizationName }} ({{
+                                item.sector }})</option>
+                            </select>
+                          </div>
+                        </div>
+                        <table class="table table-dark table-bordered" datatable [dtOptions]="dtOptions"
+                          [dtTrigger]="dtTrigger">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th scope="col">Assessor Name</th>
+                              <th scope="col">Designation</th>
+                              <th scope="col">Present Organization</th>
+                              <th scope="col">Product / Service (Present Org)</th>
+                              <th scope="col">Mobile</th>
+                              <th scope="col">E-Mail</th>
+                              <th scope="col">Previous Company</th>
+                              <th scope="col">Product / Service (Previous Org)</th>
+                              <th scope="col">Education</th>
+                              <th scope="col">Expertise</th>
+                              <th scope="col">Skill</th>
+                              <th scope="col">Training</th>
+                              <th scope="col">Certificate</th>
+                              <th scope="col">Experience</th>
+                              <th scope="col">Assessments</th>
+                              <th scope="col">Site Visits</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of arraydata">
+                              <td><input type="checkbox" name="websitecheck" value="{{ item._id }}"
+                                  (click)="checkuncheckall($event,item)"></td>
+                              <td>{{ item.firstName }}</td>
+                              <td>{{ item.designation }}</td>
+                              <td ellipsis style="width:130px">{{ item.Organization }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item11 of item.organizationProductservice;let i = index"><b
+                                    *ngIf="(i+1)<=4?true:false">{{ item11.item_text }}</b></span> <label
+                                  *ngIf="item.organizationProductservice.length>=4?true:false"
+                                  class="label label-success">+{{ item.organizationProductservice.length-4}}</label>
+                              </td>
+                              <td>{{ item.assessorsPhone }}</td>
+                              <td>{{ item.assessorsEmail }}</td>
+                              <td ellipsis>{{ item.Organization2 }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item12 of item.organizationProductservice2;let i = index"><b
+                                    *ngIf="(i+1)<=4?true:false">{{ item12.item_text }}</b></span> <label
+                                  *ngIf="item.organizationProductservice2.length>=4?true:false"
+                                  class="label label-success">+{{
+                                  item.organizationProductservice.length-4}}</label>
+                              </td>
+                              <td>{{ item.assessorsEducation }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item1 of item.domain;let i = index"><b *ngIf="(i+1)<=4?true:false">{{
+                                    item1.item_text }}</b></span> <label *ngIf="item.domain.length>=4?true:false"
+                                  class="label label-success">+{{
+                                  item.organizationProductservice.length-4}}</label>
+
+                              </td>
+                              <td>{{ item.skill }}</td>
+                              <td>{{ item.assessorsTraining }}</td>
+                              <td>{{ item.fsmsCertificate }}</td>
+                              <td>{{ item.experience }}</td>
+                              <td>0</td>
+                              <td>-</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="showroom">
+                      <!-- 2nd table -->
+                      <div class="col-md-12 table-responsive">
+                        <label class="h3 mt-1 teamLabel">Selected Assessors </label>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <select class="form-control" formControlName="applicant_id"
+                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                              <option value="">Select Applicant</option>
+                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
+                                item.organizationName }} ({{
+                                item.sector }})</option>
+                            </select>
+                          </div>
+                          <div class="col-lg-6">
+                            <select class="form-control" formControlName="applicant_id"
+                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                              <option value="">Select Applicant</option>
+                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
+                                item.organizationName }} ({{
+                                item.sector }})</option>
+                            </select>
+                          </div>
+                        </div>
+                        <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions1"
+                          [dtTrigger]="dtTrigger1">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th scope="col">Assessor Name</th>
+                              <th scope="col">Designation</th>
+                              <th scope="col">Present Organization</th>
+                              <th scope="col">Product / Service (Present Org)</th>
+                              <th scope="col">Mobile</th>
+                              <th scope="col">E-Mail</th>
+                              <th scope="col">Previous Company</th>
+                              <th scope="col">Product / Service (Previous Org)</th>
+                              <th scope="col">Education</th>
+                              <th scope="col">Expertise</th>
+                              <th scope="col">Skill</th>
+                              <th scope="col">Training</th>
+                              <th scope="col">Certificate</th>
+                              <th scope="col">Experience</th>
+                              <th scope="col">Team Leader</th>
+                              <th scope="col">Calibrator</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of allocated_array;let j=index">
+                              <td><input type="checkbox" name="websitecheck" value="{{ item._id }}"
+                                  (click)="checkuncheckall($event,item)"></td>
+                              <td>{{ item.firstName }}</td>
+                              <td>{{ item.designation }}</td>
+                              <td>{{ item.Organization }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item11 of item.organizationProductservice;let i = index">{{
+                                  item11.item_text }}
+                                  <br *ngIf="(i+1)%4==0" /></span>
+                              </td>
+                              <td>{{ item.assessorsPhone }}</td>
+                              <td>{{ item.assessorsEmail }}</td>
+                              <td>{{ item.Organization2 }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item12 of item.organizationProductservice2;let i = index">{{
+                                  item12.item_text }} <br *ngIf="(i+1)%4==0" /></span>
+                              </td>
+                              <td>{{ item.assessorsEducation }}</td>
+                              <td>
+                                <span class="label label-pill label-primary"
+                                  *ngFor="let item1 of item.domain;let i = index">{{
+                                  item1.item_text
+                                  }} <br *ngIf="(i+1)%4==0" /></span>
+                              </td>
+                              <td>{{ item.skill }}</td>
+                              <td>{{ item.assessorsTraining }}</td>
+                              <td>{{ item.fsmsCertificate }}</td>
+                              <td>{{ item.experience }}</td>
+                              <td><input type="radio" name="teamleader" value="yes"
+                                  (click)="getClickRadio($event,item._id,'teamleader')" required /></td>
+                              <td><input type="radio" name="calibrator" value="yes"
+                                  (click)="getClickRadio($event,item._id,'calibrator')" required /></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
 
               <div class="col-md-12 form-group mt-1">
                 <label>Remark </label>
@@ -162,13 +245,9 @@
                 <button type="submit" class="btn btn-success">Save Allocation</button>
               </div>
               <div class="clearfix"></div>
-
-
-
-
-              </form>
-            </div>
+            </form>
           </div>
+        </div>
 
 
 
