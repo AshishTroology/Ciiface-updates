@@ -25,3 +25,10 @@ table {
   content: "";
   background: #87a63f;
 }
+.AssessorsSelect {
+  margin-bottom: 15px !important;
+}
+.label-primary {
+  margin-right: 5px;
+}
+

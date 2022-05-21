@@ -359,7 +359,9 @@ body {
 }
 
 .table-area td {
-    padding: 8px 2rem;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: #000;
 }
 
 .table-area tr:nth-child(even) {
@@ -450,7 +452,10 @@ body {
 .mx1 {
     border-left: 2px solid #ddd;
 }
-
 .latst-sec {
     margin-bottom: 10rem;
 }
+.sectionPadding {
+    margin-top: 2rem;
+}
+

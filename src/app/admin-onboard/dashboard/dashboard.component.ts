@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Chart, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { ApplicantService } from 'src/app/services/applicant.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ApplicantService } from 'src/app/services/applicant.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  chart: any;
   logindata: any;
   applicant: any;
   totalApplicant: any = 0;
@@ -21,9 +22,22 @@ export class DashboardComponent implements OnInit {
   record2: any = [];
   record_1: any = [];
   record_2: any = [];
-  constructor(private router: Router, private applicantS: ApplicantService) {}
+  constructor(private router: Router, private applicantS: ApplicantService) {
+
+  }
 
   // Doughnut
+  public options:any=  {
+    plugins: {
+      legend: {
+        display: true,
+        position: 'right'
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+  }
   public doughnutChartLabels: string[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
@@ -33,6 +47,7 @@ export class DashboardComponent implements OnInit {
   public doughnutChartData1: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels1,
     datasets: [{ data: this.record1 }],
+    
   };
   public doughnutChartLabels2: string[] = [];
   public doughnutChartData2: ChartData<'doughnut'> = {
@@ -87,7 +102,7 @@ export class DashboardComponent implements OnInit {
     }
 
     this.applicantS.getApplicant().subscribe((data: any) => {
-      console.log(data.applicanData);
+      // console.log(data.applicanData.classificationData);
       this.applicant = data.applicanData;
       this.totalApplicant = this.applicant.length;
       this.applicant.map((item: any) => {
@@ -108,7 +123,7 @@ export class DashboardComponent implements OnInit {
       this.detail.app_sector.map((ytem: any) => {
         if (ytem._id.sector != null) {
           this.doughnutChartLabels.push(ytem._id.sector);
-          this.record.push(ytem.count);
+          this.record.push(ytem.scount);
         }
       });
       this.detail.app_criteria.map((ytem: any) => {
@@ -124,5 +139,11 @@ export class DashboardComponent implements OnInit {
         }
       });
     });
+
+
+
+
+
+
   }
 }

@@ -194,7 +194,7 @@ body {
 
     .dataTables_wrapper .dataTables_length {
         float: left;
-        margin-bottom: 5px;
+        /* margin-bottom: 5px; */
     }
 
     .dataTables_wrapper .dataTables_filter {

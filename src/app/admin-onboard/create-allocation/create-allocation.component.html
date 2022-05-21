@@ -55,7 +55,7 @@
                       <!-- 1st table -->
                       <div class="col-md-12 table-responsive">
                         <label class="h3 mt-1 teamLabel">Team Assessors </label>
-                        <div class="row">
+                        <div class="row AssessorsSelect">
                           <div class="col-lg-6">
                             <select class="form-control" formControlName="applicant_id"
                               (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
@@ -149,7 +149,7 @@
                         <label class="h3 mt-1 teamLabel">Selected Assessors </label>
                         <div class="row">
                           <div class="col-lg-6">
-                            <select class="form-control" formControlName="applicant_id"
+                            <select class="form-control AssessorsSelect" formControlName="applicant_id"
                               (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
                               <option value="">Select Applicant</option>
                               <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
