@@ -87,9 +87,10 @@
             <div role="tabpanel" class="tab-pane active" id="home">
               <div>
                 <div>
-                  <div style="display: block; margin: auto;height: auto;width: 30%;">
-                    <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType">
+                  <div style="display: block; margin: auto;height: auto;width: 40%;">
+                    <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType" [options]="this.options">
                     </canvas>
+                  
                   </div>
                 </div>
               </div>
@@ -98,7 +99,7 @@
               <div>
                 <div>
                   <div style="display: block; margin: auto;height: auto;width: 41%;">
-                    <canvas baseChart [data]="doughnutChartData1" [type]="doughnutChartType">
+                    <canvas baseChart [data]="doughnutChartData1" [type]="doughnutChartType" [options]="this.options">
                     </canvas>
                   </div>
                 </div>
@@ -108,7 +109,7 @@
               <div>
                 <div>
                   <div style="display: block; margin: auto;height: auto;width: 41%;">
-                    <canvas baseChart [data]="doughnutChartData2" [type]="doughnutChartType">
+                    <canvas baseChart [data]="doughnutChartData2" [type]="doughnutChartType"  [options]="this.options">
                     </canvas>
                   </div>
                 </div>
