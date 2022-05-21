@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit {
     }
 
     this.applicantS.getApplicant().subscribe((data: any) => {
-      console.log(data.applicanData);
+      // console.log(data.applicanData.classificationData);
       this.applicant = data.applicanData;
       this.totalApplicant = this.applicant.length;
       this.applicant.map((item: any) => {
@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
       this.detail.app_sector.map((ytem: any) => {
         if (ytem._id.sector != null) {
           this.doughnutChartLabels.push(ytem._id.sector);
-          this.record.push(ytem.count);
+          this.record.push(ytem.scount);
         }
       });
       this.detail.app_criteria.map((ytem: any) => {

@@ -118,6 +118,18 @@
         </div>
       </div>
     </section>
+    <div class="first-sec sectionPadding">
+      <div class="top-box" *ngFor="let classi of this.detail.classificationData;let i=index">
+        <div>
+          <div class="title" *ngIf="classi._id.classification!=null?true:false">
+            <h6>{{classi._id.classification}}</h6>
+          </div>
+          <div class="footer-number color{{i%2==0?1:2}}" *ngIf="classi._id.classification!=null?true:false">
+            <h5>{{classi.count}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
     <section id="table-sec">
       <div class="row">
         <div class="col-sm-4">
@@ -126,10 +138,28 @@
           </div>
           <div class="table-area">
             <table class="table" style="margin: 0%;">
+              <thead>
+                <tr>
+                  <th>Sector </th>
+                  <th>All</th>
+                  <th>Mc</th>
+                  <th>Sm</th>
+                  <th>Md</th>
+                  <th>Lg</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr *ngFor="let item of this.detail.app_sector">
-                  <td scope="row"  *ngIf="item._id.sector==null?false:true"> <span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.sector }}</td>
-                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.count }}</td>
+                  <td scope="row" *ngIf="item._id.sector==null?false:true">
+                    <span>
+                      <!-- <img src="../../../assets/asset/img/company.png" /> -->
+                    </span> {{ item._id.sector }}
+                  </td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.scount }}</td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.Micro }}</td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.Small }}</td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.Medium }}</td>
+                  <td class="center-td" *ngIf="item._id.sector==null?false:true">{{ item.Large }}</td>
                 </tr>
 
               </tbody>
@@ -142,10 +172,26 @@
           </div>
           <div class="table-area">
             <table class="table" style="margin: 0%;">
+              <thead>
+                <tr>
+                  <th>Sector </th>
+                  <th>All</th>
+                  <th>Mc</th>
+                  <th>Sm</th>
+                  <th>Md</th>
+                  <th>Lg</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr *ngFor="let item of this.detail.app_criteria">
-                  <td scope="row" *ngIf="item._id.criteria==null?false:true"><span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.criteria }}</td>
+                  <td scope="row" *ngIf="item._id.criteria==null?false:true"><span>
+                    <!-- <img src="../../../assets/asset/img/company.png" /> -->
+                      </span> {{ item._id.criteria }}</td>
                   <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.count }}</td>
+                  <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.Micro }}</td>
+                  <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.Small }}</td>
+                  <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.Medium }}</td>
+                  <td class="center-td" *ngIf="item._id.criteria==null?false:true">{{ item.Large }}</td>
                 </tr>
 
               </tbody>
@@ -158,10 +204,26 @@
           </div>
           <div class="table-area">
             <table class="table" style="margin: 0%;">
+              <thead>
+                <tr>
+                  <th>Sector </th>
+                  <th>All</th>
+                  <th>Mc</th>
+                  <th>Sm</th>
+                  <th>Md</th>
+                  <th>Lg</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr *ngFor="let item of this.detail.app_state">
-                  <td scope="row" *ngIf="item._id.applicantState==null?false:true"><span><img src="../../../assets/asset/img/company.png" /></span> {{ item._id.applicantState }}</td>
+                  <td scope="row" *ngIf="item._id.applicantState==null?false:true"><span>
+                    <!-- <img src="../../../assets/asset/img/company.png" /> -->
+                      </span> {{ item._id.applicantState }}</td>
                   <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.count }}</td>
+                  <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.Micro }}</td>
+                  <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.Small }}</td>
+                  <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.Medium }}</td>
+                  <td class="center-td" *ngIf="item._id.applicantState==null?false:true">{{ item.Large }}</td>
                 </tr>
 
               </tbody>
@@ -252,6 +314,7 @@
                 <tr>
                   <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
                   <td class="center-td"></td>
+                  <td class="center-td"></td>
                 </tr>
 
               </tbody>
@@ -267,6 +330,7 @@
               <tbody>
                 <tr>
                   <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
                   <td class="center-td"></td>
                 </tr>
 
@@ -328,6 +392,7 @@
                 <tr>
                   <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
                   <td class="center-td"></td>
+                  <td class="center-td"></td>
                 </tr>
 
               </tbody>
@@ -343,6 +408,7 @@
               <tbody>
                 <tr>
                   <td scope="row"><span><img src="../../../assets/asset/img/user.png" /></span> No Data Found</td>
+                  <td class="center-td"></td>
                   <td class="center-td"></td>
                 </tr>
 
