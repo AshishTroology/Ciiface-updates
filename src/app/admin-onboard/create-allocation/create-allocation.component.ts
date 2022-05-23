@@ -35,8 +35,12 @@ export class CreateAllocationComponent implements OnInit {
   assessorArray: any = [];
   spreaded: any;
   submitValid: Boolean = false;
-  ddState:any;
+  ddState: any;
   html = '<span><i>Tooltip</i> <u>with</u> <b>HTML</b></span>';
+  col: any;
+  search: any;
+  allAssessor: number = 0;
+  selectedAssessor: number = 0;
   constructor(
     public allocation: AllocationService,
     private applicantS: ApplicantService,
@@ -54,25 +58,25 @@ export class CreateAllocationComponent implements OnInit {
       it.teamleader = false;
       it.calibrator = false;
       this.allocated_array.push(it);
+      this.selectedAssessor=this.allocated_array.length;
     } else {
       var index = this.allocated_array.findIndex(function (o: any) {
         return o._id === e.target.value;
       });
       if (index !== -1) this.allocated_array.splice(index, 1);
+      this.selectedAssessor = this.allocated_array.length;
     }
   }
-  getClickRadio(e: any, it: any,field:any) {
-    console.log(e.target.checked,it,field)
-    this.allocated_array.map((itemm:any)=>{
-      if(itemm._id==it){
+  getClickRadio(e: any, it: any, field: any) {
+    console.log(e.target.checked, it, field);
+    this.allocated_array.map((itemm: any) => {
+      if (itemm._id == it) {
         itemm[field] = true;
-      }
-      else{
+      } else {
         itemm[field] = false;
       }
-    })
+    });
     console.log(this.allocated_array);
-
   }
 
   ngOnInit(): void {
@@ -122,35 +126,14 @@ export class CreateAllocationComponent implements OnInit {
       assessment_list: [''],
     });
   }
-  // setDefaultData() {
-  //   this.addProduct('', null, '');
-  // }
-  // addProduct(name = '', desc = null, tl = '') {
-  //   if (this.aliases.length < 4) {
-  //     this.aliases.push(
-  //       this.fb.group({
-  //         assessor: [name, [Validators.required]],
-  //         section: [desc, [Validators.required]],
-  //         teamleader: [tl],
-  //       })
-  //     );
-  //   } else {
-  //     alert(
-  //       'Oops! Assessment Team should comprise of 4 Members. Please add Assessors.'
-  //     );
-  //   }
-  // }
+
   public get f() {
     return this.allocationForm.controls;
   }
 
-  // get aliases() {
-  //   return this.allocationForm.get('assessment_list') as FormArray;
-  // }
-
   getApplicantId(e: any) {
     this.arraydata = [];
-    this.ddState=true;
+    this.ddState = true;
     this.allocation.checkallocation(e.target.value).subscribe((iiteem: any) => {
       console.log(iiteem);
     });
@@ -172,9 +155,9 @@ export class CreateAllocationComponent implements OnInit {
               this.dtTrigger1.next();
               this.arraydata = iittem.ass;
               this.allocated_array = [];
+              this.allAssessor=iittem.ass.length
             }
           });
-
       });
   }
 
@@ -189,14 +172,14 @@ export class CreateAllocationComponent implements OnInit {
       if (this.allocated_array.length == 4) {
         let notl = 0;
         let noca = 0;
-        this.allocated_array.map((ch:any)=>{
-          if(ch.teamleader==true){
+        this.allocated_array.map((ch: any) => {
+          if (ch.teamleader == true) {
             notl++;
           }
           if (ch.calibrator == true) {
             noca++;
           }
-        })
+        });
         if (notl == 1 && noca == 1) {
           this.allocationForm.value.assessment_list = this.allocated_array;
           this.allocation
@@ -214,13 +197,9 @@ export class CreateAllocationComponent implements OnInit {
                 this.toast.showError('Sorry, Something went wrong');
               }
             });
+        } else {
+          alert('Please check a Team leader & Calibrator');
         }
-        else {
-          alert(
-            'Please check a Team leader & Calibrator'
-          );
-        }
-
       } else {
         alert(
           'Oops! Assessment Team should comprise of 4 Members. Please add Assessors.'
@@ -233,5 +212,19 @@ export class CreateAllocationComponent implements OnInit {
 
   onItemSelectDropDown(item: any) {
     console.log(item);
+  }
+
+  setData(e: any, field: any) {
+    this.col = field == 'select' ? e.target.value : '';
+    this.search = field == 'input' ? e.target.value : '';
+  }
+
+  async getData() {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance
+            .column(this.col)
+            .search('^' + this.search + '$', true, false, true)
+            .draw();
+    })
   }
 }

@@ -102,11 +102,7 @@ export class ApplicantNewViewComponent implements OnInit {
   }
   getData(e: any, field: any) {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-    // if (e.target.value==''){
 
-    // }
-    // else
-    // {
         if (field == 'criteria')
         {
           dtInstance
@@ -124,7 +120,6 @@ export class ApplicantNewViewComponent implements OnInit {
             .search('^' + e.target.value + '$', true, false, true)
             .draw();
         }
-      // }
     });
 
   }

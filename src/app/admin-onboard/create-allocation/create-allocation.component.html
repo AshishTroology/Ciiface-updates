@@ -41,12 +41,12 @@
                 <div class="card no-shadow m-b-none">
                   <ul class="nav nav-tabs nav-justified m-t-md" role="tablist">
                     <li role="presentation" class="active"><a href="#stockyard" aria-controls="stockyard" role="tab"
-                        data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="true">Team
-                        Assessors <span class="badge color">1</span></a>
+                        data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="true">All
+                        Assessors <span class="badge color">{{ this.allAssessor }}</span></a>
                     </li>
                     <li role="presentation" class=""><a href="#showroom" aria-controls="showroom" role="tab"
                         data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="false">Selected
-                        Assessors <span class="badge color">1</span></a>
+                        Assessors <span class="badge color">{{ this.selectedAssessor }}</span></a>
                     </li>
                   </ul>
                   <!-- Tab panes -->
@@ -54,28 +54,37 @@
                     <div role="tabpanel" class="tab-pane no-padding active" id="stockyard">
                       <!-- 1st table -->
                       <div class="col-md-12 table-responsive">
-                        <label class="h3 mt-1 teamLabel">Team Assessors </label>
+                        <label class="h3 mt-1 teamLabel">All Assessors </label>
                         <div class="row AssessorsSelect">
-                          <div class="col-lg-6">
-                            <select class="form-control" formControlName="applicant_id"
-                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
+                          <div class="col-lg-5">
+                            <select class="form-control" (change)="setData($event,'select')" >
                               <option value="">Select Applicant</option>
-                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
-                                item.organizationName }} ({{
-                                item.sector }})</option>
+                              <option value="0">Assessor Name</option>
+                              <option value="1">Designation</option>
+                              <option value="2">Present Organization</option>
+                              <option value="3">Product / Service (Present Org)</option>
+                              <option value="4">Mobile</option>
+                              <option value="5">E-Mail</option>
+                              <option value="6">Previous Company</option>
+                              <option value="7">Product / Service (Previous Org)</option>
+                              <option value="8">Education</option>
+                              <option value="9">Expertise</option>
+                              <option value="10">Skill</option>
+                              <option value="11">Training</option>
+                              <option value="12">Certificate</option>
+                              <option value="13">Experience</option>
+                              <option value="14">Assessments</option>
+                              <option value="15">Site Visits</option>
                             </select>
                           </div>
-                          <div class="col-lg-6">
-                            <select class="form-control" formControlName="applicant_id"
-                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
-                              <option value="">Select Applicant</option>
-                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
-                                item.organizationName }} ({{
-                                item.sector }})</option>
-                            </select>
+                          <div class="col-lg-5">
+                            <input class="form-control" (input)="setData($event,'input')" />
+                          </div>
+                          <div class="col-lg-2">
+                          <button type="button" class="btn btn-success btn-sm" (click)="getData()">Search</button>
                           </div>
                         </div>
-                        <table class="table table-dark table-bordered" datatable [dtOptions]="dtOptions"
+                        <table class="table table-dark table-bordered" id="allAssessment" datatable [dtOptions]="dtOptions"
                           [dtTrigger]="dtTrigger">
                           <thead>
                             <tr>
@@ -148,30 +157,24 @@
                       <div class="col-md-12 table-responsive">
                         <label class="h3 mt-1 teamLabel">Selected Assessors </label>
                         <div class="row">
-                          <div class="col-lg-6">
-                            <select class="form-control AssessorsSelect" formControlName="applicant_id"
-                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
-                              <option value="">Select Applicant</option>
-                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
-                                item.organizationName }} ({{
-                                item.sector }})</option>
-                            </select>
-                          </div>
-                          <div class="col-lg-6">
-                            <select class="form-control" formControlName="applicant_id"
-                              (change)="getApplicantId($event)" [attr.disabled]="this.ddState">
-                              <option value="">Select Applicant</option>
-                              <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{
-                                item.organizationName }} ({{
-                                item.sector }})</option>
-                            </select>
-                          </div>
+                        <div class="col-lg-6">
+                          <select class="form-control">
+                            <option value="">Select Applicant</option>
+                          </select>
                         </div>
-                        <table class="table table-dark table-bordered nowrap mt-1" datatable [dtOptions]="dtOptions1"
+                        <div class="col-lg-6">
+                          <select class="form-control">
+                            <option value="">Select Applicant</option>
+                          </select>
+                        </div>
+                        </div>
+                        <table class="table table-dark table-bordered nowrap mt-1"  datatable [dtOptions]="dtOptions1"
                           [dtTrigger]="dtTrigger1">
                           <thead>
                             <tr>
                               <th></th>
+                              <th scope="col">Team Leader</th>
+                              <th scope="col">Calibrator</th>
                               <th scope="col">Assessor Name</th>
                               <th scope="col">Designation</th>
                               <th scope="col">Present Organization</th>
@@ -186,14 +189,15 @@
                               <th scope="col">Training</th>
                               <th scope="col">Certificate</th>
                               <th scope="col">Experience</th>
-                              <th scope="col">Team Leader</th>
-                              <th scope="col">Calibrator</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr *ngFor="let item of allocated_array;let j=index">
-                              <td><input type="checkbox" name="websitecheck" value="{{ item._id }}"
-                                  (click)="checkuncheckall($event,item)"></td>
+                              <td></td>
+                              <td><input type="radio" name="teamleader" value="yes" (click)="getClickRadio($event,item._id,'teamleader')" required />
+                              </td>
+                              <td><input type="radio" name="calibrator" value="yes" (click)="getClickRadio($event,item._id,'calibrator')" required />
+                              </td>
                               <td>{{ item.firstName }}</td>
                               <td>{{ item.designation }}</td>
                               <td>{{ item.Organization }}</td>
@@ -222,10 +226,7 @@
                               <td>{{ item.assessorsTraining }}</td>
                               <td>{{ item.fsmsCertificate }}</td>
                               <td>{{ item.experience }}</td>
-                              <td><input type="radio" name="teamleader" value="yes"
-                                  (click)="getClickRadio($event,item._id,'teamleader')" required /></td>
-                              <td><input type="radio" name="calibrator" value="yes"
-                                  (click)="getClickRadio($event,item._id,'calibrator')" required /></td>
+
                             </tr>
                           </tbody>
                         </table>
