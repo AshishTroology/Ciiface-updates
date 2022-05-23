@@ -1,9 +1,117 @@
-.card {
-  text-align: center;
-  background: transparent;
-  box-shadow: none;
+#dasboard-top-boxes {
+  margin-top: 2rem;
 }
-.card p {
-  font-size: 2rem;
-  padding: 0 0 2rem 0;
+
+.first-sec {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -5px;
+}
+
+.top-box {
+  border: 1px solid #ffffff;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 3px 1px #ddd;
+  flex-grow: 1;
+  margin: 0 5px;
+}
+
+.title {
+  padding-bottom: 2rem;
+  color: black;
+}
+
+.footer-number {
+  width: 81%;
+  margin-bottom: 10px;
+}
+
+.color1 {
+  border-bottom: 2px solid #f26722;
+}
+
+.color1 h5 {
+  color: #f26722;
+}
+
+.color2 {
+  border-bottom: 2px solid #ffcb08;
+}
+
+.color2 h5 {
+  color: #ffcb08;
+}
+
+.color3 {
+  border-bottom: 2px solid #a6ce39;
+}
+
+.color3 h5 {
+  color: #a6ce39;
+}
+
+.color4 {
+  border-bottom: 2px solid #bc7129;
+}
+
+.color4 h5 {
+  color: #bc7129;
+}
+
+#assisment-table {
+  margin-top: 2rem;
+  box-shadow: 0px 0px 3px 1px #ddd;
+}
+
+#assisment-table h6 {
+  color: #000;
+  font-size: 14px;
+}
+
+.applicants-title {
+  padding: 1rem 2rem;
+  background: #ffffff;
+}
+
+.applicants-data {
+  background: #ffffff;
+  padding: 0 2rem;
+}
+
+.applicants-data span {
+  font-size: 9px;
+}
+
+.applicants-data .pending {
+  padding: 3px;
+  border-radius: 4px;
+  background: rgb(209, 106, 106);
+  color: #ffffff;
+}
+
+.applicants-data .review {
+  padding: 3px;
+  border-radius: 4px;
+  background: #7197e9;
+  color: #ffffff;
+}
+
+.applicants-data .completed {
+  padding: 3px;
+  border-radius: 4px;
+  background: #87a63f;
+  color: #ffffff;
+}
+
+.applicants-data i {
+  color: #87a63f;
+}
+
+.applicants-data tbody tr td {
+  padding: 13px 15px;
+}
+
+#assisment-table thead {
+  border-bottom: 2px solid #ddd;
 }

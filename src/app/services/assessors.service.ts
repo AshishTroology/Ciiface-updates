@@ -115,4 +115,15 @@ assessorReSendEOI(data:any,id:any){
   }
   return this.http.post(api_url,data,httpOptions)
 }
+
+  updateScore(data: any, id: any) {
+    let api_url = base_url + "updateAssessorScore/" + id
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        // 'apikey': this.api_key
+      }),
+    }
+    return this.http.post(api_url, data, httpOptions)
+  }
 }
