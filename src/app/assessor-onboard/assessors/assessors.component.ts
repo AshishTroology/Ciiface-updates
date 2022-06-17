@@ -306,16 +306,32 @@ export class AssessorsComponent implements OnInit {
             );
           });
       } else {
-        this.assessorss
-          .addAssessor(this.assessorsForm.value)
-          .subscribe((data: any) => {
-            console.log('saved');
-            this.toast.showSuccess(
-              'Congratulation!, Assessors has been Added.'
-            );
-          });
+         if(this._Activatedroute.snapshot.paramMap.get('id')){
+          this.assessorss
+            .updateAssessors(
+              this.assessorsForm.value,
+              this._Activatedroute.snapshot.paramMap.get('id')
+            )
+            .subscribe((data: any) => {
+              console.log('saved');
+              this.toast.showSuccess(
+                'Congratulation!, Assessors has been updated.'
+              );
+            });
+         }
+         else{
+          this.assessorss
+            .addAssessor(this.assessorsForm.value)
+            .subscribe((data: any) => {
+              console.log('saved');
+              this.toast.showSuccess(
+                'Congratulation!, Assessors has been Added.'
+              );
+            });
+         }
+
       }
-      window.location.reload();
+      // window.location.reload();
     }
   }
 

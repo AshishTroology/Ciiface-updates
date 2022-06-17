@@ -69,6 +69,11 @@ import { TeamallocationComponent } from './assessor-onboard/teamallocation/teama
 import { EllipsisModule } from 'ngx-ellipsis';
 import { ViewChecklistComponent } from './view-checklist/view-checklist.component';
 import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { DatePipe } from '@angular/common';
+import { AllocationDetailsComponent } from './admin-onboard/allocation-details/allocation-details.component';
+import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapplicant-view.component';
+import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
 
 
 @NgModule({
@@ -109,6 +114,9 @@ import { ViewApplicantComponent } from './view-applicant/view-applicant.componen
     TeamallocationComponent,
     ViewChecklistComponent,
     ViewApplicantComponent,
+    AllocationDetailsComponent,
+    CoapplicantViewComponent,
+    AssessChecklistComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,8 +142,10 @@ import { ViewApplicantComponent } from './view-applicant/view-applicant.componen
     CKEditorModule,
     NgChartsModule,
     EllipsisModule,
+    AngularMultiSelectModule,
   ],
   providers: [
+    DatePipe,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,

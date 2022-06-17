@@ -142,6 +142,7 @@
                   <th scope="col">State</th>
                   <th scope="col">City</th>
                   <th scope="col">Sector</th>
+                  <th scope="col">Co-Applicant</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -153,12 +154,12 @@
                   <td>
                     <p class="label label-{{assessorsval.UserData[0].status?'success':'danger'}}">
                       {{assessorsval.UserData[0].status?'Activated':'Pending'}}</p>
-  
+
                   </td>
                   <td>
                     <label class="label label-{{ assessorsval.userStatus?'success':'danger' }}">LOI {{
                       assessorsval.userStatus?'SUBMITTED':'PENDING' }}</label>
-  
+
                   </td>
                   <td>
                     <p class="label label-{{assessorsval.InstructionData.length==1?'success':'danger'}}">
@@ -166,7 +167,7 @@
                     </p>
                     <span style="display: block;font-size: 10px;"
                       *ngIf="assessorsval.InstructionData.length==1?true:false">{{assessorsval.InstructionData[0].created_at|date:'dd-MM-yyyy'}}</span>
-  
+
                   </td>
                   <td>
                     <p class="label label-{{assessorsval.finalassessmentsData.length==1?'success':'warning'}}">
@@ -185,10 +186,11 @@
                   <td><span class="app-id">{{ assessorsval.applicantState}}</span> </td>
                   <td>{{ assessorsval.applicantCity}} </td>
                   <td><span class="app-id" title="{{assessorsval.product}}">{{ assessorsval.sector}}</span></td>
-  
-  
+                  <td><span>{{ assessorsval.codata.length}}</span></td>
+
+
                   <td>
-  
+
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1"
                         data-toggle="dropdown"><span class="app-id"> <i class="fa fa-cog"
@@ -198,20 +200,20 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1"
                             href="/edit-applicant/{{assessorsval._id}}">Access Details</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1"
-                            href="//list-co-applicant/{{assessorsval._id}}">Co-Applicant</a></li>
-  
+                            href="/list-co-applicant/{{assessorsval._id}}">Co-Applicant</a></li>
+
                         <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
-  
-  
+
+
                       </ul>
                     </div>
-  
+
                   </td>
                 </tr>
-  
-  
-  
-  
+
+
+
+
               </tbody>
               <tfoot>
                 <tr>
@@ -235,7 +237,7 @@
                 </tr>
               </tfoot>
             </table>
-  
+
           </div>
         </div>
 

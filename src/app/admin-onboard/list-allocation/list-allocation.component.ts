@@ -31,4 +31,22 @@ export class ListAllocationComponent implements OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+
+  checkArray(arr:any,id:any,f:any){
+    let b="";
+    arr.find((user:any) => {
+      if (user.assessor_id === id) {
+        if(f=='teamleader'){
+          b = user[f] ? 'TeamLeader' : '';
+        }
+        if (f == 'calibrator') {
+          b = user[f] ? 'Calibrator' : '';
+        }
+        if (f == 'allocationliststatus') {
+          b = user[f];
+        }
+      };
+    })
+    return b;
+  }
 }

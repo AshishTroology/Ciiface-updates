@@ -35,6 +35,8 @@ import { ListAllocationComponent } from './admin-onboard/list-allocation/list-al
 import { TeamallocationComponent } from './assessor-onboard/teamallocation/teamallocation.component';
 import { ViewChecklistComponent } from './view-checklist/view-checklist.component';
 import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
+import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapplicant-view.component';
+import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -44,6 +46,12 @@ const routes: Routes = [
   {
     path: 'view-applicant',
     component: ApplicantViewComponent,
+    canActivate: [AuthGuardService],
+  },
+
+  {
+    path: 'view-coapplicant',
+    component: CoapplicantViewComponent,
     canActivate: [AuthGuardService],
   },
   {
@@ -194,6 +202,10 @@ const routes: Routes = [
   {
     path: 'view-checklist/:id',
     component: ViewChecklistComponent,
+  },
+  {
+    path: 'assess-checklist/:id',
+    component: AssessChecklistComponent,
   },
 
   { path: '**', redirectTo: 'login' },

@@ -2,11 +2,12 @@
 <app-sidenav-assessors></app-sidenav-assessors>
 <div id="content" class="app-content" role="main">
   <div class="app-content-body container">
-    <h2>Checklist(Section)</h2>
+    <h2>Assess Checklist(Section)</h2>
     <div class="card">
       <div>
         <ul class="nav nav-tabs">
-          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)" ><a >Sec-{{ item }}</a></li>
+          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)"><a>Sec-{{ item }}</a>
+          </li>
         </ul>
         <div class="col-sm-12 panel" *ngFor="let item of this.subsection">
           <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
@@ -17,10 +18,10 @@
           </div>
           <div class="col-md-12" *ngFor="let item_inner of this.questions">
             <div *ngIf="item.sub_section_no===item_inner.sub_section_no">
-            <div class="col-md-3">{{ item_inner.question_no }}</div>
-            <div class="col-md-6">{{ item_inner.question_title }}<br /><small>{{
-              item_inner.question_description }}</small></div>
-            <div class="col-md-3">{{item_inner.answer }}</div>
+              <div class="col-md-3">{{ item_inner.question_no }}</div>
+              <div class="col-md-6">{{ item_inner.question_title }}<br /><small>{{
+                  item_inner.question_description }}</small></div>
+              <div class="col-md-3">{{item_inner.answer }}</div>
             </div>
           </div>
 

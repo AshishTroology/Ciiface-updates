@@ -1,0 +1,109 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Co-Applicant View List</h4>
+          <hr />
+        </div>
+        <div class="col-sm-6 col-xs-12 mb-3 text-right">
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12">
+          <div class="table-responsive panel pd">
+
+            <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th scope="col">Applicant Organisation</th>
+                  <th scope="col">Applicant Name</th>
+                  <th scope="col">Applicant Email</th>
+                  <th scope="col">Criteria</th>
+                  <th scope="col">Created</th>
+                  <th scope="col">Co-Applicant Name</th>
+                  <th scope="col">Co-Applicant Designation</th>
+                  <th scope="col">Co-Applicant Email</th>
+                  <th scope="col">Co-Applicant Mobile</th>
+                  <th scope="col">Co-Applicant City</th>
+                  <th scope="col">Co-Applicant State</th>
+                  <th scope="col">Co-Applicant Country</th>
+                </tr>
+              </thead>
+              <tbody class="assessors-xss">
+                <tr *ngFor="let assessorsval of assessors">
+                  <td>
+                    <span class="app-id">{{assessorsval.applicantData.length?assessorsval.applicantData[0].organizationName:''}}</span>
+                  </td>
+                  <td>
+                    <span class="app-id">{{ assessorsval.applicantData.length?assessorsval.applicantData[0].firstName:''}}</span>
+                  </td>
+                  <td>
+                    <span class="app-id">{{ assessorsval.applicantData.length?assessorsval.applicantData[0].email:''}}</span>
+                  </td>
+                  <td>
+                    <span class="app-id">{{ assessorsval.applicantData.length?assessorsval.applicantData[0].criteria:''}}</span>
+                  </td>
+                  <td>
+                    <span style="font-size: 10px;">{{assessorsval.created_at|date:'dd-MM-yyyy'}}</span>
+
+                  </td>
+                  <td>
+                    <span class="app-id">{{ assessorsval.co_hightestRanking}}</span>
+                  </td>
+                  <td>
+                    <span class="app-id">{{ assessorsval.co_Designation}}</span>
+                  </td>
+                  <td>
+                    <span>{{ assessorsval.co_email}}</span>
+                  </td>
+                  <td>
+                    <span>{{ assessorsval.co_mobileNo}}</span>
+                  </td>
+                  <td>
+                    <span>{{ assessorsval.co_applicantCity}}</span>
+                  </td>
+                  <td>
+                    <span>{{ assessorsval.co_applicantState}}</span>
+                  </td>
+                  <td>
+                    <span>{{ assessorsval.co_applicantCountry}}</span>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="col">Applicant Organisation</th>
+                  <th scope="col">Applicant Name</th>
+                  <th scope="col">Applicant Email</th>
+                  <th scope="col">Criteria</th>
+                  <th scope="col">Created</th>
+                  <th scope="col">Co-Applicant Name</th>
+                  <th scope="col">Co-Applicant Designation</th>
+                  <th scope="col">Co-Applicant Email</th>
+                  <th scope="col">Co-Applicant Mobile</th>
+                  <th scope="col">Co-Applicant City</th>
+                  <th scope="col">Co-Applicant State</th>
+                  <th scope="col">Co-Applicant Country</th>
+                </tr>
+              </tfoot>
+            </table>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

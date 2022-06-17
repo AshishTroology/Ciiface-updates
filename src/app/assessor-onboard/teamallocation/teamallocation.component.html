@@ -10,28 +10,70 @@
             Team Allocation
           </div>
           <div class="panel-body">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Period From</label>
-                <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                  placeholder="Enter Date">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                  else.</small>
+            <form [formGroup]="teamAllocation" (ngSubmit)="updateAllocation()">
+              <div class="row">
+
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Period From</label> <small id="emailHelp" class="form-text text-muted"> :{{this.min|date:'dd-mm-yyyy'}}</small>
+                    <input type="date" formControlName="period_from" class="form-control" id="exampleInputEmail1"
+                      aria-describedby="emailHelp" placeholder="Enter Date" >
+
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="exampleInputEmail2">Period To</label><small id="emailHelp_1" class="form-text text-muted"> :{{this.to|date:'dd-mm-yyyy'}}</small>
+                    <input type="date" class="form-control" formControlName="period_to" id="exampleInputEmail2"
+                      aria-describedby="emailHelp_1" placeholder="Enter email" >
+
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <button class="btn btn-success" style="margin-top:2rem;">Save</button>
+
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="exampleInputEmail2">Period To</label>
-                <input type="date" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp_1"
-                  placeholder="Enter email">
-                <small id="emailHelp_1" class="form-text text-muted">We'll never share your email with anyone
-                  else.</small>
-              </div>
-            </div>
+
+            </form>
           </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12 ">
+        <div class="panel">
+          <div class="panel-heading panel-title">
+            Allocated Team
+          </div>
+          <div class="responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Assessor Details</th>
+                  <th>Section</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of allocatedlist;let i=index">
+                  <td>{{ item.assessorData[0].firstName }}</td>
+                  <td>
+                    <ul class="list-inline">
+                      <li class="list-inline-item" *ngFor="let item1 of this.section ;let j=index"><input
+                          type="checkbox" [checked]="item.section.includes(item1)"
+                          (click)="updateSection($event,item._id)" [value]="item1" />{{ item1 }}</li>
+                    </ul>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
-
   </div>
+
 </div>

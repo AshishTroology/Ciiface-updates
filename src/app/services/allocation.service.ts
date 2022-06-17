@@ -67,13 +67,43 @@ export class AllocationService {
     return this.http.get(api_url, httpOptions);
   }
 
-  updateStatusAllocationByAssessor(id: any,data:any) {
+  getAllAllocationByAssessorOne(id: any) {
+    let api_url = base_url + 'allocationByAssessorOne/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
+  updateStatusAllocationByAssessor(id: any, data: any) {
     let api_url = base_url + 'updateStatusAllocationByAssessor/' + id;
     const httpOptions = {
       headers: new HttpHeaders({
         'content-type': 'application/json;charset=UTF-8',
       }),
     };
-    return this.http.post(api_url,data, httpOptions);
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  updateSectionInAllocation(id: any, data: any) {
+    let api_url = base_url + 'updateSectionInAllocation/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  updatePeriodInAllocation(id: any, data: any) {
+    let api_url = base_url + 'updatePeriodInAllocation/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
   }
 }

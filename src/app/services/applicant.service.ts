@@ -337,6 +337,17 @@ export class ApplicantService implements HttpInterceptor {
     };
     return this.http.get(api_url, httpOptions);
   }
+
+  getCoApplicant() {
+    let api_url = base_url + 'viewCoApplicant';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        // 'apikey': this.api_key
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
 }
 
 

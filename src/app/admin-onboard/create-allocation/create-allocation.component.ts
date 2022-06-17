@@ -5,6 +5,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Subject } from 'rxjs';
 import { AllocationService } from 'src/app/services/allocation.service';
 import { ApplicantService } from 'src/app/services/applicant.service';
+import { AssessorsService } from 'src/app/services/assessors.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { TosterService } from 'src/app/services/toster.service';
 @Component({
@@ -41,11 +42,13 @@ export class CreateAllocationComponent implements OnInit {
   search: any;
   allAssessor: number = 0;
   selectedAssessor: number = 0;
+  section: any;
   constructor(
     public allocation: AllocationService,
     private applicantS: ApplicantService,
     public fb: FormBuilder,
     private quest: QuestionService,
+    private assessorsS: AssessorsService,
     private toast: TosterService
   ) {
     this.minDate = new Date();
@@ -58,7 +61,7 @@ export class CreateAllocationComponent implements OnInit {
       it.teamleader = false;
       it.calibrator = false;
       this.allocated_array.push(it);
-      this.selectedAssessor=this.allocated_array.length;
+      this.selectedAssessor = this.allocated_array.length;
     } else {
       var index = this.allocated_array.findIndex(function (o: any) {
         return o._id === e.target.value;
@@ -103,6 +106,12 @@ export class CreateAllocationComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true,
     };
+    this.assessorsS.getAssessors().subscribe((data: any) => {
+      this.arraydata = data.applicanData;
+      this.dtTrigger.next();
+      this.dtTrigger1.next();
+      // this.allAssessor = data.applicanData.ass.length;
+    });
 
     this.allocation.getviewApplicantLOISubmitted().subscribe((item: any) => {
       console.log(item.ass);
@@ -132,7 +141,7 @@ export class CreateAllocationComponent implements OnInit {
   }
 
   getApplicantId(e: any) {
-    this.arraydata = [];
+    // this.arraydata = [];
     this.ddState = true;
     this.allocation.checkallocation(e.target.value).subscribe((iiteem: any) => {
       console.log(iiteem);
@@ -151,11 +160,16 @@ export class CreateAllocationComponent implements OnInit {
             if (iittem.ass.length == 0) {
               alert('No Assessor found in this Sector');
             } else {
-              this.dtTrigger.next();
-              this.dtTrigger1.next();
-              this.arraydata = iittem.ass;
-              this.allocated_array = [];
-              this.allAssessor=iittem.ass.length
+              this.quest
+                .viewQuestionSec({ criteria: pitem.applicanData[0].criteria })
+                .subscribe((item: any) => {
+                  console.log(item);
+                  this.section = item.sec;
+
+                  //  this.arraydata = iittem.ass;
+                  this.allocated_array = [];
+                  // this.allAssessor = iittem.ass.length;
+                });
             }
           });
       });
@@ -181,6 +195,9 @@ export class CreateAllocationComponent implements OnInit {
           }
         });
         if (notl == 1 && noca == 1) {
+          this.allocated_array.map((item: any) => {
+            item.section = this.section;
+          });
           this.allocationForm.value.assessment_list = this.allocated_array;
           this.allocation
             .saveAllocation(this.allocationForm.value)
@@ -221,10 +238,10 @@ export class CreateAllocationComponent implements OnInit {
 
   async getData() {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance
-            .column(this.col)
-            .search('^' + this.search + '$', true, false, true)
-            .draw();
-    })
+      dtInstance
+        .column(this.col)
+        .search('^' + this.search + '$', true, false, true)
+        .draw();
+    });
   }
 }

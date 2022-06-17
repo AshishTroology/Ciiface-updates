@@ -42,7 +42,7 @@
                   <ul class="nav nav-tabs nav-justified m-t-md" role="tablist">
                     <li role="presentation" class="active"><a href="#stockyard" aria-controls="stockyard" role="tab"
                         data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="true">All
-                        Assessors <span class="badge color">{{ this.allAssessor }}</span></a>
+                        Assessors </a>
                     </li>
                     <li role="presentation" class=""><a href="#showroom" aria-controls="showroom" role="tab"
                         data-toggle="tab" class="g-font-weight-600 text-uppercase" aria-expanded="false">Selected
@@ -55,36 +55,8 @@
                       <!-- 1st table -->
                       <div class="col-md-12 table-responsive">
                         <label class="h3 mt-1 teamLabel">All Assessors </label>
-                        <div class="row AssessorsSelect">
-                          <div class="col-lg-5">
-                            <select class="form-control" (change)="setData($event,'select')" >
-                              <option value="">Select Applicant</option>
-                              <option value="0">Assessor Name</option>
-                              <option value="1">Designation</option>
-                              <option value="2">Present Organization</option>
-                              <option value="3">Product / Service (Present Org)</option>
-                              <option value="4">Mobile</option>
-                              <option value="5">E-Mail</option>
-                              <option value="6">Previous Company</option>
-                              <option value="7">Product / Service (Previous Org)</option>
-                              <option value="8">Education</option>
-                              <option value="9">Expertise</option>
-                              <option value="10">Skill</option>
-                              <option value="11">Training</option>
-                              <option value="12">Certificate</option>
-                              <option value="13">Experience</option>
-                              <option value="14">Assessments</option>
-                              <option value="15">Site Visits</option>
-                            </select>
-                          </div>
-                          <div class="col-lg-5">
-                            <input class="form-control" (input)="setData($event,'input')" />
-                          </div>
-                          <div class="col-lg-2">
-                          <button type="button" class="btn btn-success btn-sm" (click)="getData()">Search</button>
-                          </div>
-                        </div>
-                        <table class="table table-dark table-bordered" id="allAssessment" datatable [dtOptions]="dtOptions"
+
+                        <table class="table table-dark table-bordered nowrap" id="allAssessment" datatable [dtOptions]="dtOptions"
                           [dtTrigger]="dtTrigger">
                           <thead>
                             <tr>
@@ -92,19 +64,8 @@
                               <th scope="col">Assessor Name</th>
                               <th scope="col">Designation</th>
                               <th scope="col">Present Organization</th>
-                              <th scope="col">Product / Service (Present Org)</th>
                               <th scope="col">Mobile</th>
                               <th scope="col">E-Mail</th>
-                              <th scope="col">Previous Company</th>
-                              <th scope="col">Product / Service (Previous Org)</th>
-                              <th scope="col">Education</th>
-                              <th scope="col">Expertise</th>
-                              <th scope="col">Skill</th>
-                              <th scope="col">Training</th>
-                              <th scope="col">Certificate</th>
-                              <th scope="col">Experience</th>
-                              <th scope="col">Assessments</th>
-                              <th scope="col">Site Visits</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -113,40 +74,9 @@
                                   (click)="checkuncheckall($event,item)"></td>
                               <td>{{ item.firstName }}</td>
                               <td>{{ item.designation }}</td>
-                              <td ellipsis style="width:130px">{{ item.Organization }}</td>
-                              <td>
-                                <span class="label label-pill label-primary"
-                                  *ngFor="let item11 of item.organizationProductservice;let i = index"><b
-                                    *ngIf="(i+1)<=4?true:false">{{ item11.item_text }}</b></span> <label
-                                  *ngIf="item.organizationProductservice.length>=4?true:false"
-                                  class="label label-success">+{{ item.organizationProductservice.length-4}}</label>
-                              </td>
+                              <td>{{ item.Organization }}</td>
                               <td>{{ item.assessorsPhone }}</td>
                               <td>{{ item.assessorsEmail }}</td>
-                              <td ellipsis>{{ item.Organization2 }}</td>
-                              <td>
-                                <span class="label label-pill label-primary"
-                                  *ngFor="let item12 of item.organizationProductservice2;let i = index"><b
-                                    *ngIf="(i+1)<=4?true:false">{{ item12.item_text }}</b></span> <label
-                                  *ngIf="item.organizationProductservice2.length>=4?true:false"
-                                  class="label label-success">+{{
-                                  item.organizationProductservice.length-4}}</label>
-                              </td>
-                              <td>{{ item.assessorsEducation }}</td>
-                              <td>
-                                <span class="label label-pill label-primary"
-                                  *ngFor="let item1 of item.domain;let i = index"><b *ngIf="(i+1)<=4?true:false">{{
-                                    item1.item_text }}</b></span> <label *ngIf="item.domain.length>=4?true:false"
-                                  class="label label-success">+{{
-                                  item.organizationProductservice.length-4}}</label>
-
-                              </td>
-                              <td>{{ item.skill }}</td>
-                              <td>{{ item.assessorsTraining }}</td>
-                              <td>{{ item.fsmsCertificate }}</td>
-                              <td>{{ item.experience }}</td>
-                              <td>0</td>
-                              <td>-</td>
                             </tr>
                           </tbody>
                         </table>
@@ -156,18 +86,7 @@
                       <!-- 2nd table -->
                       <div class="col-md-12 table-responsive">
                         <label class="h3 mt-1 teamLabel">Selected Assessors </label>
-                        <div class="row">
-                        <div class="col-lg-6">
-                          <select class="form-control">
-                            <option value="">Select Applicant</option>
-                          </select>
-                        </div>
-                        <div class="col-lg-6">
-                          <select class="form-control">
-                            <option value="">Select Applicant</option>
-                          </select>
-                        </div>
-                        </div>
+
                         <table class="table table-dark table-bordered nowrap mt-1"  datatable [dtOptions]="dtOptions1"
                           [dtTrigger]="dtTrigger1">
                           <thead>
