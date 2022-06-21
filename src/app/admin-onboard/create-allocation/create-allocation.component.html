@@ -20,7 +20,7 @@
                 <label>Applicant </label>
                 <p class="labelInfo">Select Applicant</p>
                 <select class="form-control" formControlName="applicant_id" (change)="getApplicantId($event)"
-                  [attr.disabled]="this.ddState">
+                  >
                   <option value="">Select Applicant</option>
                   <option *ngFor="let item of this.applicantlist" value="{{ item._id }}">{{ item.organizationName }} ({{
                     item.sector }})</option>
@@ -30,10 +30,38 @@
                   <div *ngIf="f.applicant_id.errors.required">This field is required</div>
                 </div>
               </div>
-              <div class="col-md-2 form-group">
-                <label> </label>
-                <p class="labelInfo"></p>
-                <a href="/create-allocation" class="btn btn-danger" style="margin-top: 1.8rem;">Reset</a>
+              <div class="clearfix"></div>
+              <div class="col-md-12 form-group">
+                <div class="alert alert-danger" *ngIf="this.ddStateError==false">Applicant already allocated for assessment.</div>
+                <table style="border-collapse: collapse; width: 100%;" *ngIf="this.appStatus">
+                  <tbody>
+                    <tr>
+                      <th class="bgProperty">Unit Name
+                      </th>
+                      <th class="bgProperty">Contact
+                        Person</th>
+                      <th class="bgProperty">Criteria
+                      </th>
+                      <th class="bgProperty">Address</th>
+                      <th class="bgProperty">Mobile No
+                      </th>
+                      <th class="bgProperty">Email:</th>
+                      <th class="bgProperty">Sector/Product</th>
+                    </tr>
+                    <tr>
+                      <td class="tdProperty">{{ this.applicantdata.organizationName }}</td>
+                      <td class="tdProperty">{{ this.applicantdata.applicanthightestRanking }}, {{ this.applicantdata.applicantDesignation }}</td>
+                      <td class="tdProperty">{{ this.applicantdata.criteria }}</td>
+                      <td class="tdProperty">{{ this.applicantdata.applicantAddress1 }}, {{ this.applicantdata.applicantCity }}</td>
+                      <td class="tdProperty">{{ this.applicantdata.mobileNo }}</td>
+                      <td class="tdProperty"><a href="javascript:void(0)"
+                          style="color: #87a63f;">{{ this.applicantdata.email }}</a></td>
+                      <td class="tdProperty">{{ this.applicantdata.sector }}, {{ this.applicantdata.product }}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
               </div>
 
               <div class="col-md-12">
@@ -162,7 +190,7 @@
                 <textarea formControlName="remark" class="form-control"></textarea>
               </div>
               <div class="col-md-12" style="margin-top: 10px;">
-                <button type="submit" class="btn btn-success">Save Allocation</button>
+                <button type="submit" class="btn btn-success" *ngIf="this.ddState">Save Allocation</button>
               </div>
               <div class="clearfix"></div>
             </form>

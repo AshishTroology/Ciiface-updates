@@ -54,6 +54,7 @@
     "datatables.net-select-dt": "^1.4.0",
     "intl-tel-input": "^17.0.15",
     "jquery": "^3.6.0",
+    "ng-cdbangular": "^1.0.0",
     "ng-intl-tel-input": "^2.0.0",
     "ng-multiselect-dropdown": "^0.3.8",
     "ng-recaptcha": "^9.0.0",

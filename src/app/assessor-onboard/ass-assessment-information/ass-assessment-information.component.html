@@ -56,7 +56,7 @@
                       href="/view-app/{{ allval.applicantData[0]._id }}">Applicant LOI</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1"
                       href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>
-                  <li role="presentation" ><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}">Assess Applicant</a></li>
+                  <li role="presentation" *ngIf="allval.allocationliststatus=='accepted'?true:false"><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}">Assess Applicant</a></li>
 
                 </ul>
               </div>

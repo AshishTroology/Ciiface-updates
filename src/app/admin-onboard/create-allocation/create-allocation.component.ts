@@ -36,13 +36,16 @@ export class CreateAllocationComponent implements OnInit {
   assessorArray: any = [];
   spreaded: any;
   submitValid: Boolean = false;
-  ddState: any;
+  ddState: Boolean = false;
   html = '<span><i>Tooltip</i> <u>with</u> <b>HTML</b></span>';
   col: any;
   search: any;
   allAssessor: number = 0;
   selectedAssessor: number = 0;
   section: any;
+  applicantdata: any;
+  ddStateError: any;
+  appStatus: any=false;
   constructor(
     public allocation: AllocationService,
     private applicantS: ApplicantService,
@@ -110,12 +113,14 @@ export class CreateAllocationComponent implements OnInit {
       this.arraydata = data.applicanData;
       this.dtTrigger.next();
       this.dtTrigger1.next();
-      // this.allAssessor = data.applicanData.ass.length;
     });
 
     this.allocation.getviewApplicantLOISubmitted().subscribe((item: any) => {
       console.log(item.ass);
       this.applicantlist = item.ass;
+      this.applicantlist = this.applicantlist.sort((a: any, b: any) =>
+        a.organizationName > b.organizationName ? 1 : -1
+      );
       this.initForm();
     });
   }
@@ -142,14 +147,23 @@ export class CreateAllocationComponent implements OnInit {
 
   getApplicantId(e: any) {
     // this.arraydata = [];
-    this.ddState = true;
     this.allocation.checkallocation(e.target.value).subscribe((iiteem: any) => {
-      console.log(iiteem);
+      console.log(iiteem.result.length);
+      if (iiteem.result.length == 0) {
+        this.ddState = true;
+        this.ddStateError = true;
+      }
+      else {
+        this.ddState = false;
+        this.ddStateError = false;
+      }
     });
     this.applicantS
       .GetAdminApplicantSingle(e.target.value)
       .subscribe((pitem: any) => {
-        console.log(pitem.applicanData[0].sector);
+        console.log(pitem.applicanData[0]);
+        this.appStatus=true;
+        this.applicantdata = pitem.applicanData[0];
         this.allocation
           .viewAssessorAsPerSector({
             sector: pitem.applicanData[0].sector,

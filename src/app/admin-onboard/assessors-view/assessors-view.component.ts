@@ -35,6 +35,7 @@ export class AssessorsViewComponent implements OnDestroy, OnInit {
       pageLength: 10,
       ordering: false,
       searching: true,
+      dom: 'lBfrtip',
     };
 
     this.assessorsS.getAssessors().subscribe((data: any) => {

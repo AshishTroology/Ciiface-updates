@@ -57,14 +57,19 @@
 
         <div class="col-md-12 ">
           <div class="table-responsive">
-          <table class="panel panel-default table table-dark" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Assessors</th>
-                <th scope="col">Education Details</th>
-                <th scope="col">Contact</th>
+                <th scope="col">Created On</th>
+                <th scope="col">Assessors Name</th>
+                <th scope="col">Assessors Designation</th>
+                <th scope="col">Education</th>
+                <th scope="col">Batch</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
                 <th scope="col">Zone</th>
+                <th scope="col">Address</th>
                 <th scope="col">Skill</th>
                 <th scope="col">Tech Knowledge</th>
                 <th scope="col">Communication</th>
@@ -76,27 +81,35 @@
               <tr *ngFor="let assessorsval of assessors">
                 <td class="applicant-id">
                   <span class="app-id">#{{ assessorsval._id.slice(0, 6).toUpperCase()}}</span>
-                  <p class="icon"><i class="fa fa-calendar calendar-class" aria-hidden="true"></i>&nbsp;<span
-                      class="abc-cls date">{{ assessorsval.created_at|date:'dd-MM-yyyy'}}</span></p>
                 </td>
                 <td>
+                  <p class="icon"><i class="fa fa-calendar calendar-class" aria-hidden="true"></i>&nbsp;<span class="abc-cls date">{{
+                      assessorsval.created_at|date:'dd-MM-yyyy'}}</span></p>
+                  </td>
+                <td>
                   <p class="app-id">{{ assessorsval.firstName}} </p>
+                </td>
+                <td>
                   <p class="icon"><i class="fa fa-briefcase"></i>&nbsp;<span class="abc-cls">{{
                       assessorsval.designation}}</span></p>
-
-
                 </td>
                 <td>
                   <p class="app-id">{{ assessorsval.assessorsEducation}}</p>
+                </td>
+                <td>
                   <p class="app-id">{{ assessorsval.batch}}</p>
                 </td>
                 <td>
                   <p class="icon"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
                       assessorsval.assessorsPhone}} </span></p>
+                </td>
+                <td>
                   <p class="abc">@&nbsp;<span class="abc-cls">{{ assessorsval.assessorsEmail}}</span></p>
                 </td>
                 <td>
                   <p class="icon">{{ assessorsval.zone}}</p>
+                </td>
+                <td>
                   <p class="abc-cls">{{ assessorsval.country}} <br /> {{ assessorsval.state}} <br /> {{
                     assessorsval.city}}</p>
 

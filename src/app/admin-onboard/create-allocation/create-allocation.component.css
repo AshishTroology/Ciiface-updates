@@ -31,4 +31,18 @@ table {
 .label-primary {
   margin-right: 5px;
 }
+.bgProperty {
+  background-color: #87a63f;
+    color: white;
+    text-align: left;
+    padding: 15px;
+    font-weight: 400;
+    font-size: 15px;
+}
+.tdProperty {
+  font-size: 14px;
+    padding: 7px;
+    border: 1px solid #ddd;
+    color: #666666;
+}
 

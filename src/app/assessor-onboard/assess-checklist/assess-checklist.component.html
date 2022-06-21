@@ -1,5 +1,8 @@
 <app-header></app-header>
 <app-sidenav-assessors></app-sidenav-assessors>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Hold on while we take you to your CII FACE Account! </p>
+</ngx-spinner>
 <div id="content" class="app-content" role="main">
   <div class="app-content-body container">
     <h2>Assess Checklist(Section)</h2>
@@ -9,24 +12,44 @@
           <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)"><a>Sec-{{ item }}</a>
           </li>
         </ul>
+        <form (ngSubmit)="onSubmit()" [formGroup]="Sectionform">
         <div class="col-sm-12 panel" *ngFor="let item of this.subsection">
-          <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
-          <div class="col-md-12 text-danger">
-            <div class="col-md-3 b">Qs#</div>
-            <div class="col-md-6 b">Checkpoint</div>
-            <div class="col-md-3 b">Answer</div>
-          </div>
-          <div class="col-md-12" *ngFor="let item_inner of this.questions">
-            <div *ngIf="item.sub_section_no===item_inner.sub_section_no">
-              <div class="col-md-3">{{ item_inner.question_no }}</div>
-              <div class="col-md-6">{{ item_inner.question_title }}<br /><small>{{
-                  item_inner.question_description }}</small></div>
-              <div class="col-md-3">{{item_inner.answer }}</div>
+            <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
+            <div class="col-md-12 text-danger">
+              <div class="col-md-1 b">Qs#</div>
+              <div class="col-md-5 b">Checkpoint</div>
+              <div class="col-md-3 b">Applicant Response</div>
+              <div class="col-md-3 b">Answer</div>
             </div>
+            <div class="col-md-12" *ngFor="let item_inner of this.questions">
+              <div *ngIf="item.sub_section_no===item_inner.sub_section_no">
+                <div class="col-md-1">{{ item_inner.question_no }}</div>
+                <div class="col-md-5">{{ item_inner.question_title }}<br /><small>{{
+                    item_inner.question_description }}</small></div>
+                <div class="col-md-3">{{item_inner.answer }}</div>
+                <div class="col-md-3">
+                  <textarea class="form-control" [(ngModel)]="this.modall[item_inner._id]" [ngModelOptions]="{standalone: true}"
+                    name="{{ item_inner._id }}" *ngIf="item_inner.type=='T'?true:false"
+                    (input)="onChangeControl(item_inner._id,$event,null)" ></textarea>
+                  <select *ngIf="item_inner.type=='DD'?true:false" name="{{ item_inner._id }}" class="form-control"
+                    (change)=" onChangeControl(item_inner._id,$event,null)" [(ngModel)]="this.modall[item_inner._id]"
+                    [ngModelOptions]="{standalone: true}" >
+                    <option value="">Choose any option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Partly">Partly</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">Score</div>
+            <div class="col-md-6"><input class="form-control" /></div>
+
+
           </div>
-
-
-        </div>
+          <button>Save</button>
+        </form>
       </div>
     </div>
 
