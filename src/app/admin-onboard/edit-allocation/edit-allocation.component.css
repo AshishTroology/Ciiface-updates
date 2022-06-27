@@ -1,0 +1,59 @@
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.teamLabel {
+  font-size: 17px;
+  color: #3c3c3c !important;
+  margin: 12px 0;
+}
+
+.tab-pane {
+  padding: 0;
+}
+
+.table>thead>tr>th {
+  vertical-align: top;
+}
+
+table {
+  margin-top: 1.5rem;
+}
+
+.color {
+  background: #87a63f;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li>a:hover {
+  color: #87a63f !important;
+}
+
+.nav-tabs>li>a::after {
+  content: "";
+  background: #87a63f;
+}
+
+.AssessorsSelect {
+  margin-bottom: 15px !important;
+}
+
+.label-primary {
+  margin-right: 5px;
+}
+
+.bgProperty {
+  background-color: #87a63f;
+  color: white;
+  text-align: left;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.tdProperty {
+  font-size: 14px;
+  padding: 7px;
+  border: 1px solid #ddd;
+  color: #666666;
+}

@@ -137,4 +137,33 @@ export class QuestionService {
     };
     return this.http.post(api_url, data, httpOptions);
   }
+
+  getAllocated(data: any) {
+    let api_url = base_url + 'getAllocated';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+  getScore(data: any) {
+    let api_url = base_url + 'getScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  addScore(data: any) {
+    let api_url = base_url + 'addScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
 }

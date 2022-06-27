@@ -74,6 +74,7 @@ import { DatePipe } from '@angular/common';
 import { AllocationDetailsComponent } from './admin-onboard/allocation-details/allocation-details.component';
 import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapplicant-view.component';
 import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
+import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 
 
 @NgModule({
@@ -117,6 +118,7 @@ import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/as
     AllocationDetailsComponent,
     CoapplicantViewComponent,
     AssessChecklistComponent,
+    EditAllocationComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,8 +12,8 @@
           <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)"><a>Sec-{{ item }}</a>
           </li>
         </ul>
-        <form (ngSubmit)="onSubmit()" [formGroup]="Sectionform">
-        <div class="col-sm-12 panel" *ngFor="let item of this.subsection">
+        <form (ngSubmit)="onSubmit()" [formGroup]="Sectionform" formArrayName="score">
+        <div class="col-sm-12 panel" *ngFor="let item of this.subsection;let i=index">
             <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
             <div class="col-md-12 text-danger">
               <div class="col-md-1 b">Qs#</div>
@@ -44,7 +44,9 @@
               </div>
             </div>
             <div class="col-md-6">Score</div>
-            <div class="col-md-6"><input class="form-control" /></div>
+            <div class="col-md-6">
+              <input class="form-control" (input)=" onChangeScore(item.sub_section_no, $event,null)" [(ngModel)]="this.modelscore[item.sub_section_no]" [ngModelOptions]="{standalone: true}" />
+            </div>
 
 
           </div>

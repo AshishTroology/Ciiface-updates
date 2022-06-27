@@ -37,6 +37,7 @@ import { ViewChecklistComponent } from './view-checklist/view-checklist.componen
 import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapplicant-view.component';
 import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
+import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -167,6 +168,11 @@ const routes: Routes = [
   },
 
   {
+    path: 'edit-allocation/:id',
+    component: EditAllocationComponent,
+  },
+
+  {
     path: 'list-allocation',
     component: ListAllocationComponent,
   },
@@ -204,7 +210,7 @@ const routes: Routes = [
     component: ViewChecklistComponent,
   },
   {
-    path: 'assess-checklist/:id',
+    path: 'assess-checklist/:id/:_id',
     component: AssessChecklistComponent,
   },
 
