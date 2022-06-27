@@ -115,4 +115,14 @@ export class AllocationService {
     };
     return this.http.get(api_url, httpOptions);
   }
+
+  updateAllocation(data: any) {
+    let api_url = base_url + 'updateAllocation';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
 }
