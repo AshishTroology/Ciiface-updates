@@ -142,7 +142,7 @@
                           <tbody>
                             <tr *ngFor="let item of allocated_array;let j=index">
                               <td>
-                                <select class="form-control">
+                                <select class="form-control" (change)="getChangeSelect($event,item._id,'allocationliststatus')">
                                   <option value="pending" [selected]="item.allocationliststatus==='pending'">Pending</option>
                                   <option value="accepted" [selected]="item.allocationliststatus==='accepted'">Accepted</option>
                                   <option value="rejected" [selected]="item.allocationliststatus==='rejected'">Rejected</option>

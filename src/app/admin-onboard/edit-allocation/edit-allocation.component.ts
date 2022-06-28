@@ -182,15 +182,48 @@ export class EditAllocationComponent implements OnInit {
   checkAvailablity(id: any) {
     return this.allocated_array.find((x: any) => x._id === id);
   }
-  removeItem(ass_id:any){
-     var index = this.allocated_array.findIndex(function (o: any) {
-       return o._id === ass_id;
-     });
-     if (index !== -1) this.allocated_array.splice(index, 1);
-     this.selectedAssessor = this.allocated_array.length;
+  removeItem(ass_id: any) {
+    var index = this.allocated_array.findIndex(function (o: any) {
+      return o._id === ass_id;
+    });
+    if (index !== -1) this.allocated_array.splice(index, 1);
+    this.selectedAssessor = this.allocated_array.length;
+  }
+
+  getChangeSelect(e: any, it: any, field: any) {
+    this.allocated_array.map((itemm: any) => {
+      if (itemm._id == it) {
+        itemm[field] = e.target.value;
+      }
+    });
   }
 
   submitAllocation() {
-    console.log(this.allocated_array);
+    let notl = 0;
+    let noca = 0;
+    let count = 0;
+    this.allocated_array.map((ch: any) => {
+      if (ch.allocationliststatus != 'rejected') {
+        if (ch.teamleader === true) {
+          notl++;
+        }
+        if (ch.calibrator === true) {
+          noca++;
+        }
+        count++;
+      }
+    });
+    console.log(this.allocated_array, notl, noca, count);
+    if (notl == 1 && noca == 1 && count == 4) {
+      console.log(this.allocated_array);
+      this.allocationForm.value.assessment_list = this.allocated_array;
+      this.allocationForm.value.allocation_id = this.allocatedid;
+      this.allocation
+        .updateAllocation(this.allocationForm.value)
+        .subscribe((ytem: any) => {
+          console.log(ytem);
+          this.toast.showSuccessMsg('Updated Allocation')
+        });
+    }
   }
 }
