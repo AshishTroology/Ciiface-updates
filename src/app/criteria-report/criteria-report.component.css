@@ -1,0 +1,49 @@
+.table {
+  display: block !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  width: 100% !important;
+  height: 50rem;
+  margin-top: 1rem;
+}
+
+.panel {
+  margin-top: 3rem;
+}
+
+.table>thead>tr>th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table>tbody>tr>td {
+  padding: 3px 8px;
+  font-size: 11px;
+  color: #000;
+}
+.table > thead > tr > th {
+  padding: 4px 9px;
+  font-size: 11px;
+  color: #000;
+}
+.table-bordered>tbody>tr>td, .table-bordered>thead>tr>th, .table-bordered {
+  border-color: #bfbdbd;
+}
+.grayColor {
+  background: #dbdbdb;
+}
+.lightBlue {
+  background: #bcd6ee;
+}
+/* .darkBlue {
+  background: #b3c6e7;
+} */
+
+.app-content {
+  margin: 0 2rem 0 25rem;
+}

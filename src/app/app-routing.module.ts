@@ -38,12 +38,18 @@ import { ViewApplicantComponent } from './view-applicant/view-applicant.componen
 import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapplicant-view.component';
 import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
 import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
+import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'criteria-report',
+    component: CriteriaReportComponent
+  },
+
   {
     path: 'view-applicant',
     component: ApplicantViewComponent,
