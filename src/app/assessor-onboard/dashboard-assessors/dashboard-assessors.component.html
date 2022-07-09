@@ -14,7 +14,7 @@
             <h6>Assessments</h6>
           </div>
           <div class="footer-number color1">
-            <h5>5678745678</h5>
+            <h5>{{ this.assessmentCount}}</h5>
           </div>
         </div>
         <div class="top-box">
@@ -22,7 +22,7 @@
             <h6>Completed</h6>
           </div>
           <div class="footer-number color2">
-            <h5>5678745678</h5>
+            <h5>0</h5>
           </div>
         </div>
         <div class="top-box">
@@ -30,7 +30,7 @@
             <h6>Pending</h6>
           </div>
           <div class="footer-number color3">
-            <h5>5678745678</h5>
+            <h5>{{ this.assessmentCount}}</h5>
           </div>
         </div>
       </div>
@@ -40,86 +40,28 @@
         <h6>ASSESSMENTS</h6>
       </div>
       <div class="applicants-data">
-        <table class="table">
+        <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger">
           <thead>
             <tr>
-              <th>#</th>
               <th>APPLICANT DETAIL</th>
               <th>ASSESSMENT SCHEDULE</th>
-              <th>ASSESSMENT TEAM</th>
+              <th>Created On</th>
               <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">1</td>
-              <td>Company Name 1</td>
-              <td><i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="review">Review</span></td>
-            </tr>
-            <tr>
-              <td scope="row">2</td>
-              <td>Company Name 2</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="review">Review</span></td>
-            </tr>
-            <tr>
-              <td scope="row">3</td>
-              <td>Company Name 3</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="completed">Completed</span></td>
-            </tr>
-            <tr>
-              <td scope="row">4</td>
-              <td>Company Name 4</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="completed">Completed</span></td>
-            </tr>
-            <tr>
-              <td scope="row">5</td>
-              <td>Company Name 5</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="review">Review</span></td>
-            </tr>
-            <tr>
-              <td scope="row">6</td>
-              <td>Company Name 6</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="completed">Completed</span></td>
-            </tr>
-            <tr>
-              <td scope="row">7</td>
-              <td>Company Name 7</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="completed">Completed</span></td>
-            </tr>
-            <tr>
-              <td scope="row">8</td>
-              <td>Company Name 8</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
+            <tr *ngFor="let allval of AllocationList">
+              <td>
+                <span class="app-id">Name: {{ allval.applicantData[0].firstName}}</span><br />
+                <span>Email: {{ allval.applicantData[0].email}}</span><br />
+                <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span>
+              </td>
+              <td>
+                From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b> - To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b>
+              </td>
+              <td> {{ allval.created_at|date:'dd-MM-yyyy' }}</td>
               <td><span class="pending">Pending</span></td>
-            </tr>
-            <tr>
-              <td scope="row">9</td>
-              <td>Company Name 9</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="pending">Pending</span></td>
-            </tr>
-            <tr>
-              <td scope="row">10</td>
-              <td>Company Name 10</td>
-              <td> <i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="completed">Completed</span></td>
             </tr>
           </tbody>
         </table>

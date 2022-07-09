@@ -41,8 +41,6 @@
                   data-toggle="dropdown"><span class="app-id"> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;</span>
                   <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1"
-                      href="/team-allocation/{{ allval._id }}">Team Info</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/team-allocation/{{ allval.allocation_id }}"
                       *ngIf="allval.teamleader">Manage Assessment
                     </a></li>
@@ -52,11 +50,11 @@
                   <li role="presentation" *ngIf="allval.allocationliststatus=='pending'?true:false"
                     (click)="updateStatus($event, allval._id , 'rejected',allval.applicantData[0].email,allval.teamleader,allval.applicantData[0].firstName)">
                     <a role="menuitem" tabindex="-1" >Reject</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1"
+                  <!--<li role="presentation"><a role="menuitem" tabindex="-1"
                       href="/view-app/{{ allval.applicantData[0]._id }}">Applicant LOI</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1"
-                      href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>
-                  <li role="presentation" *ngIf="allval.allocationliststatus=='accepted'?true:false"><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}">Assess Applicant</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1"
+                      href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>-->
+                      <li role="presentation" *ngIf="(allval.allocationliststatus=='accepted' && allval.period_from!=null && allval.period_to!=null)?true:false"><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}">Assess Applicant</a></li>
 
                 </ul>
               </div>

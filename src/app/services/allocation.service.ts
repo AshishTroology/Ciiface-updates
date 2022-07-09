@@ -125,4 +125,14 @@ export class AllocationService {
     };
     return this.http.post(api_url, data, httpOptions);
   }
+
+  SendMail2ndComm(data: any) {
+    let api_url = base_url + 'sendMail';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
 }

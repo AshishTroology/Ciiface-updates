@@ -214,7 +214,7 @@ export class EditAllocationComponent implements OnInit {
       }
     });
     console.log(this.allocated_array, notl, noca, count);
-    if (notl == 1 && noca == 1 && count == 4) {
+    if (notl == 1 && noca == 1 ) {
       console.log(this.allocated_array);
       this.allocationForm.value.assessment_list = this.allocated_array;
       this.allocationForm.value.allocation_id = this.allocatedid;
@@ -224,6 +224,11 @@ export class EditAllocationComponent implements OnInit {
           console.log(ytem);
           this.toast.showSuccessMsg('Updated Allocation')
         });
+    }
+    else{
+      this.toast.showError(
+        'At least 4 Assessor (TL & Calibrator) required for allocation'
+      );
     }
   }
 }

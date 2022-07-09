@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'criteria-report',
-    component: CriteriaReportComponent
+    component: CriteriaReportComponent,
   },
 
   {
@@ -219,6 +219,7 @@ const routes: Routes = [
     path: 'assess-checklist/:id/:_id',
     component: AssessChecklistComponent,
   },
+
 
   { path: '**', redirectTo: 'login' },
 ];

@@ -61,6 +61,7 @@ export class AssAssessmentInformationComponent implements OnInit {
                   applicantName:applicantName
                 })
                 .subscribe((item: any) => {
+                  console.log(item)
                   window.location.reload();
                 });
             }

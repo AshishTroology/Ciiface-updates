@@ -7,7 +7,7 @@
     <div class="wrapper-md">
       <div class="row">
         <div class="col-sm-6 col-xs-12">
-          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Allocation List</h4>
+          <h4 class="m-n font-bold "><i class="fa fa-angle-left" aria-hidden="true"></i> Assessment List</h4>
           <hr />
         </div>
         <div class="clearfix"></div>
@@ -19,27 +19,37 @@
             <thead>
               <tr>
                 <th scope="col">Applicant Detail</th>
-                <th scope="col">Assessment Schedule</th>
-                <th scope="col">Assessment Team</th>
-                <th scope="col">Status</th>
-                <th scope="col">Created On</th>
+              <!--  <th scope="col">Assessment Schedule</th>-->
+                <th scope="col">Assessment</th>
+              <!-- <th scope="col">Status</th>
+                <th scope="col">Created On</th>-->
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let allval of AllocationList">
                   <td>
-                    <span class="app-id">Name: {{ allval.applicantData[0].firstName}}</span><br/>
-                    <span>Email: {{ allval.applicantData[0].email}}</span><br />
-                    <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span>
+                    <span class="app-id">Applicant Name: {{ allval.applicantData[0].firstName}}</span><br/>
+                    <span class="app-id">Org. Name: {{ allval.applicantData[0].organizationName}}</span><br/>
+                    <span>Reg. Email: {{ allval.applicantData[0].email}}</span><br />
+                    <span>Highest Rank Email: {{ allval.applicantData[0].organizationEmail}}</span><br />
+                    <span>Contact 1: {{ allval.applicantData[0].contactEmail}}</span><br />
+                    <span>Contact 2: {{ allval.applicantData[0].contactEmail2}}</span><br />
+                    <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span><br/>
+                    <span>Created On: {{ allval.created_at|date:'dd-MM-yyyy' }}</span>
+
                   </td>
                   <td>
-                    From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b><br/>
-                    To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b>
-                  </td>
-                  <td>
+                    From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b> || To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b><br/>
+
                     <table class="table table-bordered nowrap">
                       <thead>
+                        <tr>
+                          <th>Accepted: <label class="label label-info">{{ getAccepted(allval.allocationlistData,'accepted') }}</label></th>
+                          <th>Pending: <label class="label label-info">{{ getAccepted(allval.allocationlistData,'pending') }}</label></th>
+                          <th>Rejected: <label class="label label-info">{{ getAccepted(allval.allocationlistData,'rejected') }}</label></th>
+                          <th>Team Status: <span [class]="getAccepted(allval.allocationlistData,'accepted')==4?'text-success':'text-danger'">{{ getAccepted(allval.allocationlistData,'accepted')==4?'Complete':'Incomplete' }}</span></th>
+                        </tr>
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
@@ -55,14 +65,19 @@
                             checkArray(allval.allocationlistData,ab._id,'teamleader') }}</label><label class="btn-xs btn-info"
                             *ngIf="checkArray(allval.allocationlistData,ab._id,'calibrator')==''?false:true">{{
                             checkArray(allval.allocationlistData,ab._id,'calibrator') }}</label></td>
-                          <td>{{
-                          checkArray(allval.allocationlistData,ab._id,'allocationliststatus') }}</td>
+                          <td >{{
+                          checkArray(allval.allocationlistData,ab._id,'allocationliststatus') }}
+
+                          <button class="btn-xs btn-success" *ngIf="checkArray(allval.allocationlistData,ab._id,'teamleader')==''?false:true">
+                              <i class="fa fa-envelope"></i>
+                          </button>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
                   </td>
-                  <td ><label [class]="allval.allocation_status=='pending'?'label label-info':'label label-success'"> {{ allval.allocation_status }}</label> </td>
-                  <td> {{ allval.created_at|date:'dd-MM-yyyy' }} </td>
+                 <!-- <td ><label [class]="allval.allocation_status=='pending'?'label label-info':'label label-success'"> {{ allval.allocation_status }}</label> </td>
+                <td> {{ allval.created_at|date:'dd-MM-yyyy' }} </td>-->
                   <td>
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1" data-toggle="dropdown"><span
@@ -71,7 +86,8 @@
                       <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/edit-allocation/{{ allval._id }}">Edit Allocation
                             </a></li>
-
+                        <li role="presentation" (click)="sentmail(allval.assessorData,allval)"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#myModal" > Communication Mail
+                          </a></li>
 
 
 
@@ -92,4 +108,55 @@
   </div>
 
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Communication Mail: CII Award for Food Safety 2022</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered nowrap">
+          <thead>
+            <tr>
+              <th>1st</th>
+              <th>2nd</th>
+              <th>3rd</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Designation</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ab of assessordata" >
+              <td ><input type="checkbox" (click)="getEmail1($event)" [value]="ab.assessorsEmail" *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
+              <td><input type="checkbox" (click)="getEmail2($event)" [value]="ab.assessorsEmail"
+                  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
+              <td><input type="checkbox" (click)="getEmail3($event)" [value]="ab.assessorsEmail"
+                  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
+              <td>{{ ab.firstName }}</td>
+              <td>{{ ab.assessorsEmail }}</td>
+              <td><label class="btn-xs btn-success"
+                  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'teamleader')==''?false:true">{{
+                  checkArray(this.allval_allocationlistData,ab._id,'teamleader') }}</label><label class="btn-xs btn-info"
+                  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'calibrator')==''?false:true">{{
+                  checkArray(this.allval_allocationlistData,ab._id,'calibrator') }}</label></td>
+              <td>{{
+                checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus') }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="SendMail()">Send Communication Mail</button>
+      </div>
+    </div>
+  </div>
 </div>

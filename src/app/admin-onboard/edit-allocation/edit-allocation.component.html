@@ -16,7 +16,7 @@
             <form [formGroup]="allocationForm" (ngSubmit)="submitAllocation()">
               <input type="hidden" formControlName="period_from" />
               <input type="hidden" formControlName="period_to" />
-              <div class="col-md-6 form-group">
+              <div class="col-md-6 form-group" style="display: none;">
                 <label>Applicant </label>
                 <p class="labelInfo">Select Applicant</p>
                 <select class="form-control" formControlName="applicant_id" [attr.disabled]="true" >

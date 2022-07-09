@@ -60,68 +60,38 @@
           <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Created On</th>
-                <th scope="col">Assessors Name</th>
-                <th scope="col">Assessors Designation</th>
-                <th scope="col">Education</th>
-                <th scope="col">Batch</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Zone</th>
-                <th scope="col">Address</th>
+                <th scope="col">Assessors Details</th>
+                <th scope="col">Secondary Details</th>
+                <th scope="col">Education/Batch/Zone</th>
                 <th scope="col">Skill</th>
-                <th scope="col">Tech Knowledge</th>
-                <th scope="col">Communication</th>
-                <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="assessors-xss">
               <tr *ngFor="let assessorsval of assessors">
-                <td class="applicant-id">
-                  <span class="app-id">#{{ assessorsval._id.slice(0, 6).toUpperCase()}}</span>
-                </td>
-                <td>
-                  <p class="icon"><i class="fa fa-calendar calendar-class" aria-hidden="true"></i>&nbsp;<span class="abc-cls date">{{
-                      assessorsval.created_at|date:'dd-MM-yyyy'}}</span></p>
-                  </td>
                 <td>
                   <p class="app-id">{{ assessorsval.firstName}} </p>
+                  <p class="abc">@&nbsp;<span class="abc-cls">{{ assessorsval.assessorsEmail}}</span></p>
+                  <p class="icon"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
+                      assessorsval.assessorsPhone}} </span></p>
+                      <p class="icon"><i class="fa fa-briefcase"></i>&nbsp;<span class="abc-cls">{{
+                          assessorsval.designation}}</span></p>
                 </td>
                 <td>
-                  <p class="icon"><i class="fa fa-briefcase"></i>&nbsp;<span class="abc-cls">{{
-                      assessorsval.designation}}</span></p>
+                  <p>{{ assessorsval.assessorsSecondaryemail }}</p><p>{{ assessorsval.assessorsAlternateno }}</p>
                 </td>
                 <td>
                   <p class="app-id">{{ assessorsval.assessorsEducation}}</p>
+                  <p class="app-id">Batch : {{ assessorsval.batch}}</p>
+                  <p class="icon">Zone: {{ assessorsval.zone}}</p>
                 </td>
-                <td>
-                  <p class="app-id">{{ assessorsval.batch}}</p>
-                </td>
-                <td>
-                  <p class="icon"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<span class="abc-cls">{{
-                      assessorsval.assessorsPhone}} </span></p>
-                </td>
-                <td>
-                  <p class="abc">@&nbsp;<span class="abc-cls">{{ assessorsval.assessorsEmail}}</span></p>
-                </td>
-                <td>
-                  <p class="icon">{{ assessorsval.zone}}</p>
-                </td>
-                <td>
-                  <p class="abc-cls">{{ assessorsval.country}} <br /> {{ assessorsval.state}} <br /> {{
-                    assessorsval.city}}</p>
 
-                </td>
-                <td>{{assessorsval.score?assessorsval.score:0}}</td>
-                <td>{{assessorsval.rating?assessorsval.rating:0}}</td>
-                <td>{{assessorsval.rank?assessorsval.rank:'-'}}</td>
-                <td>
+                <td>Skill: {{assessorsval.score?assessorsval.score:0}}<br/>Tech: {{assessorsval.rating?assessorsval.rating:0}}<br/>Com.: {{assessorsval.rank?assessorsval.rank:'-'}}</td>
+                <!--<td>
                   <p
                     class="btn btn-xs btn-{{assessorsval.UserData.length!=0?'success':(assessorsval.invite?'warning':'danger')}}">
                     {{assessorsval.UserData.length!=0?'Active':(assessorsval.invite?'EOI Sent':'Account Created')}}</p>
-                </td>
+                </td>-->
                 <td>
 
                   <div class="dropdown">

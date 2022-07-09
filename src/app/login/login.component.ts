@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
                   window.location.href = '/login';
                 }, 1500);
               }
-            } else if (user.results.role === 'calibrator') {
+            } else if (user.results.role === 'coapplicant') {
               if (user.results.status === true) {
                 localStorage.setItem('username', user.results.username);
                 localStorage.setItem('user', user.results.email);
