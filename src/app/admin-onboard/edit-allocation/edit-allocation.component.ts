@@ -222,7 +222,8 @@ export class EditAllocationComponent implements OnInit {
         .updateAllocation(this.allocationForm.value)
         .subscribe((ytem: any) => {
           console.log(ytem);
-          this.toast.showSuccessMsg('Updated Allocation')
+          this.toast.showSuccess('Updated Allocation');
+          window.location.href = '/list-allocation';
         });
     }
     else{

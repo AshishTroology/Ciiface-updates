@@ -9,12 +9,12 @@
     <div class="card">
       <div>
         <ul class="nav nav-tabs">
-          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)"><a>Sec-{{ item }}</a>
+          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)"><a style="font-size: 14px;">Sec-{{ item }}</a>
           </li>
         </ul>
         <form (ngSubmit)="onSubmit()" [formGroup]="Sectionform" formArrayName="score">
         <div class="col-sm-12 panel" *ngFor="let item of this.subsection;let i=index">
-            <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
+            <p class="h4" style="margin: 2rem 0; font-size: 19px;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
             <div class="col-md-12 text-danger">
               <div class="col-md-1 b">Qs#</div>
               <div class="col-md-5 b">Checkpoint</div>
@@ -43,14 +43,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">Score</div>
+            <div class="col-md-6" style="font-size: 18px; color: #585858; font-weight: 500;">Score</div>
             <div class="col-md-6">
-              <input class="form-control" (input)=" onChangeScore(item.sub_section_no, $event,null)" [(ngModel)]="this.modelscore[item.sub_section_no]" [ngModelOptions]="{standalone: true}" />
+              <input style="margin-bottom: 2rem;width: 196px; float: right;" class="form-control" (input)=" onChangeScore(item.sub_section_no, $event,null)" [(ngModel)]="this.modelscore[item.sub_section_no]" [ngModelOptions]="{standalone: true}" />
             </div>
 
 
           </div>
-          <button>Save</button>
+          <button class="saveBtn">Save</button>
         </form>
       </div>
     </div>

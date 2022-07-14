@@ -76,6 +76,7 @@ import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapp
 import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
 import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
+import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { CriteriaReportComponent } from './criteria-report/criteria-report.compo
     AssessChecklistComponent,
     EditAllocationComponent,
     CriteriaReportComponent,
+    JointApplicantComponent,
   ],
   imports: [
     BrowserModule,

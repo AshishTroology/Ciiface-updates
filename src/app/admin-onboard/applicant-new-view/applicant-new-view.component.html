@@ -142,7 +142,6 @@
                   <th scope="col">State</th>
                   <th scope="col">City</th>
                   <th scope="col">Sector</th>
-                  <th scope="col">Co-Applicant</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -186,9 +185,6 @@
                   <td><span class="app-id">{{ assessorsval.applicantState}}</span> </td>
                   <td>{{ assessorsval.applicantCity}} </td>
                   <td><span class="app-id" title="{{assessorsval.product}}">{{ assessorsval.sector}}</span></td>
-                  <td><span>{{ assessorsval.codata.length}}</span></td>
-
-
                   <td>
 
                     <div class="dropdown">
@@ -199,11 +195,10 @@
                       <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" tabindex="-1"
                             href="/edit-applicant/{{assessorsval._id}}">Access Details</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1"
-                            href="/list-co-applicant/{{assessorsval._id}}">Co-Applicant</a></li>
-
+                          <li role="presentation"><a role="menuitem" tabindex="-1"
+                              href="/view-checklist/{{ assessorsval._id }}">Applicant Checklist</a></li>
                         <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
-
+                        <li *ngIf="assessorsval.__v"><a href="/joint-applicant/{{ assessorsval.email}}" target="_blank">View Joint Applicant</a></li>
 
                       </ul>
                     </div>

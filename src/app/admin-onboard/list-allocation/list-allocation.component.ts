@@ -25,10 +25,11 @@ export class ListAllocationComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ordering: true,
+      ordering: false,
       searching: true,
       processing: true,
       dom: 'lfrtip',
+
     };
     this.allocation.getAllAllocation().subscribe((item: any) => {
       console.log(item);

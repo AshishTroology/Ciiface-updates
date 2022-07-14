@@ -39,6 +39,7 @@ import { CoapplicantViewComponent } from './admin-onboard/coapplicant-view/coapp
 import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/assess-checklist.component';
 import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
+import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -219,7 +220,10 @@ const routes: Routes = [
     path: 'assess-checklist/:id/:_id',
     component: AssessChecklistComponent,
   },
-
+  {
+    path: 'joint-applicant/:email',
+    component: JointApplicantComponent,
+  },
 
   { path: '**', redirectTo: 'login' },
 ];

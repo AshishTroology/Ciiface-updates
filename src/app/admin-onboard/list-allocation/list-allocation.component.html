@@ -15,19 +15,22 @@
         <div class="col-md-12 table-responsive">
 
           <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
-            [dtTrigger]="dtTrigger">
-            <thead>
-              <tr>
+          [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th scope="col">S. No.</th>
+              <th scope="col">Last Updated On</th>
                 <th scope="col">Applicant Detail</th>
               <!--  <th scope="col">Assessment Schedule</th>-->
                 <th scope="col">Assessment</th>
-              <!-- <th scope="col">Status</th>
-                <th scope="col">Created On</th>-->
+              <!-- <th scope="col">Status</th>-->
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let allval of AllocationList">
+                <tr *ngFor="let allval of AllocationList;let i=index">
+                  <td>{{ allval.__v }}</td>
+                  <td> {{ allval.updated_at|date:'dd-MM-yyyy' }} </td>
                   <td>
                     <span class="app-id">Applicant Name: {{ allval.applicantData[0].firstName}}</span><br/>
                     <span class="app-id">Org. Name: {{ allval.applicantData[0].organizationName}}</span><br/>
@@ -76,8 +79,7 @@
                       </tbody>
                     </table>
                   </td>
-                 <!-- <td ><label [class]="allval.allocation_status=='pending'?'label label-info':'label label-success'"> {{ allval.allocation_status }}</label> </td>
-                <td> {{ allval.created_at|date:'dd-MM-yyyy' }} </td>-->
+                 <!-- <td ><label [class]="allval.allocation_status=='pending'?'label label-info':'label label-success'"> {{ allval.allocation_status }}</label> </td>-->
                   <td>
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle btn-cls" type="button" id="menu1" data-toggle="dropdown"><span
