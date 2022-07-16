@@ -1,0 +1,26 @@
+.YesNoBtn {
+    border: 1px solid #cdc5c5;
+    width: 6rem;
+    height: 3rem;
+    border-radius: 3px;
+}
+.mb {
+    margin-bottom: 1.2rem;
+}
+.ComText {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+td, th {
+    padding-right: 9px;
+}
+.TeamInfo ul {
+    list-style: none;
+    padding-left: 0;
+}
+.Label {
+    color: #58666e;
+    margin-left: 1rem;
+}
