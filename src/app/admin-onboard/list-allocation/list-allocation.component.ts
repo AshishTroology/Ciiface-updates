@@ -65,9 +65,22 @@ export class ListAllocationComponent implements OnInit {
         if (f == 'third_comm') {
           b = user[f];
         }
+        if (f == 'newapp') {
+          b = user[f];
+        }
       }
     });
     return b;
+  }
+
+  compareDates(dt: any): boolean | undefined {
+    let fixedDate = new Date('2019-04-01');
+    let applicantDate = new Date(dt);
+    if (fixedDate.getTime() < applicantDate.getTime()) {
+      console.log('date1 is before current date');
+      return true;
+    }
+    return false;
   }
 
   sentmail(assdata: any, listData: any) {
@@ -100,16 +113,16 @@ export class ListAllocationComponent implements OnInit {
       });
       if (index !== -1) this.emailList2.splice(index, 1);
     }
-     this.allocation
-       .updateMailStatus({
-         allocation_id: all_id,
-         assessor_id: ass_id,
-         comm: '2',
-         status: e.target.checked
-       })
-       .subscribe((item: any) => {
-         console.log(this.emailList2,"Updated");
-       });
+    this.allocation
+      .updateMailStatus({
+        allocation_id: all_id,
+        assessor_id: ass_id,
+        comm: '2',
+        status: e.target.checked,
+      })
+      .subscribe((item: any) => {
+        console.log(this.emailList2, 'Updated');
+      });
   }
   getEmail3(e: any, all_id: any, ass_id: any) {
     if (e.target.checked) {
@@ -120,16 +133,16 @@ export class ListAllocationComponent implements OnInit {
       });
       if (index !== -1) this.emailList3.splice(index, 1);
     }
-     this.allocation
-       .updateMailStatus({
-         allocation_id: all_id,
-         assessor_id: ass_id,
-         comm: '3',
-         status: e.target.checked,
-       })
-       .subscribe((item: any) => {
-         console.log(this.emailList3, 'Updated');
-       });
+    this.allocation
+      .updateMailStatus({
+        allocation_id: all_id,
+        assessor_id: ass_id,
+        comm: '3',
+        status: e.target.checked,
+      })
+      .subscribe((item: any) => {
+        console.log(this.emailList3, 'Updated');
+      });
   }
 
   SendMail() {

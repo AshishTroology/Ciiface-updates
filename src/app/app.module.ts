@@ -77,6 +77,7 @@ import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/as
 import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
 import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
+import { ExecutiveSummaryComponent } from './assessor-onboard/executive-summary/executive-summary.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-a
     EditAllocationComponent,
     CriteriaReportComponent,
     JointApplicantComponent,
+    ExecutiveSummaryComponent,
   ],
   imports: [
     BrowserModule,

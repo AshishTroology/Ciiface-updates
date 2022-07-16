@@ -1,0 +1,132 @@
+<app-header></app-header>
+<app-sidenav-assessors></app-sidenav-assessors>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <h2>Executive Summary</h2>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="panel">
+          <div class="panel-heading panel-title">
+            Executive Summary
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="executiveForm" (ngSubmit)="saveExecutiveForm()">
+              <div class="row">
+
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <p>Company & Unit name: </p>
+                    <p>Address: </p>
+                    <p>Size(Large/Medium/Small): </p>
+                    <p>Criteria of Assessment: </p>
+                    <p>Date in which Operation Started: </p>
+                    <p>Date of Assessment: </p>
+                    <p>Is the Unit Licensed:
+                      <select formControlName="unit_licensed">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                      </select></p>
+                    <label for="exampleInputEmail1">Scope of Application</label>
+                    <input formControlName="scope_of_application" class="form-control" placeholder="Enter Scope of Application" >
+
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Product</label>
+                    <input formControlName="product" class="form-control" placeholder="Enter Product">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Processes</label>
+                   <textarea formControlName="product" class="form-control" placeholder="Enter Processes"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <p>The Food Safety Award Assessment has been conducted through on site assessment of the unit&#39;s
+                    implementation effectiveness of food safety system and practices coupled with the
+                    documentation and test records presented to the assessors. There were no additional analysis and
+                    testing carried out by the assessors and all findings relate to the samples examined.</p>
+                    <p>It may hereby be noted that all information shared by the company and findings by the assessors
+                    would be kept confidential by CII FACE and the assessors.</p>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Key Strengths and OFIs on PRPs, HACCP, FSMS, Sector specific GMP, Change Management
+                    Initiatives, any significant lapses in Social and Regulatory Compliances if any</label>
+                    <textarea formControlName="key_strength" class="form-control" placeholder="Enter Key Strengths"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">OFIs:</label>
+                    <textarea formControlName="ofis" class="form-control" placeholder="Enter OFIs:"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Overall Scoring and Maturity band::</label>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>5-9</th>
+                          <th>10-19</th>
+                          <th>20-29</th>
+                          <th>30-39</th>
+                          <th>40-49</th>
+                          <th>50-59</th>
+                          <th>60-69</th>
+                          <th>70-79</th>
+                          <th>80-89</th>
+                          <th>90-95</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input formControlName="scr1" class="form-control" /></td>
+                          <td><input formControlName="scr2" class="form-control" /></td>
+                          <td><input formControlName="scr3" class="form-control" /></td>
+                          <td><input formControlName="scr4" class="form-control" /></td>
+                          <td><input formControlName="scr5" class="form-control" /></td>
+                          <td><input formControlName="scr6" class="form-control" /></td>
+                          <td><input formControlName="scr7" class="form-control" /></td>
+                          <td><input formControlName="scr8" class="form-control" /></td>
+                          <td><input formControlName="scr9" class="form-control" /></td>
+                          <td><input formControlName="scr10" class="form-control" /></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Conclusion:</label>
+                    <textarea formControlName="conclusion" class="form-control" placeholder="Enter Conclusion:"></textarea>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Team Info:</label>
+                    <ul>
+                      <li>Ashish Maurya (Software Developer)</li>
+                      <li>Ashish Maurya (Software Developer)</li>
+                      <li>Ashish Maurya (Software Developer)</li>
+                      <li>Ashish Maurya (Software Developer)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

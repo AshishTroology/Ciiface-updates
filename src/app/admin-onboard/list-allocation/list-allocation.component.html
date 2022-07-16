@@ -39,8 +39,9 @@
                     <span>Contact 1: {{ allval.applicantData[0].contactEmail}}</span><br />
                     <span>Contact 2: {{ allval.applicantData[0].contactEmail2}}</span><br />
                     <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span><br/>
-                    <span>Created On: {{ allval.created_at|date:'dd-MM-yyyy' }}</span>
-
+                    <span>Created On: {{ allval.created_at|date:'dd-MM-yyyy' }}</span><br/>
+                    <span>Operation On: {{ allval.applicantData[0].operationForm }}</span><br/>
+                    <span>Rising Star: {{ this.compareDates(allval.applicantData[0].operationForm|date:'yyyy-MM-dd')?'Yes':'No' }}</span>
                   </td>
                   <td>
                     From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b> || To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b><br/>
@@ -143,7 +144,7 @@
               <td><i *ngIf="checkArray(this.allval_allocationlistData,ab._id,'third_comm')==''?false:true" class="fa fa-check-circle"
                 style="font-size:24px;color:green"></i> <input type="checkbox" (click)="getEmail3($event,this.allocation_id,ab._id)" [value]="[ab.assessorsEmail,ab.assessorsSecondaryemail]"
                   *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
-              <td>{{ ab.firstName }}</td>
+              <td>{{ ab.firstName }}<label class="label label-primary"  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'newapp')=='2'?true:false">New</label></td>
               <td>{{ ab.assessorsEmail }},{{ ab.assessorsSecondaryemail }}</td>
               <td><label class="btn-xs btn-success"
                   *ngIf="checkArray(this.allval_allocationlistData,ab._id,'teamleader')==''?false:true">{{

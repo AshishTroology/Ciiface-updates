@@ -157,6 +157,7 @@ export class EditAllocationComponent implements OnInit {
       it.calibrator = false;
       it.allocationliststatus = 'pending';
       it.section = [];
+      it.newapp = '2';
       this.allocated_array.push(it);
       this.selectedAssessor = this.allocated_array.length;
     } else {

@@ -40,6 +40,7 @@ import { AssessChecklistComponent } from './assessor-onboard/assess-checklist/as
 import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-allocation.component';
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
 import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
+import { ExecutiveSummaryComponent } from './assessor-onboard/executive-summary/executive-summary.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -223,6 +224,11 @@ const routes: Routes = [
   {
     path: 'joint-applicant/:email',
     component: JointApplicantComponent,
+  },
+
+  {
+    path: 'executive-summary/:id',
+    component: ExecutiveSummaryComponent,
   },
 
   { path: '**', redirectTo: 'login' },

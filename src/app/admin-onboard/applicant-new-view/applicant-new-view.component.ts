@@ -102,26 +102,33 @@ export class ApplicantNewViewComponent implements OnInit {
   }
   getData(e: any, field: any) {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-
-        if (field == 'criteria')
-        {
-          dtInstance
-            .column(8)
-            .search('^' + e.target.value + '$', true, false, true)
-            .draw();
-        } else if (field == 'state') {
-          dtInstance
-            .column(13)
-            .search('^' + e.target.value + '$', true, false, true)
-            .draw();
-        } else {
-          dtInstance
-            .column(15)
-            .search('^' + e.target.value + '$', true, false, true)
-            .draw();
-        }
+      if (field == 'criteria') {
+        dtInstance
+          .column(8)
+          .search('^' + e.target.value + '$', true, false, true)
+          .draw();
+      } else if (field == 'state') {
+        dtInstance
+          .column(13)
+          .search('^' + e.target.value + '$', true, false, true)
+          .draw();
+      } else {
+        dtInstance
+          .column(15)
+          .search('^' + e.target.value + '$', true, false, true)
+          .draw();
+      }
     });
+  }
 
+  compareDates(dt: any): boolean | undefined {
+    let fixedDate = new Date('2019-04-01');
+    let applicantDate = new Date(dt);
+    if (fixedDate.getTime() < applicantDate.getTime()) {
+      console.log('date1 is before current date');
+      return true;
+    }
+    return false
   }
 }
 

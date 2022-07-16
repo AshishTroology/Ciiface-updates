@@ -133,6 +133,7 @@
                   <th scope="col">CheckList</th>
                   <th scope="col">Created</th>
                   <th scope="col">Updated</th>
+                  <th scope="col">Rising Star</th>
                   <th scope="col">Unit</th>
                   <th scope="col">Criteria</th>
                   <th scope="col">Applicant Name</th>
@@ -176,7 +177,8 @@
                   </td>
                   <td>{{ assessorsval.created_at|date:'dd-MM-yyyy'}}</td>
                   <td>{{ assessorsval.updated_at|date:'dd-MM-yyyy'}}</td>
-                  <td><span class="app-id">{{ assessorsval.organizationName}}</span></td>
+                  <td>{{ this.compareDates(assessorsval.operationForm|date:'yyyy-MM-dd')?'Yes':'No' }}</td>
+                  <td><span class="app-id">{{ assessorsval.organizationName}} </span></td>
                   <td><span class="app-id">{{ assessorsval.criteria}}</span> </td>
                   <td><span class="app-id">{{ assessorsval.firstName}}</span></td>
                   <td>{{ assessorsval.designation}}</td>
