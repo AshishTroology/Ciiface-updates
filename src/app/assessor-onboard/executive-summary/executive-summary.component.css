@@ -24,3 +24,24 @@ td, th {
     color: #58666e;
     margin-left: 1rem;
 }
+.SubmitBtn {
+    background: #87a63f;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 15px;
+    padding: 0.5rem 2rem;
+}
+thead {
+    background: #dbd8d8;
+}
+th, td {
+    padding: 7px;
+    border: 1px solid #a3a0a0;
+    text-align: center;
+}
+tbody tr td input {
+    border: none;
+    height: 19px;
+    padding: 6px 12px 6px 40px;
+}
