@@ -11,6 +11,7 @@ export class ListAllocationComponent implements OnInit {
   assessordata: any;
   allval_allocationlistData: any;
   wholedata: any;
+  allocation_id: any;
   constructor(
     public allocation: AllocationService,
     private toast: TosterService
@@ -25,11 +26,10 @@ export class ListAllocationComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ordering: false,
+      ordering: true,
       searching: true,
       processing: true,
       dom: 'lfrtip',
-
     };
     this.allocation.getAllAllocation().subscribe((item: any) => {
       console.log(item);
@@ -56,6 +56,15 @@ export class ListAllocationComponent implements OnInit {
         if (f == 'allocationliststatus') {
           b = user[f];
         }
+        if (f == 'first_comm') {
+          b = user[f];
+        }
+        if (f == 'second_comm') {
+          b = user[f];
+        }
+        if (f == 'third_comm') {
+          b = user[f];
+        }
       }
     });
     return b;
@@ -68,6 +77,7 @@ export class ListAllocationComponent implements OnInit {
     this.wholedata = listData;
     this.assessordata = assdata;
     this.allval_allocationlistData = listData.allocationlistData;
+    this.allocation_id = listData._id;
   }
 
   getEmail1(e: any) {
@@ -81,7 +91,7 @@ export class ListAllocationComponent implements OnInit {
     }
     console.log(this.emailList1);
   }
-  getEmail2(e: any) {
+  getEmail2(e: any, all_id: any, ass_id: any) {
     if (e.target.checked) {
       this.emailList2.push(e.target.value);
     } else {
@@ -90,9 +100,18 @@ export class ListAllocationComponent implements OnInit {
       });
       if (index !== -1) this.emailList2.splice(index, 1);
     }
-    console.log(this.emailList2);
+     this.allocation
+       .updateMailStatus({
+         allocation_id: all_id,
+         assessor_id: ass_id,
+         comm: '2',
+         status: e.target.checked
+       })
+       .subscribe((item: any) => {
+         console.log(this.emailList2,"Updated");
+       });
   }
-  getEmail3(e: any) {
+  getEmail3(e: any, all_id: any, ass_id: any) {
     if (e.target.checked) {
       this.emailList3.push(e.target.value);
     } else {
@@ -101,38 +120,52 @@ export class ListAllocationComponent implements OnInit {
       });
       if (index !== -1) this.emailList3.splice(index, 1);
     }
-    console.log(this.emailList3);
+     this.allocation
+       .updateMailStatus({
+         allocation_id: all_id,
+         assessor_id: ass_id,
+         comm: '3',
+         status: e.target.checked,
+       })
+       .subscribe((item: any) => {
+         console.log(this.emailList3, 'Updated');
+       });
   }
 
   SendMail() {
     let counnt =
       this.emailList1.length + this.emailList2.length + this.emailList3.length;
     if (counnt != 0) {
-      console.log(this.wholedata);
-      this.allocation
-        .SendMail2ndComm({
-          wholedata: this.wholedata,
-          emails1: this.emailList1,
-          emails2: this.emailList2,
-          emails3: this.emailList3,
-        })
-        .subscribe((item: any) => {
-          console.log(item);
-          this.toast.showInfo('Mail send Successfully');
-          window.location.reload();
-        });
+      console.log({
+        wholedata: this.wholedata,
+        emails1: this.emailList1,
+        emails2: this.emailList2,
+        emails3: this.emailList3,
+      });
+      // this.allocation
+      // .SendMail2ndComm({
+      //   wholedata: this.wholedata,
+      //   emails1: this.emailList1,
+      //   emails2: this.emailList2,
+      //   emails3: this.emailList3,
+      // })
+      //   .subscribe((item: any) => {
+      //     console.log(item);
+      //     this.toast.showInfo('Mail send Successfully');
+      //     window.location.reload();
+      //   });
     } else {
       this.toast.showError('Please choose email');
     }
   }
 
-  getAccepted(allocadata:any,status:any){
-    let count=0;
-    allocadata.map((item:any)=>{
-      if(item.allocationliststatus===status){
+  getAccepted(allocadata: any, status: any) {
+    let count = 0;
+    allocadata.map((item: any) => {
+      if (item.allocationliststatus === status) {
         count++;
       }
-    })
+    });
     return count;
   }
 }
