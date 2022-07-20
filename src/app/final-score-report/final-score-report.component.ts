@@ -33,6 +33,11 @@ export class FinalScoreReportComponent implements OnInit {
   SubSecmodel: any = {};
   HighScrmodel: any = {};
   tl: any;
+  highScore: any = 0;
+  conScore: any = 0;
+  conper: any = 0;
+  value: any;
+  count:any=0;
   constructor(
     private router: Router,
     private quest: QuestionService,
@@ -77,6 +82,10 @@ export class FinalScoreReportComponent implements OnInit {
   }
   getQuestion(sec: any) {
     this.spinner.show();
+    this.highScore= 0;
+    this.conScore= 0;
+    this.conper= 0;
+    this.count=0;
     this.section_no = sec;
     this.quest
       .getSubSection({
@@ -100,16 +109,44 @@ export class FinalScoreReportComponent implements OnInit {
             } else {
               this.SubSecmodel = itemvalue[0].Conscore[0];
             }
-            this.quest.getHighScore({
-              criteria: this.criteria,
-              section_no: this.section_no,
-            }).subscribe((hitem:any)=>{
-              console.log(hitem)
-              this.HighScrmodel=hitem[0].score[0];
-            });
-            console.log(this.SubSecmodel);
+            for (var el in this.SubSecmodel) {
+              if (this.SubSecmodel.hasOwnProperty(el)) {
+                this.conper += parseFloat(this.SubSecmodel[el]);
+              }
+            }
+            this.quest
+              .getHighScore({
+                criteria: this.criteria,
+                section_no: this.section_no,
+              })
+              .subscribe((hitem: any) => {
+                console.log(hitem);
+                this.HighScrmodel = hitem[0].score[0];
+                for (var el in this.HighScrmodel) {
+                  if (this.HighScrmodel.hasOwnProperty(el)) {
+                    this.highScore += parseFloat(this.HighScrmodel[el]);
+                    this.count +=((parseFloat(this.SubSecmodel[el]=='NA'?0:(this.SubSecmodel[el]==''?0:this.SubSecmodel[el])) / 100) * parseFloat(this.HighScrmodel[el]));
+                  }
+                }
+                console.log(this.count,"=====================")
+              });
             this.spinner.hide();
           });
       });
   }
+
+  getHighest(scr: any, hscr: any) {
+    this.value = (scr / 100) * hscr;
+    return this.value.toFixed(1);
+  }
+  setValue(r:any){
+    if(r=='NA'||r==''){
+      return 0
+    }
+    else{
+      return r
+    }
+  }
+
+
 }

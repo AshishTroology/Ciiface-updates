@@ -10,15 +10,15 @@
     <div class="card">
       <div>
         <ul class="nav nav-tabs">
-          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item._id.section_no)"><a
-              style="font-size: 14px;">Sec-{{ item._id.section_no }}</a>
+          <li role="presentation" *ngFor="let item of this.section" [class]="item._id.section_no==this.section_no?'active':''" (click)="getQuestion(item._id.section_no)"><a
+              style="font-size: 14px;"  >Sec-{{ item._id.section_no }}</a>
           </li>
         </ul>
       </div>
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Sub Section No</th>
+            <th>Section-{{ this.section_no }}</th>
             <th>Sub Section</th>
             <th *ngFor="let item of assessor_data">
               {{ item.assessor_data[0].firstName }}
@@ -28,8 +28,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let itemd of subSections">
-            <td>{{ itemd._id.sub_section_no }}</td>
+          <tr *ngFor="let itemd of subSections;let i=index">
+            <td>{{ i+1 }}</td>
             <td>{{ itemd._id.sub_section_title }}</td>
             <td *ngFor="let item of assessor_data">{{ getScoreBySubSection(itemd._id.sub_section_no,item.assessor_data[0].assessorsEmail) }}</td>
             <td><input class="form-control" [(ngModel)]="this.SubSecmodel[itemd._id.sub_section_no]" (input)="getModelScore($event,itemd._id.sub_section_no)" /></td>

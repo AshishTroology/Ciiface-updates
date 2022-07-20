@@ -1,6 +1,6 @@
 {
   "name": "ciifaceproject",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,10 @@
     "test": "ng test"
   },
   "private": true,
+  "transpile": {
+    "script": "node --max-old-space-size=8192 ./node_modules/typescript/lib/tsc --project ./tsconfig.build.json",
+    "hiddenFromHelp": true
+      },
   "dependencies": {
     "@angular/animations": "^13.2.0",
     "@angular/common": "~12.2.0",
@@ -72,7 +76,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.4",
-    "@angular/cli": "~12.2.4",
+    "@angular/cli": "^14.0.7",
     "@angular/compiler-cli": "~12.2.0",
     "@types/datatables.net": "^1.10.21",
     "@types/datatables.net-buttons": "^1.4.7",

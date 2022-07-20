@@ -22,6 +22,7 @@ export class ExecutiveSummaryComponent implements OnInit {
   isValidFormSubmitted: boolean = false;
   isValidFormSubmitted1: boolean = false;
   summary: any;
+  rec: any;
   constructor(
     public allocation: AllocationService,
     private _Activatedroute: ActivatedRoute,
@@ -97,8 +98,11 @@ export class ExecutiveSummaryComponent implements OnInit {
       conclusion: '',
       recommendation: '',
       allocation_id: '',
-      key_strength:'',
+      key_strength: '',
     });
+  }
+  setradio(t:any){
+    this.rec=t.target.value
   }
 
   saveExecutiveForm() {
@@ -107,12 +111,13 @@ export class ExecutiveSummaryComponent implements OnInit {
     // } else {
     this.isValidFormSubmitted = false;
     this.executiveForm.value.allocation_id = this.allocationId;
+    this.executiveForm.value.recommendation = this.rec;
     this.allocation
       .saveExecutiveSummary(this.executiveForm.value)
       .subscribe((item: any) => {
         this.toast.showInfo(item.message);
         window.location.href = '/assessors-assess-information';
       });
-    // }
-  }
+    }
+
 }
