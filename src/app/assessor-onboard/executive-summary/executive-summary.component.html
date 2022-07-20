@@ -118,16 +118,16 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td><input formControlName="scr1" class="form-control" /></td>
-                          <td><input formControlName="scr2" class="form-control" /></td>
-                          <td><input formControlName="scr3" class="form-control" /></td>
-                          <td><input formControlName="scr4" class="form-control" /></td>
-                          <td><input formControlName="scr5" class="form-control" /></td>
-                          <td><input formControlName="scr6" class="form-control" /></td>
-                          <td><input formControlName="scr7" class="form-control" /></td>
-                          <td><input formControlName="scr8" class="form-control" /></td>
-                          <td><input formControlName="scr9" class="form-control" /></td>
-                          <td><input formControlName="scr10" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr1" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr2" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr3" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr4" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr5" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr6" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr7" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr8" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr9" class="form-control" /></td>
+                          <td><input type="number" min="0" formControlName="scr10" class="form-control" /></td>
                         </tr>
                       </tbody>
                     </table>
@@ -210,6 +210,9 @@
                 <div class="col-md-12">
                   <button class="btn btn-success">Save</button>
                 </div>
+              </div>
+              <div>
+                <button type="submit" class="SubmitBtn">Submit</button>
               </div>
             </form>
           </div>
@@ -366,5 +369,4 @@
       </div>
     </div>
   </div>
-
 </div>
