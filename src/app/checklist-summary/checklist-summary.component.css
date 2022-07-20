@@ -1,0 +1,17 @@
+.secBtn:hover {
+    background: #87a63f;
+    border-bottom: 2px solid #87a63f;
+    color: #fff;
+}
+.table {
+    margin-top: 1rem;
+}
+.table>thead>tr>th {
+    vertical-align: middle;
+}
+.nav-tabs>li:hover, .nav-tabs>li:active {
+    background: #ee5c3e;
+}
+.nav-tabs>li>a:hover  {
+    color: #fff !important;
+}
