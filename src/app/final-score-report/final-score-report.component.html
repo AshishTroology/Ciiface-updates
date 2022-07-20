@@ -29,9 +29,9 @@
           <tr *ngFor="let itemd of subSections">
             <td>{{ itemd._id.sub_section_no }}</td>
             <td>{{ itemd._id.sub_section_title }}</td>
-            <td><input class="form-control"  value="10" /></td>
+            <td><input class="form-control"  [(ngModel)]="this.HighScrmodel[itemd._id.sub_section_no]" readonly /></td>
+            <td><input class="form-control"  [value]="((this.SubSecmodel[itemd._id.sub_section_no]/100)*this.HighScrmodel[itemd._id.sub_section_no]).toFixed(1)" readonly /></td>
             <td><input class="form-control" [(ngModel)]="this.SubSecmodel[itemd._id.sub_section_no]" readonly /></td>
-            <td>{{ ((this.SubSecmodel[itemd._id.sub_section_no]/100)*10).toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>

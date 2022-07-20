@@ -100,6 +100,13 @@ export class FinalScoreReportComponent implements OnInit {
             } else {
               this.SubSecmodel = itemvalue[0].Conscore[0];
             }
+            this.quest.getHighScore({
+              criteria: this.criteria,
+              section_no: this.section_no,
+            }).subscribe((hitem:any)=>{
+              console.log(hitem)
+              this.HighScrmodel=hitem[0].score[0];
+            });
             console.log(this.SubSecmodel);
             this.spinner.hide();
           });

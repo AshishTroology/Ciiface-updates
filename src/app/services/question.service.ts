@@ -255,4 +255,13 @@ export class QuestionService {
     };
     return this.http.post(api_url, data, httpOptions);
   }
+  getHighScore(data: any) {
+    let api_url = base_url + 'getHighScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
 }
