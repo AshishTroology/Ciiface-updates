@@ -1,0 +1,6 @@
+.table>thead>tr>th {
+    vertical-align: middle;
+}
+.table {
+    margin-top: 2rem;
+}

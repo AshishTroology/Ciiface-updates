@@ -8,15 +8,16 @@
   <div class="app-content-body container">
     <h2>Checklist Summary</h2>
     <div class="card">
-      <div>
+      <div style="margin-bottom: 1.5rem;">
         <ul class="nav nav-tabs">
-          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item._id.section_no)"><a
+          <li role="presentation secBtn" *ngFor="let item of this.section" (click)="getQuestion(item._id.section_no)"><a
               style="font-size: 14px;">Sec-{{ item._id.section_no }}</a>
           </li>
         </ul>
       </div>
       <div *ngFor="let itemd of questions">
-        <span>{{ itemd._id.sub_section_no }}</span> <span>{{ itemd._id.sub_section_title }}</span>
+        <span style="margin-left: 1.5rem;">{{ itemd._id.sub_section_no }}</span>
+        <span>{{ itemd._id.sub_section_title }}</span>
         <table class="table table-bordered">
           <thead>
             <tr>
