@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Subject } from 'rxjs';
+import { AllocationService } from 'src/app/services/allocation.service';
 import { ApplicantService } from 'src/app/services/applicant.service';
 
 @Component({
@@ -22,22 +24,27 @@ export class DashboardComponent implements OnInit {
   record2: any = [];
   record_1: any = [];
   record_2: any = [];
-  constructor(private router: Router, private applicantS: ApplicantService) {
-
-  }
+  AllocationList: any;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  constructor(
+    private router: Router,
+    private applicantS: ApplicantService,
+    public allocation: AllocationService
+  ) {}
 
   // Doughnut
-  public options:any=  {
+  public options: any = {
     plugins: {
       legend: {
         display: true,
-        position: 'right'
+        position: 'right',
       },
       tooltip: {
         enabled: true,
       },
     },
-  }
+  };
   public doughnutChartLabels: string[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
@@ -47,7 +54,6 @@ export class DashboardComponent implements OnInit {
   public doughnutChartData1: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels1,
     datasets: [{ data: this.record1 }],
-    
   };
   public doughnutChartLabels2: string[] = [];
   public doughnutChartData2: ChartData<'doughnut'> = {
@@ -100,7 +106,18 @@ export class DashboardComponent implements OnInit {
     } else {
       this.router.navigate(['/dashboard']);
     }
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ordering: true,
+      searching: true,
+      processing: true,
+    };
+    this.allocation.getAllAllocation().subscribe((item: any) => {
+      console.log(item);
+      this.AllocationList = item.result;
+      this.dtTrigger.next();
+    });
     this.applicantS.getApplicant().subscribe((data: any) => {
       // console.log(data.applicanData.classificationData);
       this.applicant = data.applicanData;
@@ -140,10 +157,10 @@ export class DashboardComponent implements OnInit {
       });
     });
 
+  }
 
-
-
-
-
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 }

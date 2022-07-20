@@ -1,5 +1,8 @@
 <app-header></app-header>
 <app-sidenav-assessors></app-sidenav-assessors>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div id="content" class="app-content" role="main">
   <div class="app-content-body container">
     <h2>Executive Summary</h2>
@@ -9,49 +12,51 @@
           <!-- <div class="panel-heading panel-title">
             Executive Summary
           </div> -->
-          <div class="panel-body">
+          <div class="panel-body" *ngIf="this.isValidFormSubmitted">
             <form [formGroup]="executiveForm" (ngSubmit)="saveExecutiveForm()">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    
+
                     <div>
                       <p class="ComText">Company & Unit name: </p>
-                      <span>Shahista Naaz</span>
+                      <span>{{ this.record[0].applicantData[0].organizationName }}</span>
                     </div>
                     <div>
                       <p class="ComText">Address: </p>
-                      <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui aspernatur, ut autem fuga cupiditate enim tenetur, commodi facere beatae.</span>
+                      <span>{{ this.record[0].applicantData[0].applicantAddress1 }}</span>
                     </div>
                     <div>
                       <p class="ComText">Size(Large/Medium/Small): </p>
-                      <span>Medium</span>
+                      <span>{{ this.record[0].applicantData[0].classification }}</span>
                     </div>
                     <div>
                       <p class="ComText">Criteria of Assessment: </p>
-                      <span>Criteria</span>
+                      <span>{{ this.record[0].applicantData[0].criteria }}</span>
                     </div>
                     <div>
                       <p class="ComText">Date in which Operation Started: </p>
-                      <span>00/00/0000</span>
+                      <span>{{ this.record[0].applicantData[0].operationForm|date:'dd-MM-yyyy'}}</span>
                     </div>
                     <div>
                       <p class="ComText">Date of Assessment: </p>
-                      <span>00/00/0000</span>
+                      <span>{{ this.record[0].allocationData[0].period_from |date:'dd-MM-yyyy' }} - {{
+                        this.record[0].allocationData[0].period_to|date:'dd-MM-yyyy' }}</span>
                     </div>
-                    
-                    
+
+
 
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Scope of Application</label>
-                    <input formControlName="scope_of_application" class="form-control mb" placeholder="Enter Scope of Application" >
+                    <input formControlName="scope_of_application" class="form-control mb"
+                      placeholder="Enter Scope of Application">
                     <label for="exampleInputEmail1">Product</label>
                     <input formControlName="product" class="form-control mb" placeholder="Enter Product">
                     <label for="exampleInputEmail1">Processes</label>
-                   <textarea formControlName="product" class="form-control" placeholder="Enter Processes"></textarea>
+                    <textarea formControlName="processes" class="form-control" placeholder="Enter Processes"></textarea>
                   </div>
                   <p class="ComText">Is the Unit Licensed:
                     <select class="YesNoBtn" formControlName="unit_licensed">
@@ -60,28 +65,30 @@
                     </select>
                   </p>
                 </div>
-              </div>  
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <p>The Food Safety Award Assessment has been conducted through on site assessment of the unit&#39;s
-                    implementation effectiveness of food safety system and practices coupled with the
-                    documentation and test records presented to the assessors. There were no additional analysis and
-                    testing carried out by the assessors and all findings relate to the samples examined.</p>
+                      implementation effectiveness of food safety system and practices coupled with the
+                      documentation and test records presented to the assessors. There were no additional analysis and
+                      testing carried out by the assessors and all findings relate to the samples examined.</p>
                     <p>It may hereby be noted that all information shared by the company and findings by the assessors
-                    would be kept confidential by CII FACE and the assessors.</p>
+                      would be kept confidential by CII FACE and the assessors.</p>
                   </div>
                 </div>
-              </div>  
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Key Strengths and OFIs on PRPs, HACCP, FSMS, Sector specific GMP, Change Management
-                    Initiatives, any significant lapses in Social and Regulatory Compliances if any</label>
-                    <textarea formControlName="key_strength" class="form-control" placeholder="Enter Key Strengths"></textarea>
+                    <label for="exampleInputEmail1">Key Strengths and OFIs on PRPs, HACCP, FSMS, Sector specific GMP,
+                      Change Management
+                      Initiatives, any significant lapses in Social and Regulatory Compliances if any</label>
+                    <textarea formControlName="key_strength" class="form-control"
+                      placeholder="Enter Key Strengths"></textarea>
                   </div>
                 </div>
-              </div>  
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
@@ -89,12 +96,12 @@
                     <textarea formControlName="ofis" class="form-control" placeholder="Enter OFIs:"></textarea>
                   </div>
                 </div>
-              </div>  
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Overall Scoring and Maturity band::</label>
-                    <table>
+                    <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th>5-9</th>
@@ -126,14 +133,15 @@
                     </table>
                   </div>
                 </div>
-              </div>  
+              </div>
               <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Conclusion:</label>
-                      <textarea formControlName="conclusion" class="form-control" placeholder="Enter Conclusion:"></textarea>
-                    </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Conclusion:</label>
+                    <textarea formControlName="conclusion" class="form-control"
+                      placeholder="Enter Conclusion:"></textarea>
                   </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
@@ -141,10 +149,8 @@
                     <label for="exampleInputEmail1">Team Info:</label>
                     <div class="TeamInfo ">
                       <ul>
-                        <li class="ComText">Ashish Maurya (Software Developer)</li>
-                        <li class="ComText">Ashish Maurya (Software Developer)</li>
-                        <li class="ComText">Ashish Maurya (Software Developer)</li>
-                        <li class="ComText">Ashish Maurya (Software Developer)</li>
+                        <li class="ComText" *ngFor="let item of this.arr">{{ item.assessorData[0].firstName }} ({{
+                          item.assessorData[0].designation }})</li>
                       </ul>
                     </div>
                   </div>
@@ -153,40 +159,47 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Recommendation of the Assessor Team: (Please identify relevant section)</label>
+                    <label for="exampleInputEmail1">Recommendation of the Assessor Team: (Please identify relevant
+                      section)</label>
                     <div class="TeamInfo ">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault1" checked value="Award for Outstanding Performance in Food Safety">
                         <label class="form-check-label Label" for="flexRadioDefault1">
                           Fit for "Award for Outstanding Performance in Food Safety"
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault2" value="Significant Achievement on Food Safety">
                         <label class="form-check-label Label" for="flexRadioDefault2">
                           Fit for "Significant Achievement on Food Safety"
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault3" value="Strong Commitment in Food Safety">
                         <label class="form-check-label Label" for="flexRadioDefault3">
                           Fit for "Strong Commitment in Food Safety"
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault4" value="Strong Commitment in GHP / GMP">
                         <label class="form-check-label Label" for="flexRadioDefault4">
                           Fit for "Strong Commitment in GHP / GMP"
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault5" value="Letter of Appreciation">
                         <label class="form-check-label Label" for="flexRadioDefault5">
                           Fit for "Letter of Appreciation"
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
+                        <input class="form-check-input" type="radio" fromControlName="recommendation"
+                          name="flexRadioDefault" id="flexRadioDefault6" value="None of the above">
                         <label class="form-check-label Label" for="flexRadioDefault6">
                           None of the above
                         </label>
@@ -194,9 +207,161 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-md-12">
+                  <button class="btn btn-success">Save</button>
+                </div>
               </div>
             </form>
           </div>
+
+
+          <div class="panel-body" *ngIf="this.isValidFormSubmitted1">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+
+                  <div>
+                    <p class="ComText">Company & Unit name: </p>
+                    <span>{{ this.record[0].applicantData[0].organizationName }}</span>
+                  </div>
+                  <div>
+                    <p class="ComText">Address: </p>
+                    <span>{{ this.record[0].applicantData[0].applicantAddress1 }}</span>
+                  </div>
+                  <div>
+                    <p class="ComText">Size(Large/Medium/Small): </p>
+                    <span>{{ this.record[0].applicantData[0].classification }}</span>
+                  </div>
+                  <div>
+                    <p class="ComText">Criteria of Assessment: </p>
+                    <span>{{ this.record[0].applicantData[0].criteria }}</span>
+                  </div>
+                  <div>
+                    <p class="ComText">Date in which Operation Started: </p>
+                    <span>{{ this.record[0].applicantData[0].operationForm|date:'dd-MM-yyyy'}}</span>
+                  </div>
+                  <div>
+                    <p class="ComText">Date of Assessment: </p>
+                    <span>{{ this.record[0].allocationData[0].period_from |date:'dd-MM-yyyy' }} - {{
+                      this.record[0].allocationData[0].period_to|date:'dd-MM-yyyy' }}</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Scope of Application</label>
+                  <p>{{ this.summary.scope_of_application }}</p>
+                  <label for="exampleInputEmail1">Product</label>
+                  <p>{{ this.summary.product }}</p>
+                  <label for="exampleInputEmail1">Processes</label>
+                  <p>{{ this.summary.processes }}</p>
+                </div>
+                <p class="ComText">Is the Unit Licensed:
+                  <span>{{ this.summary.unit_licensed }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <p>The Food Safety Award Assessment has been conducted through on site assessment of the unit&#39;s
+                    implementation effectiveness of food safety system and practices coupled with the
+                    documentation and test records presented to the assessors. There were no additional analysis and
+                    testing carried out by the assessors and all findings relate to the samples examined.</p>
+                  <p>It may hereby be noted that all information shared by the company and findings by the assessors
+                    would be kept confidential by CII FACE and the assessors.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Key Strengths and OFIs on PRPs, HACCP, FSMS, Sector specific GMP,
+                    Change
+                    Management
+                    Initiatives, any significant lapses in Social and Regulatory Compliances if any</label>
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">OFIs:</label>
+                  <p>{{ this.summary.ofis }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Overall Scoring and Maturity band::</label>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>5-9</th>
+                        <th>10-19</th>
+                        <th>20-29</th>
+                        <th>30-39</th>
+                        <th>40-49</th>
+                        <th>50-59</th>
+                        <th>60-69</th>
+                        <th>70-79</th>
+                        <th>80-89</th>
+                        <th>90-95</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ this.summary.scr1 }}</td>
+                        <td>{{ this.summary.scr2 }}</td>
+                        <td>{{ this.summary.scr3 }}</td>
+                        <td>{{ this.summary.scr4 }}</td>
+                        <td>{{ this.summary.scr5 }}</td>
+                        <td>{{ this.summary.scr6 }}</td>
+                        <td>{{ this.summary.scr7 }}</td>
+                        <td>{{ this.summary.scr8 }}</td>
+                        <td>{{ this.summary.scr9 }}</td>
+                        <td>{{ this.summary.scr10 }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Conclusion:</label>
+                  <p>{{ this.summary.conclusion }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Team Info:</label>
+                  <div class="TeamInfo ">
+                    <ul>
+                      <li class="ComText" *ngFor="let item of this.arr">{{ item.assessorData[0].firstName }} ({{
+                        item.assessorData[0].designation }})</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Recommendation of the Assessor Team: {{ this.summary.recommendation }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

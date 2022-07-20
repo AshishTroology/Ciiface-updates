@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="col-sm-6">
+      <p>Criteria</p>
+      <select class="form-control" (change)="getSections($event)">
+        <option value="">Select Criteria</option>
+        <option value="Criteria 1">Criteria 1</option>
+        <option value="Criteria 2 Large">Criteria 2 Large</option>
+        <option value="Criteria 2 for SMB">Criteria 2 for SMB</option>
+        <option value="Criteria 3 Large">Criteria 3 Large</option>
+        <option value="Criteria 3 for SMB">Criteria 3 for SMB</option>
+        <option value="Criteria 4">Criteria 4</option>
+        <option value="Criteria 5">Criteria 5</option>
+        <option value="Criteria 6">Criteria 6</option>
+        <option value="Criteria 7">Criteria 7</option>
+        <option value="Criteria 8">Criteria 8</option>
+        <option value="Criteria 9">Criteria 9</option>
+        <option value="Criteria 10">Criteria 10</option>
+        <option value="Criteria 11">Criteria 11</option>
+        <option value="Criteria 12">Criteria 12</option>
+      </select>
+    </div>
+    <div class="col-sm-6">
+      <p>Section</p>
+      <select class="form-control" (change)="getSubSections($event)">
+        <option value="" *ngFor="let item of this.section" value="{{ item._id.section_no }}">{{ item._id.section_no }}</option>
+      </select>
+    </div>
+    <br/>
+    <div class="col-sm-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sub Section No</th>
+            <th>Sub Section</th>
+            <th>Highest Score </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemd of subSections">
+            <td>{{ itemd._id.sub_section_no }}</td>
+            <td>{{ itemd._id.sub_section_title }}</td>
+            <td><input class="form-control" [(ngModel)]="this.highestScrmodel[itemd._id.sub_section_no]" (input)="getModelScore($event,itemd._id.sub_section_no)" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="saveHighestScore()">Add</button>
+    </div>
+  </div>
+</div>
+

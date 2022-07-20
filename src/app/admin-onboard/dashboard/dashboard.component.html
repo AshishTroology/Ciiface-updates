@@ -238,31 +238,31 @@
         <h6>ASSESSMENTS</h6>
       </div>
       <div class="applicants-data">
-        <table class="table">
+        <table class="table"  datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger">
           <thead>
             <tr>
-              <th>#</th>
               <th>APPLICANT</th>
               <th>SCHEDULE</th>
-              <th>TEAM LEAD</th>
-              <th>STATUS</th>
+              <th>Created On</th>
             </tr>
           </thead>
           <tbody>
-            <!--<tr>
-              <td scope="row">1</td>
-              <td>Company Name 1</td>
-              <td><i class="fa fa-calendar" aria-hidden="true"></i> 15 April - 18 April</td>
-              <td>Team Member 1</td>
-              <td><span class="review">Review</span></td>
-            </tr>-->
-            <tr>
-              <td colspan="5"> No Record Found</td>
+            <tr *ngFor="let allval of AllocationList">
+              <td>
+                <span class="app-id">Name: {{ allval.applicantData[0].firstName}}</span><br />
+                <span>Email: {{ allval.applicantData[0].email}}</span><br />
+                <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span>
+              </td>
+              <td>
+                From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b> - To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b>
+              </td>
+              <td> {{ allval.created_at|date:'dd-MM-yyyy' }}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
+    <!--
     <section id="pie-with-tab">
       <div class="row">
         <div class="col-sm-4">
@@ -419,6 +419,6 @@
         </div>
       </div>
     </section>
-
+-->
   </div>
 </div>

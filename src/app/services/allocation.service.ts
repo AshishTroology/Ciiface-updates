@@ -145,4 +145,24 @@ export class AllocationService {
     };
     return this.http.post(api_url, data, httpOptions);
   }
+
+  saveExecutiveSummary(data: any) {
+    let api_url = base_url + 'saveSummary';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  getExecutiveSummary(id: any) {
+    let api_url = base_url + 'getSummary/'+id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.get(api_url,httpOptions);
+  }
 }

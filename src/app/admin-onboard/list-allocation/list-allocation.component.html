@@ -91,9 +91,12 @@
                             </a></li>
                         <li role="presentation" (click)="sentmail(allval.assessorData,allval)"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#myModal" > Communication Mail
                           </a></li>
-
-
-
+                        <li role="presentation"><a role="menuitem" tabindex="-1"
+                              href="/score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Score
+                              Report</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/final-score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Final Score Report</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1"
+                            href="/checklist-summary/{{ allval.applicantData[0]._id }}/{{ allval._id }}">Checklist Summary</a></li>
                       </ul>
                     </div>
                   </td>
@@ -138,13 +141,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let ab of assessordata" >
-              <td ><i class="fa fa-check-circle" style="font-size:24px;color:green" *ngIf="checkArray(this.allval_allocationlistData,ab._id,'first_comm')!='rejected'?true:false"></i> <input type="checkbox" (click)="getEmail1($event)" [value]="[ab.assessorsEmail,ab.assessorsSecondaryemail]" *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false" [attr.disabled]="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
+              <td ><i class="fa fa-check-circle" style="font-size:24px;color:green" *ngIf="checkArray(this.allval_allocationlistData,ab._id,'first_comm')?true:false"></i> <input type="checkbox" (click)="getEmail1($event,this.allocation_id,ab._id)" [value]="[ab.assessorsEmail,ab.assessorsSecondaryemail]" *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
               <td><i  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'second_comm')==''?false:true" class="fa fa-check-circle" style="font-size:24px;color:green"></i> <input type="checkbox" (click)="getEmail2($event,this.allocation_id,ab._id)" [value]="[ab.assessorsEmail,ab.assessorsSecondaryemail]"
                   *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
               <td><i *ngIf="checkArray(this.allval_allocationlistData,ab._id,'third_comm')==''?false:true" class="fa fa-check-circle"
                 style="font-size:24px;color:green"></i> <input type="checkbox" (click)="getEmail3($event,this.allocation_id,ab._id)" [value]="[ab.assessorsEmail,ab.assessorsSecondaryemail]"
                   *ngIf="checkArray(this.allval_allocationlistData,ab._id,'allocationliststatus')!='rejected'?true:false"></td>
-              <td>{{ ab.firstName }}<label class="label label-primary"  *ngIf="checkArray(this.allval_allocationlistData,ab._id,'newapp')=='2'?true:false">New</label></td>
+              <td>{{ ab.firstName }}</td>
               <td>{{ ab.assessorsEmail }},{{ ab.assessorsSecondaryemail }}</td>
               <td><label class="btn-xs btn-success"
                   *ngIf="checkArray(this.allval_allocationlistData,ab._id,'teamleader')==''?false:true">{{

@@ -1,0 +1,47 @@
+<app-header></app-header>
+<app-sidenav *ngIf="this.udata.role!='assessor'?true:false"></app-sidenav>
+<app-sidenav-assessors *ngIf="this.udata.role=='assessor'?true:false"></app-sidenav-assessors>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Hold on while we take you to your CII FACE Account! </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <h2>Checklist Summary</h2>
+    <div class="card">
+      <div>
+        <ul class="nav nav-tabs">
+          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item._id.section_no)"><a
+              style="font-size: 14px;">Sec-{{ item._id.section_no }}</a>
+          </li>
+        </ul>
+      </div>
+      <div *ngFor="let itemd of questions">
+        <span>{{ itemd._id.sub_section_no }}</span> <span>{{ itemd._id.sub_section_title }}</span>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Ques No.</th>
+              <th>Ques Title</th>
+              <th>Ques Des</th>
+              <th *ngFor="let item of assessor_data">
+                {{ item.assessor_data[0].firstName }}
+                <p>({{ item.assessor_data[0].assessorsEmail }})</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemd of itemd.ques">
+              <td>{{ itemd.ques_no }}</td>
+              <td>{{ itemd.ques_title }}</td>
+              <td>{{ itemd.ques_des }}</td>
+              <td *ngFor="let item of assessor_data">{{
+                getScoreBySubSection(itemd.id,item.assessor_data[0].assessorsEmail) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

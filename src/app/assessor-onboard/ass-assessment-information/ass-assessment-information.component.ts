@@ -83,8 +83,8 @@ export class AssAssessmentInformationComponent implements OnInit {
     if (status != 'accepted' || from == null || to == null) {
       return false;
     } else {
-      console.log(from, to, 'dates--------------');
-      console.log(this.calculateDiff(from, to));
+      // console.log(from, to, 'dates--------------');
+      // console.log(this.calculateDiff(from, to));
 
       return this.calculateDiff(from, to);
     }
@@ -102,7 +102,11 @@ export class AssAssessmentInformationComponent implements OnInit {
       console.log('within range');
       return true;
     } else {
-      console.log('not in range');
+      console.log(
+        'not in range',
+        DateTime.fromISO(fromDate).minus({ days: 7 }),
+        DateTime.fromISO(toDate)
+      );
       return false;
     }
   }

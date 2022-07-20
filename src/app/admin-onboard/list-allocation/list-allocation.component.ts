@@ -93,7 +93,7 @@ export class ListAllocationComponent implements OnInit {
     this.allocation_id = listData._id;
   }
 
-  getEmail1(e: any) {
+  getEmail1(e: any, all_id: any, ass_id: any) {
     if (e.target.checked) {
       this.emailList1.push(e.target.value);
     } else {
@@ -102,7 +102,16 @@ export class ListAllocationComponent implements OnInit {
       });
       if (index !== -1) this.emailList1.splice(index, 1);
     }
-    console.log(this.emailList1);
+    this.allocation
+      .updateMailStatus({
+        allocation_id: all_id,
+        assessor_id: ass_id,
+        comm: '1',
+        status: e.target.checked,
+      })
+      .subscribe((item: any) => {
+        console.log(this.emailList1, 'Updated');
+      });
   }
   getEmail2(e: any, all_id: any, ass_id: any) {
     if (e.target.checked) {
@@ -155,18 +164,18 @@ export class ListAllocationComponent implements OnInit {
         emails2: this.emailList2,
         emails3: this.emailList3,
       });
-      // this.allocation
-      // .SendMail2ndComm({
-      //   wholedata: this.wholedata,
-      //   emails1: this.emailList1,
-      //   emails2: this.emailList2,
-      //   emails3: this.emailList3,
-      // })
-      //   .subscribe((item: any) => {
-      //     console.log(item);
-      //     this.toast.showInfo('Mail send Successfully');
-      //     window.location.reload();
-      //   });
+      this.allocation
+      .SendMail2ndComm({
+        wholedata: this.wholedata,
+        emails1: this.emailList1,
+        emails2: this.emailList2,
+        emails3: this.emailList3,
+      })
+        .subscribe((item: any) => {
+          console.log(item);
+          this.toast.showInfo('Mail send Successfully');
+          window.location.reload();
+        });
     } else {
       this.toast.showError('Please choose email');
     }

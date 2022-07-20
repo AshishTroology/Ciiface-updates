@@ -15,7 +15,7 @@
 
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Period From</label> <small id="emailHelp" class="form-text text-muted"> :{{this.min|date:'dd-mm-yyyy'}}</small>
+                    <label for="exampleInputEmail1">Period From</label> <small id="emailHelp" class="form-text text-muted"> :{{this.min|date:'dd-MM-yyyy'}}</small>
                     <input type="date" formControlName="period_from" class="form-control" id="exampleInputEmail1"
                       aria-describedby="emailHelp" placeholder="Enter Date" (input)="getDate($event,'')">
 
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label for="exampleInputEmail2">Period To</label><small id="emailHelp_1" class="form-text text-muted"> :{{this.to|date:'dd-mm-yyyy'}}</small>
+                    <label for="exampleInputEmail2">Period To</label><small id="emailHelp_1" class="form-text text-muted"> :{{this.to|date:'dd-MM-yyyy'}}</small>
                     <input type="date" class="form-control" formControlName="period_to" id="exampleInputEmail2"
                       aria-describedby="emailHelp_1" placeholder="Enter email" (input)="getDateto($event,'')">
 

@@ -41,6 +41,10 @@ import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-al
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
 import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
 import { ExecutiveSummaryComponent } from './assessor-onboard/executive-summary/executive-summary.component';
+import { ScoreReportComponent } from './score-report/score-report.component';
+import { ChecklistSummaryComponent } from './checklist-summary/checklist-summary.component';
+import { FinalScoreReportComponent } from './final-score-report/final-score-report.component';
+import { AddHighestScoreComponent } from './admin-onboard/add-highest-score/add-highest-score.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -229,6 +233,26 @@ const routes: Routes = [
   {
     path: 'executive-summary/:id',
     component: ExecutiveSummaryComponent,
+  },
+
+  {
+    path: 'score-report/:id/:_id/:tl',
+    component: ScoreReportComponent,
+  },
+
+  {
+    path: 'checklist-summary/:id/:_id',
+    component: ChecklistSummaryComponent,
+  },
+
+  {
+    path: 'final-score-report/:id/:_id/:tl',
+    component: FinalScoreReportComponent,
+  },
+
+  {
+    path: 'add-highest-score',
+    component: AddHighestScoreComponent,
   },
 
   { path: '**', redirectTo: 'login' },

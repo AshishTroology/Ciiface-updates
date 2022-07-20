@@ -1,0 +1,43 @@
+<app-header></app-header>
+<app-sidenav *ngIf="this.udata.role!='assessor'?true:false"></app-sidenav>
+<app-sidenav-assessors *ngIf="this.udata.role=='assessor'?true:false"></app-sidenav-assessors>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+  <p style="color: white"> Hold on while we take you to your CII FACE Account! </p>
+</ngx-spinner>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body container">
+    <h2>Score Report</h2>
+    <div class="card">
+      <div>
+        <ul class="nav nav-tabs">
+          <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item._id.section_no)"><a
+              style="font-size: 14px;">Sec-{{ item._id.section_no }}</a>
+          </li>
+        </ul>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sub Section No</th>
+            <th>Sub Section</th>
+            <th *ngFor="let item of assessor_data">
+              {{ item.assessor_data[0].firstName }}
+              <p>({{ item.assessor_data[0].assessorsEmail }})</p>
+            </th>
+            <th>Consensus Score (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemd of subSections">
+            <td>{{ itemd._id.sub_section_no }}</td>
+            <td>{{ itemd._id.sub_section_title }}</td>
+            <td *ngFor="let item of assessor_data">{{ getScoreBySubSection(itemd._id.sub_section_no,item.assessor_data[0].assessorsEmail) }}</td>
+            <td><input class="form-control" [(ngModel)]="this.SubSecmodel[itemd._id.sub_section_no]" (input)="getModelScore($event,itemd._id.sub_section_no)" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="saveConsensusScore()" *ngIf="this.tl=='TL'?true:false" >Save Consensus Scores</button>
+    </div>
+
+  </div>
+</div>

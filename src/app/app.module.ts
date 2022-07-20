@@ -78,6 +78,10 @@ import { EditAllocationComponent } from './admin-onboard/edit-allocation/edit-al
 import { CriteriaReportComponent } from './criteria-report/criteria-report.component';
 import { JointApplicantComponent } from './admin-onboard/joint-applicant/joint-applicant.component';
 import { ExecutiveSummaryComponent } from './assessor-onboard/executive-summary/executive-summary.component';
+import { ScoreReportComponent } from './score-report/score-report.component';
+import { ChecklistSummaryComponent } from './checklist-summary/checklist-summary.component';
+import { FinalScoreReportComponent } from './final-score-report/final-score-report.component';
+import { AddHighestScoreComponent } from './admin-onboard/add-highest-score/add-highest-score.component';
 
 
 @NgModule({
@@ -125,6 +129,10 @@ import { ExecutiveSummaryComponent } from './assessor-onboard/executive-summary/
     CriteriaReportComponent,
     JointApplicantComponent,
     ExecutiveSummaryComponent,
+    ScoreReportComponent,
+    ChecklistSummaryComponent,
+    FinalScoreReportComponent,
+    AddHighestScoreComponent,
   ],
   imports: [
     BrowserModule,

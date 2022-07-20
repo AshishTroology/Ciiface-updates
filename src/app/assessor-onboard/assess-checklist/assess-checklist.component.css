@@ -17,3 +17,29 @@
         border-radius: 3px;
 
 }
+.perText {
+  float: right;
+    position: relative;
+    top: 34px;
+    left: 205px;
+    margin-top: 6px;
+    color: #e24a4a;
+}
+.perSpan {
+  float: right;
+    position: relative;
+    left: 210px;
+    top: 8px;
+}
+.InputFeild {
+  margin-bottom: 2rem;
+    width: 196px;
+    float: right;
+    margin-right: 26px;
+
+}
+.scoreDiv {
+  font-size: 18px;
+    color: #585858;
+    font-weight: 500;
+}

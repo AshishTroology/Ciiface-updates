@@ -11,7 +11,6 @@
           <hr />
         </div>
         <div class="col-sm-6 col-xs-12 mb-3 text-right">
-          <a href="/view-applicant" class="btn btn-success">Grid View</a>
         </div>
         <div class="clearfix"></div>
         <div id="col-sm-6">
@@ -129,7 +128,7 @@
                   <th scope="col">ID</th>
                   <th scope="col">Status</th>
                   <th scope="col">LOI</th>
-                  <th scope="col">Instruction</th>
+                  <!-- <th scope="col">Instruction</th>-->
                   <th scope="col">CheckList</th>
                   <th scope="col">Created</th>
                   <th scope="col">Updated</th>
@@ -161,14 +160,14 @@
                       assessorsval.userStatus?'SUBMITTED':'PENDING' }}</label>
 
                   </td>
-                  <td>
+                  <!--<td>
                     <p class="label label-{{assessorsval.InstructionData.length==1?'success':'danger'}}">
                       {{assessorsval.InstructionData?(assessorsval.InstructionData.length==1?'Accepted':'Pending'):'N/A'}}
                     </p>
                     <span style="display: block;font-size: 10px;"
                       *ngIf="assessorsval.InstructionData.length==1?true:false">{{assessorsval.InstructionData[0].created_at|date:'dd-MM-yyyy'}}</span>
 
-                  </td>
+                  </td>-->
                   <td>
                     <p class="label label-{{assessorsval.finalassessmentsData.length==1?'success':'warning'}}">
                       {{assessorsval.finalassessmentsData.length==1?'Completed':'Process'}}</p>
@@ -217,7 +216,7 @@
                   <th scope="col">ID</th>
                   <th scope="col">Status</th>
                   <th scope="col">LOI</th>
-                  <th scope="col">Instruction</th>
+                 <!-- <th scope="col">Instruction</th>-->
                   <th scope="col">CheckList</th>
                   <th scope="col">Created</th>
                   <th scope="col">Updated</th>

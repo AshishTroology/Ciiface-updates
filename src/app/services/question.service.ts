@@ -166,4 +166,93 @@ export class QuestionService {
     };
     return this.http.post(api_url, data, httpOptions);
   }
+
+  getSubSection(data: any) {
+    let api_url = base_url + 'getSubSection';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  getAllocationAssessor(data: any) {
+    let api_url = base_url + 'getAllocationAssessor';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  getAssessment(data: any) {
+    let api_url = base_url + 'getAssessment';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  getAssessmentScore(data: any) {
+    let api_url = base_url + 'getAssessmentScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+  addConsensusScore(data: any) {
+    let api_url = base_url + 'addConsensusScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  getConsensusScore(data: any) {
+    let api_url = base_url + 'getConsensusScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  sectionGroupbyCriteria(data: any) {
+    let api_url = base_url + 'sectionGroupbyCriteria';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  questionGroupbyCriteria(data: any) {
+    let api_url = base_url + 'questionGroupbyCriteria';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
+
+  saveHighScore(data: any) {
+    let api_url = base_url + 'saveHighScore';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+      }),
+    };
+    return this.http.post(api_url, data, httpOptions);
+  }
 }

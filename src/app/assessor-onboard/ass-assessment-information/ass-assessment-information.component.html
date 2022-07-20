@@ -24,8 +24,8 @@
               <span>{{ allval.applicantData[0].criteria}}, {{ allval.applicantData[0].sector}}</span>
             </td>
             <td>
-              From:<b> {{ allval.period_from|date:'dd-MM-yyyy' }} </b><br />
-              To:<b> {{ allval.period_to|date:'dd-MM-yyyy' }}</b>
+              From:<b> {{ allval.allocationData[0].period_from|date:'dd-MM-yyyy' }} </b><br />
+              To:<b> {{ allval.allocationData[0].period_to|date:'dd-MM-yyyy' }}</b>
             </td>
             <td>
               <ul class="nav nav-stacked">
@@ -50,14 +50,18 @@
                   <li role="presentation" *ngIf="allval.allocationliststatus=='pending'?true:false"
                     (click)="updateStatus($event, allval._id , 'rejected',allval.applicantData[0].email,allval.teamleader,allval.applicantData[0].firstName)">
                     <a role="menuitem" tabindex="-1" >Reject</a></li>
-                  <!--<li role="presentation"><a role="menuitem" tabindex="-1"
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/executive-summary/{{ allval.allocation_id }}"
+                        *ngIf="allval.teamleader">Executive Summary
+                      </a></li>
+                  <!-- <li role="presentation"><a role="menuitem" tabindex="-1"
                       href="/view-app/{{ allval.applicantData[0]._id }}">Applicant LOI</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1"
-                      href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>-->
-                  <li role="presentation" *ngIf="checkValidity(allval.allocationliststatus,allval.period_from,allval.period_to)"><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}">Assess Applicant</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/executive-summary/{{ allval.allocation_id }}"
-                      *ngIf="allval.teamleader">Executive Summary
-                    </a></li>
+                      href="/view-checklist/{{ allval.applicantData[0]._id }}">Applicant Checklist</a></li>
+                      -->
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/assess-checklist/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}">Assess Applicant</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/score-report/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}/{{ allval.teamleader==true?'TL':'AS' }}">Score Report</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/final-score-report/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}/{{ allval.teamleader==true?'TL':'AS' }}">Final Score Report</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklist-summary/{{ allval.applicantData[0]._id }}/{{ allval.allocation_id }}">Checklist Summary</a></li>
                 </ul>
               </div>
             </td>

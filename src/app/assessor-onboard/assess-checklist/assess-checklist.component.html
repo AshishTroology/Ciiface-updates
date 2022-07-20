@@ -43,12 +43,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6" style="font-size: 18px; color: #585858; font-weight: 500;">Score</div>
-            <div class="col-md-6">
-              <input style="margin-bottom: 2rem;width: 196px; float: right;" class="form-control" (input)=" onChangeScore(item.sub_section_no, $event,null)" [(ngModel)]="this.modelscore[item.sub_section_no]" [ngModelOptions]="{standalone: true}" />
+            <div class="col-md-6 scoreDiv">Score</div>
+            <div class="col-md-6" style="margin-bottom: 10px;">
+              <input class="form-control InputFeild" (input)=" onChangeScore(item.sub_section_no, $event,null)" [(ngModel)]="this.modelscore[item.sub_section_no]" [min]="0" [max]="100" [ngModelOptions]="{standalone: true}" />
+              <span class="perSpan">%</span>
+              <p class="perText">The above score is in percentage. Fill in the score between 0% - 100%</p>
             </div>
-
-
           </div>
           <button class="saveBtn">Save</button>
         </form>

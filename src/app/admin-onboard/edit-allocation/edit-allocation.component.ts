@@ -84,6 +84,9 @@ export class EditAllocationComponent implements OnInit {
               items['calibrator'] = itemArr.calibrator;
               items['allocationliststatus'] = itemArr.allocationliststatus;
               items['section'] = itemArr.section;
+              items['first_comm'] = itemArr.first_comm;
+              items['second_comm'] = itemArr.second_comm;
+              items['third_comm'] = itemArr.third_comm;
             }
           });
         });
@@ -157,9 +160,12 @@ export class EditAllocationComponent implements OnInit {
       it.calibrator = false;
       it.allocationliststatus = 'pending';
       it.section = [];
-      it.newapp = '2';
+      it.first_comm = false;
+      it.second_comm = false;
+      it.third_comm = false;
       this.allocated_array.push(it);
       this.selectedAssessor = this.allocated_array.length;
+      console.log(it, this.allocated_array);
     } else {
       var index = this.allocated_array.findIndex(function (o: any) {
         return o._id === e.target.value;
