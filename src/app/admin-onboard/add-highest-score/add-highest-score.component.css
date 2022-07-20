@@ -1,0 +1,33 @@
+.hscore {
+    margin: 0rem 0 0 1.5rem;
+    padding: 2rem 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
+table {
+    margin-top: 2rem;
+    margin-bottom: 1rem !important;
+    border: 1px solid #ddd !important;
+}
+thead {
+    background: #00000014;
+}
+.AddBtn {
+    background: #87a63f;
+    border: none;
+    padding: 0.5rem 2rem;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 3px;
+}
+.table>tbody>tr>td {
+    vertical-align: middle;
+}
+.pd {
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.table>thead>tr>th {
+    vertical-align: middle;
+}

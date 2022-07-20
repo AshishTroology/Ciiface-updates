@@ -11,12 +11,12 @@
         <ul class="nav nav-tabs">
           <li role="presentation" *ngFor="let item of this.section" (click)="getQuestion(item)" ><a >Sec-{{ item }}</a></li>
         </ul>
-        <div class="col-sm-12 panel" *ngFor="let item of this.subsection">
-          <p class="h4" style="margin-bottom: 1rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
+        <div class="col-sm-12 panel mt" *ngFor="let item of this.subsection">
+          <p class="h4" style="margin: 2rem;">{{ item.sub_section_no }} : {{ item.sub_section_title }}</p>
           <div class="col-md-12 text-danger">
-            <div class="col-md-3 b">Qs#</div>
-            <div class="col-md-6 b">Checkpoint</div>
-            <div class="col-md-3 b">Answer</div>
+            <div class="col-md-3 b top">Qs#</div>
+            <div class="col-md-6 b top">Checkpoint</div>
+            <div class="col-md-3 b top">Answer</div>
           </div>
           <div class="col-md-12" *ngFor="let item_inner of this.questions">
             <div *ngIf="item.sub_section_no===item_inner.sub_section_no">

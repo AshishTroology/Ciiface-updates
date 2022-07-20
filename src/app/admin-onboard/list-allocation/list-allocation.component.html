@@ -12,7 +12,7 @@
         </div>
         <div class="clearfix"></div>
 
-        <div class="col-md-12 table-responsive">
+        <div class="col-md-12 table-responsive panel pd">
 
           <table class="panel panel-default table table-dark nowrap" datatable [dtOptions]="dtOptions"
           [dtTrigger]="dtTrigger">
@@ -92,9 +92,8 @@
                         <li role="presentation" (click)="sentmail(allval.assessorData,allval)"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#myModal" > Communication Mail
                           </a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1"
-                              href="/score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Score
-                              Report</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/final-score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Final Score Report</a></li>
+                              href="/score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Consensus Score Sheet</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/final-score-report/{{ allval.applicantData[0]._id }}/{{ allval._id }}/AS">Score Summary Sheet</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1"
                             href="/checklist-summary/{{ allval.applicantData[0]._id }}/{{ allval._id }}">Checklist Summary</a></li>
                       </ul>
